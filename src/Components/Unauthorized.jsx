@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Unauthorized = () => {
   return (
-    <div>
-      <h1>Unauthorized</h1>
-      <p>You do not have access to this page.</p>
+    <div className="text-center mt-5">
+      <h1>403 Forbidden</h1>
+      <p>You do not have permission to access this page.</p>
+      <Link to="/login">Return</Link>
     </div>
   );
 };

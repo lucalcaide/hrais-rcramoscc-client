@@ -1,24 +1,54 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import axios from 'axios';
 
-const PrivateRoute = ({ children }) => {
-  const [isValid, setIsValid] = useState(!!localStorage.getItem('valid'));
+const PrivateRoute = ({ children, roles }) => {
+  const [isValid, setIsValid] = useState(false);
+  const [userRole, setUserRole] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [redirectPath, setRedirectPath] = useState(null);
 
   useEffect(() => {
-    const handleStorageChange = (event) => {
-      if (event.key === 'valid' && !event.newValue) {
+    const verifyUser = async () => {
+      try {
+        const result = await axios.get('http://localhost:3000/verify');
+        if (result.data.Status) {
+          setIsValid(true);
+          setUserRole(result.data.role);
+        } else {
+          setIsValid(false);
+          setRedirectPath('/login'); // Redirect to login if not valid
+        }
+      } catch (err) {
         setIsValid(false);
+        setRedirectPath('/login'); // Redirect to login on error
+        console.log(err);
+      } finally {
+        setLoading(false);
       }
     };
 
-    window.addEventListener('storage', handleStorageChange);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
+    verifyUser();
   }, []);
 
-  return isValid ? children : <Navigate to="/login" />;
+  if (loading) {
+    // Show a loading spinner or message here
+    return <div>Loading...</div>;
+  }
+
+  if (redirectPath) {
+    return <Navigate to={redirectPath} />;
+  }
+
+  if (!isValid) {
+    return <Navigate to="/login" />;
+  }
+
+  if (roles && !roles.includes(userRole)) {
+    return <Navigate to="/unauthorized" />;
+  }
+
+  return children;
 };
 
 export default PrivateRoute;

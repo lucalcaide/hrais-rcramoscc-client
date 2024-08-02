@@ -16,7 +16,6 @@ import Position from './Components/Position';
 import Attendance from './Components/Attendance';
 
 
-
 import Leave from './Components/Leave';
 import TermsAndAgreements from './Components/TermsAndAgreements';
 import AboutUs from './Components/AboutUs';
@@ -77,76 +76,74 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login  />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
 
-        <Route path="/employee_home/:id" element={<PrivateRoute><EmployeeHome /></PrivateRoute>} />
-        <Route path="/employee_profile/:id" element={<PrivateRoute><EmployeeProfile /></PrivateRoute>} />
-        <Route path="/employee_change_password/:id" element={<PrivateRoute><EmpChangePass /></PrivateRoute>} />
-        <Route path="/employee_files/:id" element={<PrivateRoute><EmployeeFiles /></PrivateRoute>} />
-        <Route path='/employee_attendance/:id' element={<PrivateRoute><EmployeeAttendance /></PrivateRoute>} />
-        <Route path='/employee_attendance-fulldetails/:id' element={<PrivateRoute><EmployeeAttendanceFullDetails /></PrivateRoute>} />
-        <Route path="/employee_leave/:id" element={<PrivateRoute><EmployeeLeave /></PrivateRoute>} />
-        <Route path="/employee_leave_list/:id" element={<PrivateRoute><EmployeeLeaveRequest /></PrivateRoute>} />
-        <Route path='/update_employee_password/:id' element={<PrivateRoute><CreateNewPass /></PrivateRoute>} />
+        <Route path="/employee_home/:id" element={<PrivateRoute roles={['employee']}><EmployeeHome /></PrivateRoute>} />
+        <Route path="/employee_profile/:id" element={<PrivateRoute> roles={['employee']}<EmployeeProfile /></PrivateRoute>} />
+        <Route path="/employee_change_password/:id" element={<PrivateRoute roles={['employee']}><EmpChangePass /></PrivateRoute>} />
+        <Route path="/employee_files/:id" element={<PrivateRoute roles={['employee']}><EmployeeFiles /></PrivateRoute>} />
+        <Route path='/employee_attendance/:id' element={<PrivateRoute roles={['employee']}><EmployeeAttendance /></PrivateRoute>} />
+        <Route path='/employee_attendance-fulldetails/:id' element={<PrivateRoute roles={['employee']}><EmployeeAttendanceFullDetails /></PrivateRoute>} />
+        <Route path="/employee_leave/:id" element={<PrivateRoute roles={['employee']}><EmployeeLeave /></PrivateRoute>} />
+        <Route path="/employee_leave_list/:id" element={<PrivateRoute roles={['employee']}><EmployeeLeaveRequest /></PrivateRoute>} />
 
-        <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
-          <Route path='' element={<PrivateRoute><Home /></PrivateRoute>} />
-          <Route path='/dashboard/createadmin' element={<PrivateRoute><CreateAdmin /></PrivateRoute>} />
-          <Route path='/dashboard/createrecruitment' element={<PrivateRoute><CreateRecruitment /></PrivateRoute>} />
-          <Route path='/dashboard/createpayroll' element={<PrivateRoute><CreatePayroll /></PrivateRoute>} />
-          <Route path='/dashboard/employee' element={<PrivateRoute><Employee /></PrivateRoute>} />
-          <Route path='/dashboard/employee/update_employee_password/:id' element={<PrivateRoute><CreateNewPass /></PrivateRoute>} />
-          <Route path='/dashboard/department' element={<PrivateRoute><Department /></PrivateRoute>} />
-          <Route path='/dashboard/project' element={<PrivateRoute><Project /></PrivateRoute>} />
-          <Route path='/dashboard/position' element={<PrivateRoute><Position /></PrivateRoute>} />
-          <Route path='/dashboard/attendance' element={<PrivateRoute><Attendance /></PrivateRoute>} />
-          <Route path='/dashboard/manage_attendance' element={<PrivateRoute><ManageAttendance/></PrivateRoute>} />
-          <Route path='/dashboard/attendance-fulldetails' element={<PrivateRoute><AttendanceFullDetails/></PrivateRoute>} />
-        
-          <Route path='/dashboard/leave' element={<PrivateRoute><Leave /></PrivateRoute>} />
-          <Route path='/dashboard/terms_and_agreements' element={<PrivateRoute><TermsAndAgreements /></PrivateRoute>} />
-          <Route path='/dashboard/about_us' element={<PrivateRoute><AboutUs /></PrivateRoute>} />
-          <Route path='/dashboard/201files' element={<PrivateRoute><Files /></PrivateRoute>} />
-          <Route path='/dashboard/201files/resume' element={<PrivateRoute><FilesResume /></PrivateRoute>} />
-          <Route path='/dashboard/201files/job_offer' element={<PrivateRoute><FilesJobOffer /></PrivateRoute>} />
-          <Route path='/dashboard/201files/contract' element={<PrivateRoute><FilesContract /></PrivateRoute>} />
-          <Route path='/dashboard/201files/valid_id' element={<PrivateRoute><FilesValidId /></PrivateRoute>} />
-          <Route path='/dashboard/201files/application_form' element={<PrivateRoute><FilesApplicationForm /></PrivateRoute>} />
-          <Route path='/dashboard/201files/disciplinary_form' element={<PrivateRoute><FilesDisciplinaryForm /></PrivateRoute>} />
-          <Route path='/dashboard/add_dept' element={<PrivateRoute><AddDept /></PrivateRoute>} />
-          <Route path='/dashboard/add_project' element={<PrivateRoute><AddProject /></PrivateRoute>} />
-          <Route path='/dashboard/add_position' element={<PrivateRoute><AddPosition /></PrivateRoute>} />
-          <Route path='/dashboard/add_employee' element={<PrivateRoute><AddEmployee /></PrivateRoute>} />
-          <Route path='/dashboard/edit_employee/:id' element={<PrivateRoute><EditEmployee /></PrivateRoute>} />
-          <Route path='/dashboard/view_employee/:id' element={<PrivateRoute><ViewEmployee /></PrivateRoute>} />
+        <Route path="/dashboard" element={<PrivateRoute roles={['admin']}><Dashboard /></PrivateRoute>}>
+          <Route path='' element={<PrivateRoute roles={['admin']}><Home /></PrivateRoute>} />
+          <Route path='/dashboard/createadmin' element={<PrivateRoute roles={['admin']}><CreateAdmin /></PrivateRoute>} />
+          <Route path='/dashboard/createrecruitment' element={<PrivateRoute roles={['admin']}><CreateRecruitment /></PrivateRoute>} />
+          <Route path='/dashboard/createpayroll' element={<PrivateRoute roles={['admin']}><CreatePayroll /></PrivateRoute>} />
+          <Route path='/dashboard/employee' element={<PrivateRoute roles={['admin']}><Employee /></PrivateRoute>} />
+          <Route path='/dashboard/employee/update_employee_password/:id' element={<PrivateRoute roles={['admin']}><CreateNewPass /></PrivateRoute>} />
+          <Route path='/dashboard/department' element={<PrivateRoute roles={['admin']}><Department /></PrivateRoute>} />
+          <Route path='/dashboard/project' element={<PrivateRoute roles={['admin']}><Project /></PrivateRoute>} />
+          <Route path='/dashboard/position' element={<PrivateRoute roles={['admin']}><Position /></PrivateRoute>} />
+          <Route path='/dashboard/attendance' element={<PrivateRoute roles={['admin']}><Attendance /></PrivateRoute>} />
+          <Route path='/dashboard/manage_attendance' element={<PrivateRoute roles={['admin']}><ManageAttendance/></PrivateRoute>} />
+          <Route path='/dashboard/attendance-fulldetails' element={<PrivateRoute roles={['admin']}><AttendanceFullDetails/></PrivateRoute>} />
+          <Route path='/dashboard/leave' element={<PrivateRoute roles={['admin']}><Leave /></PrivateRoute>} />
+          <Route path='/dashboard/terms_and_agreements' element={<PrivateRoute roles={['admin']}><TermsAndAgreements /></PrivateRoute>} />
+          <Route path='/dashboard/about_us' element={<PrivateRoute roles={['admin']}><AboutUs /></PrivateRoute>} />
+          <Route path='/dashboard/201files' element={<PrivateRoute roles={['admin']}><Files /></PrivateRoute>} />
+          <Route path='/dashboard/201files/resume' element={<PrivateRoute roles={['admin']}><FilesResume /></PrivateRoute>} />
+          <Route path='/dashboard/201files/job_offer' element={<PrivateRoute roles={['admin']}><FilesJobOffer /></PrivateRoute>} />
+          <Route path='/dashboard/201files/contract' element={<PrivateRoute roles={['admin']}><FilesContract /></PrivateRoute>} />
+          <Route path='/dashboard/201files/valid_id' element={<PrivateRoute roles={['admin']}><FilesValidId /></PrivateRoute>} />
+          <Route path='/dashboard/201files/application_form' element={<PrivateRoute roles={['admin']}><FilesApplicationForm /></PrivateRoute>} />
+          <Route path='/dashboard/201files/disciplinary_form' element={<PrivateRoute roles={['admin']}><FilesDisciplinaryForm /></PrivateRoute>} />
+          <Route path='/dashboard/add_dept' element={<PrivateRoute roles={['admin']}><AddDept /></PrivateRoute>} />
+          <Route path='/dashboard/add_project' element={<PrivateRoute roles={['admin']}><AddProject /></PrivateRoute>} />
+          <Route path='/dashboard/add_position' element={<PrivateRoute roles={['admin']}><AddPosition /></PrivateRoute>} />
+          <Route path='/dashboard/add_employee' element={<PrivateRoute roles={['admin']}><AddEmployee /></PrivateRoute>} />
+          <Route path='/dashboard/edit_employee/:id' element={<PrivateRoute roles={['admin']}><EditEmployee /></PrivateRoute>} />
+          <Route path='/dashboard/view_employee/:id' element={<PrivateRoute roles={['admin']}><ViewEmployee /></PrivateRoute>} />
         </Route>
 
-        <Route path="/recruitmentdashboard" element={<PrivateRoute><RecruitmentDashboard /></PrivateRoute>}>
-          <Route path='' element={<PrivateRoute><RecruitmentHome /></PrivateRoute>} />
-          <Route path='/recruitmentdashboard/employee' element={<PrivateRoute><RecruitEmployee /></PrivateRoute>} />
-          <Route path='/recruitmentdashboard/add_employee' element={<PrivateRoute><RecruitAddEmployee /></PrivateRoute>} />
-          <Route path='/recruitmentdashboard/edit_employee/:id' element={<PrivateRoute><RecruitEditEmployee /></PrivateRoute>} />
-          <Route path='/recruitmentdashboard/view_employee/:id' element={<PrivateRoute><RecruitViewEmployee /></PrivateRoute>} />
-          <Route path='/recruitmentdashboard/201files' element={<PrivateRoute><RecruitFiles /></PrivateRoute>} />
-          <Route path='/recruitmentdashboard/201files/resume' element={<PrivateRoute><RecruitFilesResume /></PrivateRoute>} />
-          <Route path='/recruitmentdashboard/201files/job_offer' element={<PrivateRoute><RecruitFilesJobOffer /></PrivateRoute>} />
-          <Route path='/recruitmentdashboard/201files/contract' element={<PrivateRoute><RecruitFilesContracts /></PrivateRoute>} />
-          <Route path='/recruitmentdashboard/201files/valid_id' element={<PrivateRoute><RecruitFilesValidId /></PrivateRoute>} />
-          <Route path='/recruitmentdashboard/201files/application_form' element={<PrivateRoute><RecruitFilesApplicationForm /></PrivateRoute>} />
-          <Route path='/recruitmentdashboard/201files/disciplinary_form' element={<PrivateRoute><RecruitFilesDisciplinaryForm /></PrivateRoute>} />
-          <Route path='/recruitmentdashboard/terms_and_agreements' element={<PrivateRoute><RecruitTermsAndAgreements /></PrivateRoute>} />
-          <Route path='/recruitmentdashboard/about_us' element={<PrivateRoute><RecruitAboutUs /></PrivateRoute>} />
+        <Route path="/recruitmentdashboard" element={<PrivateRoute roles={['recruitment']}><RecruitmentDashboard /></PrivateRoute>}>
+          <Route path='' element={<PrivateRoute roles={['recruitment']}><RecruitmentHome /></PrivateRoute>} />
+          <Route path='/recruitmentdashboard/employee' element={<PrivateRoute roles={['recruitment']}><RecruitEmployee /></PrivateRoute>} />
+          <Route path='/recruitmentdashboard/add_employee' element={<PrivateRoute roles={['recruitment']}><RecruitAddEmployee /></PrivateRoute>} />
+          <Route path='/recruitmentdashboard/edit_employee/:id' element={<PrivateRoute roles={['recruitment']}><RecruitEditEmployee /></PrivateRoute>} />
+          <Route path='/recruitmentdashboard/view_employee/:id' element={<PrivateRoute roles={['recruitment']}><RecruitViewEmployee /></PrivateRoute>} />
+          <Route path='/recruitmentdashboard/201files' element={<PrivateRoute roles={['recruitment']}><RecruitFiles /></PrivateRoute>} />
+          <Route path='/recruitmentdashboard/201files/resume' element={<PrivateRoute roles={['recruitment']}><RecruitFilesResume /></PrivateRoute>} />
+          <Route path='/recruitmentdashboard/201files/job_offer' element={<PrivateRoute roles={['recruitment']}><RecruitFilesJobOffer /></PrivateRoute>} />
+          <Route path='/recruitmentdashboard/201files/contract' element={<PrivateRoute roles={['recruitment']}><RecruitFilesContracts /></PrivateRoute>} />
+          <Route path='/recruitmentdashboard/201files/valid_id' element={<PrivateRoute roles={['recruitment']}><RecruitFilesValidId /></PrivateRoute>} />
+          <Route path='/recruitmentdashboard/201files/application_form' element={<PrivateRoute roles={['recruitment']}><RecruitFilesApplicationForm /></PrivateRoute>} />
+          <Route path='/recruitmentdashboard/201files/disciplinary_form' element={<PrivateRoute roles={['recruitment']}><RecruitFilesDisciplinaryForm /></PrivateRoute>} />
+          <Route path='/recruitmentdashboard/terms_and_agreements' element={<PrivateRoute roles={['recruitment']}><RecruitTermsAndAgreements /></PrivateRoute>} />
+          <Route path='/recruitmentdashboard/about_us' element={<PrivateRoute roles={['recruitment']}><RecruitAboutUs /></PrivateRoute>} />
         </Route>
 
-        <Route path="/payrolldashboard" element={<PrivateRoute><PayrollDashboard /></PrivateRoute>}>
-          <Route path='' element={<PrivateRoute><PayrollHome /></PrivateRoute>} />
-          <Route path='/payrolldashboard/leave' element={<PrivateRoute><PayrollLeave /></PrivateRoute>} />
-          <Route path='/payrolldashboard/attendance' element={<PrivateRoute><PayrollAttendance /></PrivateRoute>} />
-          <Route path='/payrolldashboard/manage_attendance' element={<PrivateRoute><PayrollManageAttendance /></PrivateRoute>} />
-          <Route path='/payrolldashboard/attendance-fulldetails' element={<PrivateRoute><PayrollAttendanceFullDetails /></PrivateRoute>} />
-          <Route path='/payrolldashboard/terms_and_agreements' element={<PrivateRoute><PayrollTermsAndAgreements /></PrivateRoute>} />
-          <Route path='/payrolldashboard/about_us' element={<PrivateRoute><PayrollAboutUs /></PrivateRoute>} />
+        <Route path="/payrolldashboard" element={<PrivateRoute roles={['payroll']}><PayrollDashboard /></PrivateRoute>}>
+          <Route path='' element={<PrivateRoute roles={['payroll']}><PayrollHome /></PrivateRoute>} />
+          <Route path='/payrolldashboard/leave' element={<PrivateRoute roles={['payroll']}><PayrollLeave /></PrivateRoute>} />
+          <Route path='/payrolldashboard/attendance' element={<PrivateRoute roles={['payroll']}><PayrollAttendance /></PrivateRoute>} />
+          <Route path='/payrolldashboard/manage_attendance' element={<PrivateRoute roles={['payroll']}><PayrollManageAttendance /></PrivateRoute>} />
+          <Route path='/payrolldashboard/attendance-fulldetails' element={<PrivateRoute roles={['payroll']}><PayrollAttendanceFullDetails /></PrivateRoute>} />
+          <Route path='/payrolldashboard/terms_and_agreements' element={<PrivateRoute roles={['payroll']}><PayrollTermsAndAgreements /></PrivateRoute>} />
+          <Route path='/payrolldashboard/about_us' element={<PrivateRoute roles={['payroll']}><PayrollAboutUs /></PrivateRoute>} />
         </Route>
 
       </Routes>

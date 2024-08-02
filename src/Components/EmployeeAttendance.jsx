@@ -8,6 +8,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const EmployeeAttendance = () => {
   const [employee, setEmployee] = useState({});
   const [attendance, setAttendance] = useState([]);
+  const [totalAttendanceRecords, setTotalAttendanceRecords] = useState(0); // New state for total attendance records
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
@@ -31,6 +32,7 @@ const EmployeeAttendance = () => {
       .then(result => {
         if (result.data.Status) {
           setAttendance(result.data.Result);
+          setTotalAttendanceRecords(result.data.Result.length); // Set total attendance records
         } else {
           toast.error(result.data.Error);
         }
@@ -142,6 +144,10 @@ const EmployeeAttendance = () => {
     }
   }; 
   
+  const formatDate = (date) => {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return new Date(date).toLocaleDateString('en-US', options);
+  };
 
   return (
     <div>
@@ -257,110 +263,114 @@ const EmployeeAttendance = () => {
       </nav>
 
       <div className="container mt-5 pt-3">
-      <h2 className="mb-3" style={{ fontSize: '35px', fontWeight: 'bold', fontFamily: 'Montserrat', marginTop:'160px' }}> My Attendance</h2>
-    <div className="d-flex justify-content-between mb-4">
-  <div className="d-flex flex-wrap align-items-center">
-    <div className="form-group me-2">
-      <label htmlFor="fromDate">From</label>
-      <input
-        type="date"
-        id="fromDate"
-        value={fromDate}
-        onChange={(e) => setFromDate(e.target.value)}
-        className="form-control custom-width"
-      />
-    </div>
-    <div className="form-group me-2">
-      <label htmlFor="toDate">To</label>
-      <input
-        type="date"
-        id="toDate"
-        value={toDate}
-        onChange={(e) => setToDate(e.target.value)}
-        className="form-control custom-width"
-      />
-    </div>
-    <button className="btn btn-secondary ms-3 btn-custom-small" onClick={handleResetFilter}>Reset Filters</button>
-  </div>
-  <div className="d-flex align-items-center">
-    <label htmlFor="statusFilter" className="form-label me-2">Status:</label>
-    <select
-      id="statusFilter"
-      className="form-select custom-width"
-      value={statusFilter}
-      onChange={(e) => {
-        setStatusFilter(e.target.value);
-        setCurrentPage(1);
-      }}
-    >
-      <option value="">All</option>
-      <option value="Pending">Pending</option>
-      <option value="Fulfilled">Fulfilled</option>
-      <option value="Rejected">Rejected</option>
-    </select>
-  </div>
-</div>
+        <h2 className="mb-3" style={{ fontSize: '35px', fontWeight: 'bold', fontFamily: 'Montserrat', marginTop:'160px' }}> My Attendance</h2>
+        <div className="d-flex justify-content-between mb-4">
+          <div className="d-flex flex-wrap align-items-center">
+            <div className="form-group me-2">
+              <label htmlFor="fromDate">From</label>
+              <input
+                type="date"
+                id="fromDate"
+                value={fromDate}
+                onChange={(e) => setFromDate(e.target.value)}
+                className="form-control custom-width"
+              />
+            </div>
+            <div className="form-group me-2">
+              <label htmlFor="toDate">To</label>
+              <input
+                type="date"
+                id="toDate"
+                value={toDate}
+                onChange={(e) => setToDate(e.target.value)}
+                className="form-control custom-width"
+              />
+            </div>
+            <button className="btn btn-secondary ms-3 btn-custom-small" onClick={handleResetFilter}>Reset Filters</button>
+          </div>
+          <div className="d-flex align-items-center">
+            <label htmlFor="statusFilter" className="form-label me-2">Status:</label>
+            <select
+              id="statusFilter"
+              className="form-select custom-width"
+              value={statusFilter}
+              onChange={(e) => {
+                setStatusFilter(e.target.value);
+                setCurrentPage(1);
+              }}
+            >
+              <option value="">All</option>
+              <option value="Pending">Pending</option>
+              <option value="Fulfilled">Fulfilled</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+        </div>
 
+        {/* Display Total Attendance Records */}
+        <div className="mb-4" style={{ fontSize: '20px', marginBottom: '10px', fontFamily: 'Montserrat' }}>
+          <h4>Total Attendance Records: {totalAttendanceRecords}</h4>
+        </div>
 
-    <table className="table table-striped">
-        <thead>
+        <table className="table table-striped">
+          <thead>
             <tr>
-                <th>Date</th>
-                <th>Time In</th>
-                <th>Time Out</th>
-                <th>Status</th>
-                <th>Actions</th>
+              <th>Date</th>
+              <th>Time In</th>
+              <th>Time Out</th>
+              <th>Status</th>
+              <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             {currentAttendance.length > 0 ? (
-                currentAttendance.map((record, index) => (
-                    <tr key={index}>
-                        <td>{new Date(record.date).toLocaleDateString()}</td>
-                        <td>{formatTime(record.time_in)}</td>
-                        <td>{formatTime(record.time_out)}</td>
-                        <td><span className={getStatusBadge(record.status)}>{record.status}</span></td>
-                        <td>
-                          <button className="btn btn-info btn-sm" onClick={() => handleFullDetailsClick(record)}>
-                          <i className="bi bi-eye"></i>
-                          </button>
-                        </td>
-                    </tr>
-                ))
-            ) : (
-                <tr>
-                    <td colSpan="5" className="text-center">No records found</td>
+              currentAttendance.map((record, index) => (
+                <tr key={index}>
+                  <td>{formatDate(record.date)}</td>
+                  <td>{formatTime(record.time_in)}</td>
+                  <td>{formatTime(record.time_out)}</td>
+                  <td><span className={getStatusBadge(record.status)}>{record.status}</span></td>
+                  <td>
+                    <button className="btn btn-info btn-sm" onClick={() => handleFullDetailsClick(record)}>
+                      <i className="bi bi-eye"></i>
+                    </button>
+                  </td>
                 </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" className="text-center">No records found</td>
+              </tr>
             )}
-        </tbody>
-    </table>
+          </tbody>
+        </table>
 
-    {filteredAttendance.length > attendancePerPage && (
-        <nav>
+        {filteredAttendance.length > attendancePerPage && (
+          <nav>
             <ul className="pagination">
-                <li className="page-item">
-                    <button
-                        className="page-link"
-                        onClick={prevPage}
-                        disabled={currentPage === 1}
-                    >
-                        Previous
-                    </button>
-                </li>
-                <li className="page-item">
-                    <button
-                        className="page-link"
-                        onClick={nextPage}
-                        disabled={currentPage === Math.ceil(totalRecords / attendancePerPage)}
-                    >
-                        Next
-                    </button>
-                </li>
+              <li className="page-item">
+                <button
+                  className="page-link"
+                  onClick={prevPage}
+                  disabled={currentPage === 1}
+                >
+                  Previous
+                </button>
+              </li>
+              <li className="page-item">
+                <button
+                  className="page-link"
+                  onClick={nextPage}
+                  disabled={currentPage === Math.ceil(totalRecords / attendancePerPage)}
+                >
+                  Next
+                </button>
+              </li>
             </ul>
-        </nav>
-    )}
+          </nav>
+        )}
 
-<ToastContainer
+        <ToastContainer
           position="top-center"
           style={{
             fontSize: '20px',
@@ -368,7 +378,7 @@ const EmployeeAttendance = () => {
             padding: '20px',
             borderRadius: '10px',
           }}/>
-</div>
+      </div>
     </div>
   );
 };
