@@ -23,6 +23,7 @@ const Login = () => {
         }
       })
       .catch(err => console.log(err));
+      console.log("Login component mounted");
   }, [navigate]);
 
   const handleSubmit = (event) => {
