@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Snackbar, SnackbarContent, Button } from '@mui/material';
+import { login, verifySession } from './api';  // Import the API functions
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -13,27 +13,26 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const navigate = useNavigate();
-  axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get('https://hrais-rcramoscc-server.onrender.com/verify')
-    .then(result => {
-        console.log('Verification result:', result.data); // Debug log
+    verifySession()
+      .then(result => {
         if (result.data.Status) {
-            handleRoleRedirection(result.data.role, result.data.id);
+          handleRoleRedirection(result.data.role, result.data.id);
         }
-    })
-    .catch(err => {
+      })
+      .catch(err => {
         console.error('Verification error:', err); // Debug log
-    });
+      });
   }, [navigate]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('https://hrais-rcramoscc-server.onrender.com/auth/login', values)
+    login(values)
       .then(result => {
         if (result.data.loginStatus) {
           localStorage.setItem('valid', true);
+          localStorage.setItem('token', result.data.token); // Assuming you receive a token
           handleRoleRedirection(result.data.role, result.data.id);
         } else {
           setError(result.data.Error || 'Invalid credentials. Please try again.');
@@ -129,44 +128,32 @@ const Login = () => {
           </form>
 
           <div className='text-center'>
-            <button className='btn btn-link' style={{ fontSize: '18px', fontFamily: 'Montserrat', color: 'black' }} onClick={handleForgotPassword}>
-              Forgot Password?
-            </button>
-          </div>
-          <div className='text-center' style={{ marginTop: '50px' }}>
-            <span style={{ fontSize: '18px', fontFamily: 'Montserrat', marginRight: '10px' }}>visit us on</span>
-            <a href="https://www.facebook.com/rc.ramos.2020" target="_blank" rel="noopener noreferrer" className='mx-2'>
-              <i className="bi bi-facebook" style={{ fontSize: '30px', color: '#4267B2' }}></i>
-            </a>
-
-            <a href="https://www.instagram.com/rc_ramoscorp?igsh=ZnY2NHM0M2c1cjd2" target="_blank" rel="noopener noreferrer" className='mx-2'>
-              <i className="bi bi-instagram" style={{ fontSize: '30px', color: '#0A66C2' }}></i>
-            </a>
-
-            <a href="https://www.linkedin.com/company/r-c-ramos-construction-corporation/" target="_blank" rel="noopener noreferrer" className='mx-2'>
+            <button className='btn btn-link' style={{ fontSize: '18px', fontFamily: 'Montserrat', color: 'black' }} onClick={handleForgotPassword}>Forgot your password?</button>
+            <hr className="my-4" />
+            <a href='https://www.linkedin.com/company/rc-ramos-construction-corp' target='_blank' rel='noopener noreferrer'>
               <i className="bi bi-linkedin" style={{ fontSize: '30px', color: '#0A66C2' }}></i>
             </a>
-            
           </div>
         </div>
       </div>
+
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={6000}
         onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
         <SnackbarContent
+          style={{ backgroundColor: 'orange' }}
           message={
-            <span style={{ display: 'flex', alignItems: 'center' }}>
-              Please contact HR for further assistance.
-              <Button color="inherit" size="small" onClick={handleSnackbarClose} style={{ fontSize: '16px', fontWeight: 'bold', color: '#ff8800' }}>
-                OKAY
-              </Button>
+            <span>
+              Forgot your password? Please contact the admin to reset your password.
             </span>
           }
-          className='rounded-4'
-          style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: 'white', padding: '16px', fontSize: '18px' }}
+          action={
+            <Button color="inherit" onClick={handleSnackbarClose}>
+              Close
+            </Button>
+          }
         />
       </Snackbar>
     </div>

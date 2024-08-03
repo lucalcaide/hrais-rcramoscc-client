@@ -4,6 +4,21 @@ import axios from 'axios';
 
 const BASE_URL = 'https://hrais-rcramoscc-server.onrender.com';
 
+// Login user
+export const login = (credentials) => {
+    return axios.post(`${BASE_URL}/auth/login`, credentials);
+};
+
+// Verify user session
+export const verifySession = () => {
+    const token = localStorage.getItem('token');
+    return axios.get(`${BASE_URL}/verify`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+};
+
 // Fetch employee data by ID
 export const fetchEmployeeData = (id) => {
   return axios.get(`${BASE_URL}/employee/home/${id}`);
