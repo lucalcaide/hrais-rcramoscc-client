@@ -21,7 +21,7 @@ const PrivateRoute = ({ children, roles }) => {
 
         const result = await axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
           headers: {
-            Authorization: `Bearer ${token}`
+            'Authorization': `Bearer ${token}`
           }
         });
         console.log('Verification result:', result.data);

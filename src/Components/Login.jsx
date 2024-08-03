@@ -20,7 +20,7 @@ const Login = () => {
     if (token) {
       axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
         headers: {
-          Authorization: `Bearer ${token}`
+          'Authorization': `Bearer ${token}`
         }
       })
       .then(result => {
