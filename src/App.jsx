@@ -78,7 +78,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login  />} />
+        <Route path="/" element={<Login  />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
 
         <Route path="/employee_home/:id" element={<PrivateRoute roles={['employee']}><EmployeeHome /></PrivateRoute>} />
