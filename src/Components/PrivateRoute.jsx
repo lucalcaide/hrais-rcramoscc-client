@@ -14,6 +14,7 @@ const PrivateRoute = ({ children, roles }) => {
         const result = await axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
           withCredentials: true // Include cookies in the request
         });
+        console.log('Verification result:', result.data);
         if (result.data.Status) {
           setIsValid(true);
           setUserRole(result.data.role);
@@ -22,14 +23,13 @@ const PrivateRoute = ({ children, roles }) => {
           setRedirectPath('/'); // Redirect to login if not valid
         }
       } catch (err) {
+        console.error('Verification error:', err);
         setIsValid(false);
         setRedirectPath('/'); // Redirect to login on error
-        console.log(err);
       } finally {
         setLoading(false);
       }
     };
-    
 
     verifyUser();
   }, []);

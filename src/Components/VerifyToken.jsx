@@ -4,6 +4,7 @@ import axios from 'axios';
 const VerifyToken = () => {
   useEffect(() => {
     const token = localStorage.getItem('token'); // Assuming you store the token in localStorage
+    console.log('Stored token:', token);
 
     axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
       headers: {
@@ -11,12 +12,10 @@ const VerifyToken = () => {
       }
     })
     .then(response => {
-      console.log('Verification successful:', response.data);
-      // Handle successful verification, e.g., set user state, redirect, etc.
+      console.log('Token verification response:', response.data);
     })
     .catch(error => {
-      console.error('Verification failed:', error);
-      // Handle verification failure, e.g., redirect to login, show error message, etc.
+      console.error('Token verification failed:', error);
     });
   }, []); // Empty dependency array means this effect runs once on mount
 

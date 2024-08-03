@@ -33,7 +33,7 @@ const Login = () => {
     axios.post('https://hrais-rcramoscc-server.onrender.com/auth/login', values)
       .then(result => {
         if (result.data.loginStatus) {
-          localStorage.setItem('valid', true);
+          localStorage.setItem('token', response.data.token);
           handleRoleRedirection(result.data.role, result.data.id);
         } else {
           setError(result.data.Error || 'Invalid credentials. Please try again.');
