@@ -23,7 +23,7 @@ const EmployeeFiles = () => {
       .then(result => {
         if (result.data.Status) {
           localStorage.removeItem("valid");
-          navigate('/login');
+          navigate('/');
         }
       }).catch(err => console.log(err));
   };

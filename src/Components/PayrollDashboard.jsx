@@ -13,7 +13,7 @@ const PayrollDashboard = () => {
       .then(result => {
         if(result.data.Status) {
           localStorage.removeItem('valid')
-          navigate('/login')
+          navigate('/')
         }
       })
     }
