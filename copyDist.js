@@ -1,9 +1,13 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Define source and destination directories
-const srcDir = path.join(__dirname, 'dist');
-const destDir = path.join(__dirname, '..', 'Server', 'dist');
+// Get __dirname in ES module scope
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const srcDir = path.resolve(__dirname, 'dist');
+const destDir = path.resolve(__dirname, '..', 'Server', 'dist');
 
 // Ensure destination directory exists
 if (!fs.existsSync(destDir)) {
