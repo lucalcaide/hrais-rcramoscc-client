@@ -1,12 +1,13 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate, Link } from 'react-router-dom';
+import { uploadAttendance } from '../api'; // Import the function from api.js
 
 const PayrollAttendance = () => {
   const [file, setFile] = useState(null);
   const fileInputRef = useRef(null); // Create a reference for the file input
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -22,11 +23,7 @@ const PayrollAttendance = () => {
     formData.append('attendance_file', file);
 
     try {
-      const response = await axios.post('https://hrais-rcramoscc-server.onrender.com/auth/upload-attendance', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = await uploadAttendance(formData); // Use the function from api.js
       toast.success(response.data.message);
       setFile(null); // Clear the file state
       if (fileInputRef.current) {

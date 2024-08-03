@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { format, startOfMonth, endOfMonth } from 'date-fns';
-import { fetchEmployeeData, fetchAttendanceData, fetchLeaveData, logout } from '../api'; // Adjust the path as needed
 
 const EmployeeHome = () => {
   const [employee, setEmployee] = useState({});
@@ -20,13 +20,13 @@ const EmployeeHome = () => {
   const [endDate, setEndDate] = useState(endOfMonth(new Date()));
 
   useEffect(() => {
-    fetchEmployeeData(id)
+    axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
       .then(result => {
         setEmployee(result.data[0]);
         return result.data[0].emp_no;
       })
       .then(empNo => {
-        return fetchAttendanceData(empNo);
+        return axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/attendance/${empNo}`);
       })
       .then(result => {
         if (result.data.Status) {
@@ -36,33 +36,32 @@ const EmployeeHome = () => {
         }
       })
       .catch(err => console.log(err));
-
-    fetchLeaveData(id)
+  
+    axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/leave/${id}`)
       .then(response => {
         setLeave(response.data);
       })
       .catch(error => {
         console.error('Error fetching leave data:', error);
       });
-
+  
     // Update date and time every second
     const intervalId = setInterval(() => {
       setCurrentDateTime(new Date());
     }, 1000);
-
+  
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, [id]);
 
   const handleLogout = () => {
-    logout()
+    axios.get('https://hrais-rcramoscc-server.onrender.com/employee/logout')
       .then(result => {
         if (result.data.Status) {
           localStorage.removeItem("valid");
           navigate('/');
         }
-      })
-      .catch(err => console.log(err));
+      }).catch(err => console.log(err));
   };
 
   const toggleDropdown = () => {

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import * as XLSX from 'xlsx';
+import { UPDATE_ATTENDANCE_URL, UPDATE_ATTENDANCE_STATUS_URL } from '../api'; // Adjust the import path as needed
 
 const PayrollAttendanceFullDetails = () => {
   const location = useLocation();
@@ -66,7 +67,7 @@ const PayrollAttendanceFullDetails = () => {
   // Function to handle form submission for hours
   const handleSaveClick = async () => {
     try {
-      const response = await axios.post('https://hrais-rcramoscc-server.onrender.com/auth/attendance/update/' + record.id, {
+      const response = await axios.post(UPDATE_ATTENDANCE_URL(record.id), {
         hours_worked: editedHours,
         late: editedLate,
         extra: editedExtra,
@@ -90,7 +91,7 @@ const PayrollAttendanceFullDetails = () => {
   // Function to handle form submission for status
   const handleStatusSaveClick = async () => {
     try {
-      const response = await axios.post('https://hrais-rcramoscc-server.onrender.com/auth/attendance/update/status/' + record.id, {
+      const response = await axios.post(UPDATE_ATTENDANCE_STATUS_URL(record.id), {
         status: editedStatus,
       });
 
@@ -211,65 +212,49 @@ const PayrollAttendanceFullDetails = () => {
                 <td style={{ fontSize: '22px', padding: '10px' }}>Status</td>
                 <td style={{ fontSize: '24px', padding: '10px' }}>
                   {isEditingStatus ? (
-                    <div>
-                      <select
+                    <>
+                      <input
+                        type="text"
                         value={editedStatus}
                         onChange={(e) => setEditedStatus(e.target.value)}
-                        style={{ fontSize: '24px', padding: '7px' }}
-                      >
-                        <option value="Pending">Pending</option>
-                        <option value="Fulfilled">Fulfilled</option>
-                        <option value="Rejected">Rejected</option>
-                      </select>
-                      <button className="btn btn-success btn-sm ms-3 print-hide-actions" onClick={handleStatusSaveClick}>Save</button>
-                      <button className="btn btn-danger btn-sm ms-2 print-hide-actions" onClick={handleStatusCancelClick}>Cancel</button>
-                    </div>
+                      />
+                      <button className="btn btn-success ms-2" onClick={handleStatusSaveClick}>Save</button>
+                      <button className="btn btn-secondary ms-2" onClick={handleStatusCancelClick}>Cancel</button>
+                    </>
                   ) : (
-                    <div>
+                    <>
                       {updatedRecord.status}
-                      <button className="btn btn-secondary btn-sm ms-3 print-hide-actions" onClick={handleEditStatusClick}>Edit</button>
-                    </div>
+                      <button className="btn btn-warning ms-2" onClick={handleEditStatusClick}>Edit</button>
+                    </>
                   )}
                 </td>
               </tr>
               <tr>
-                <td style={{ fontSize: '22px', padding: '10px' }}>Start Time</td>
-                <td style={{ fontSize: '24px', padding: '10px' }}>{formatTime(updatedRecord.start_time)}</td>
+                <td style={{ fontSize: '22px', padding: '10px' }}>Rate Per Hour</td>
+                <td style={{ fontSize: '24px', padding: '10px' }}>{`₱${updatedRecord.rate_per_hour}`}</td>
               </tr>
               <tr>
-                <td style={{ fontSize: '22px', padding: '10px' }}>Out Time</td>
-                <td style={{ fontSize: '24px', padding: '10px' }}>{formatTime(updatedRecord.out_time)}</td>
-              </tr>
-              <tr>
-                <td style={{ fontSize: '22px', padding: '10px' }}>Hourly Rate</td>
-                <td style={{ fontSize: '24px', padding: '10px' }}>₱{updatedRecord.rate_per_hour}</td>
-              </tr>
-              <tr>
-                <td style={{ fontSize: '22px', padding: '10px' }}>Minute Rate</td>
-                <td style={{ fontSize: '24px', padding: '10px' }}>₱{updatedRecord.rate_per_minute}</td>
-              </tr>
-              <tr>
-                <td colSpan="2" style={{ fontSize: '25px', padding: '15px', textAlign: 'center', backgroundColor: '#0b283b', color: 'wheat' }}>Payroll Calculation</td>
+                <td style={{ fontSize: '22px', padding: '10px' }}>Rate Per Minute</td>
+                <td style={{ fontSize: '24px', padding: '10px' }}>{`₱${updatedRecord.rate_per_minute}`}</td>
               </tr>
               <tr>
                 <td style={{ fontSize: '22px', padding: '10px' }}>Hours Worked</td>
                 <td style={{ fontSize: '24px', padding: '10px' }}>
                   {isEditing ? (
-                    <div>
+                    <>
                       <input
                         type="number"
                         value={editedHours}
                         onChange={(e) => setEditedHours(e.target.value)}
-                        style={{ fontSize: '24px', padding: '7px', width: '100px' }}
                       />
-                      <button className="btn btn-success btn-sm ms-3 print-hide-actions" onClick={handleSaveClick}>Save</button>
-                      <button className="btn btn-danger btn-sm ms-2 print-hide-actions" onClick={handleCancelClick}>Cancel</button>
-                    </div>
+                      <button className="btn btn-success ms-2" onClick={handleSaveClick}>Save</button>
+                      <button className="btn btn-secondary ms-2" onClick={handleCancelClick}>Cancel</button>
+                    </>
                   ) : (
-                    <div>
-                      {updatedRecord.hours_worked} hours
-                      <button className="btn btn-secondary btn-sm ms-3 print-hide-actions" onClick={handleEditClick}>Edit</button>
-                    </div>
+                    <>
+                      {updatedRecord.hours_worked}
+                      <button className="btn btn-warning ms-2" onClick={handleEditClick}>Edit</button>
+                    </>
                   )}
                 </td>
               </tr>
@@ -277,21 +262,20 @@ const PayrollAttendanceFullDetails = () => {
                 <td style={{ fontSize: '22px', padding: '10px' }}>Late</td>
                 <td style={{ fontSize: '24px', padding: '10px' }}>
                   {isEditingLate ? (
-                    <div>
+                    <>
                       <input
                         type="number"
                         value={editedLate}
                         onChange={(e) => setEditedLate(e.target.value)}
-                        style={{ fontSize: '24px', padding: '7px', width: '100px' }}
                       />
-                      <button className="btn btn-success btn-sm ms-3 print-hide-actions" onClick={handleSaveClick}>Save</button>
-                      <button className="btn btn-danger btn-sm ms-2 print-hide-actions" onClick={handleLateCancelClick}>Cancel</button>
-                    </div>
+                      <button className="btn btn-success ms-2" onClick={handleLateSaveClick}>Save</button>
+                      <button className="btn btn-secondary ms-2" onClick={handleLateCancelClick}>Cancel</button>
+                    </>
                   ) : (
-                    <div>
-                      {updatedRecord.late} minutes
-                      <button className="btn btn-secondary btn-sm ms-3 print-hide-actions" onClick={handleEditLateClick}>Edit</button>
-                    </div>
+                    <>
+                      {updatedRecord.late}
+                      <button className="btn btn-warning ms-2" onClick={handleEditLateClick}>Edit</button>
+                    </>
                   )}
                 </td>
               </tr>
@@ -299,39 +283,38 @@ const PayrollAttendanceFullDetails = () => {
                 <td style={{ fontSize: '22px', padding: '10px' }}>Extra</td>
                 <td style={{ fontSize: '24px', padding: '10px' }}>
                   {isEditingExtra ? (
-                    <div>
+                    <>
                       <input
                         type="number"
                         value={editedExtra}
                         onChange={(e) => setEditedExtra(e.target.value)}
-                        style={{ fontSize: '24px', padding: '7px', width: '100px' }}
                       />
-                      <button className="btn btn-success btn-sm ms-3 print-hide-actions" onClick={handleSaveClick}>Save</button>
-                      <button className="btn btn-danger btn-sm ms-2 print-hide-actions" onClick={handleExtraCancelClick}>Cancel</button>
-                    </div>
+                      <button className="btn btn-success ms-2" onClick={handleExtraSaveClick}>Save</button>
+                      <button className="btn btn-secondary ms-2" onClick={handleExtraCancelClick}>Cancel</button>
+                    </>
                   ) : (
-                    <div>
-                      {updatedRecord.extra} minutes
-                      <button className="btn btn-secondary btn-sm ms-3 print-hide-actions" onClick={handleEditExtraClick}>Edit</button>
-                    </div>
+                    <>
+                      {updatedRecord.extra}
+                      <button className="btn btn-warning ms-2" onClick={handleEditExtraClick}>Edit</button>
+                    </>
                   )}
                 </td>
               </tr>
               <tr>
                 <td style={{ fontSize: '22px', padding: '10px' }}>Earnings</td>
-                <td style={{ fontSize: '24px', padding: '10px' }}>₱{updatedRecord.earnings}</td>
+                <td style={{ fontSize: '24px', padding: '10px' }}>{`₱${updatedRecord.earnings}`}</td>
               </tr>
               <tr>
                 <td style={{ fontSize: '22px', padding: '10px' }}>Tardiness</td>
-                <td style={{ fontSize: '24px', padding: '10px', color: 'red' }}> - ₱{updatedRecord.tardiness}</td>
+                <td style={{ fontSize: '24px', padding: '10px' }}>{`- ₱${updatedRecord.tardiness}`}</td>
               </tr>
               <tr>
                 <td style={{ fontSize: '22px', padding: '10px' }}>Overtime</td>
-                <td style={{ fontSize: '24px', padding: '10px', color: 'green' }}> + ₱{updatedRecord.overtime}</td>
+                <td style={{ fontSize: '24px', padding: '10px' }}>{`+ ₱${updatedRecord.overtime}`}</td>
               </tr>
               <tr>
                 <td style={{ fontSize: '22px', padding: '10px' }}>Total Amount to Pay</td>
-                <td style={{ fontSize: '24px', padding: '10px', fontWeight:'bold' }}>₱{updatedRecord.total_amount_pay}</td>
+                <td style={{ fontSize: '24px', padding: '10px' }}>{`₱${updatedRecord.total_amount_pay}`}</td>
               </tr>
             </tbody>
           </table>
