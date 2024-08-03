@@ -17,16 +17,15 @@ const Login = () => {
 
   useEffect(() => {
     axios.get('https://hrais-rcramoscc-server.onrender.com/verify')
-      .then(result => {
-        if (result.data.loginStatus) {
-          handleRoleRedirection(result.data.role, result.data.id);
+    .then(result => {
+        console.log('Verification result:', result.data); // Debug log
+        if (result.data.Status) {
+            handleRoleRedirection(result.data.role, result.data.id);
         }
-      })
-      .catch(err => {
-        console.log("Verification error: ", err);
-        // Handle error (e.g., if the user is not authenticated)
-      });
-      console.log("Login component mounted");
+    })
+    .catch(err => {
+        console.error('Verification error:', err); // Debug log
+    });
   }, [navigate]);
 
   const handleSubmit = (event) => {
