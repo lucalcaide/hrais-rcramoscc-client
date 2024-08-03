@@ -11,8 +11,18 @@ const PrivateRoute = ({ children, roles }) => {
   useEffect(() => {
     const verifyUser = async () => {
       try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          setIsValid(false);
+          setRedirectPath('/');
+          setLoading(false);
+          return;
+        }
+
         const result = await axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
-          withCredentials: true // Include cookies in the request
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         });
         console.log('Verification result:', result.data);
         if (result.data.Status) {
