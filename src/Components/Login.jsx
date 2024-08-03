@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 import { useNavigate } from 'react-router-dom';
 import { Snackbar, SnackbarContent, Button } from '@mui/material';
-import { login, verifySession } from './api';  // Import the API functions
+import { login, verifySession } from '../api';  // Import the API functions
 
 const Login = () => {
   const [values, setValues] = useState({
