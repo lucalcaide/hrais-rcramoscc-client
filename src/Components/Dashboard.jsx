@@ -2,20 +2,23 @@ import React from "react";
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from 'axios';
+import { logout } from './api'; // Import the logout function from api.js
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
   axios.defaults.withCredentials = true;
 
-  const handleLogout = () => {
-    axios.get('https://hrais-rcramoscc-server.onrender.com/auth/logout')
-      .then(result => {
-        if (result.data.Status) {
-          localStorage.removeItem('valid')
-          navigate('/');
-        }
-      });
+  const handleLogout = async (context) => {
+    try {
+      const result = await logout(context);
+      if (result.data.Status) {
+        localStorage.removeItem('valid');
+        navigate('/');
+      }
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   const getLinkStyle = (path) => {
@@ -174,7 +177,7 @@ const Dashboard = () => {
                 </Link>
               </li>
 
-              <li className="w-100" onClick={handleLogout}>
+              <li className="w-100" onClick={() => handleLogout('admin')}>
                 <Link className="nav-link px-0 align-middle text-white">
                   <i className="fs-4 ms-3 bi-power" style={{ color: "#e5ecf1" }}></i>
                   <span className="ms-2 d-none d-sm-inline" style={{ fontSize: '20px', color:'wheat', fontWeight:'bold' }}>Logout</span>
