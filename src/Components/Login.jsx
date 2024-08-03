@@ -18,11 +18,14 @@ const Login = () => {
   useEffect(() => {
     axios.get('https://hrais-rcramoscc-server.onrender.com/verify')
       .then(result => {
-        if (result.data.Status) {
+        if (result.data.loginStatus) {
           handleRoleRedirection(result.data.role, result.data.id);
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log("Verification error: ", err);
+        // Handle error (e.g., if the user is not authenticated)
+      });
       console.log("Login component mounted");
   }, [navigate]);
 
