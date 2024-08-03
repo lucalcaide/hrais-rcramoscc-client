@@ -18,7 +18,6 @@ import Project from './Components/Project';
 import Position from './Components/Position';
 import Attendance from './Components/Attendance';
 
-
 import Leave from './Components/Leave';
 import TermsAndAgreements from './Components/TermsAndAgreements';
 import AboutUs from './Components/AboutUs';
