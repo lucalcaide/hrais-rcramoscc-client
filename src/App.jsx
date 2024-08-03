@@ -73,6 +73,7 @@ import PayrollAboutUs from './Components/PayrollAboutUs';
 import Unauthorized from './Components/Unauthorized';
 import ManageAttendance from './Components/ManageAttendance';
 import AttendanceFullDetails from './Components/AttendanceFullDetails';
+import VerifyToken from './Components/VerifyToken';
 
 function App() {
   return (
@@ -80,6 +81,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Login  />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
+        
+        {/* Token verification route */}
+        <Route path="/verify_token" element={<VerifyToken />} />
 
         <Route path="/employee_home/:id" element={<PrivateRoute roles={['employee']}><EmployeeHome /></PrivateRoute>} />
         <Route path="/employee_profile/:id" element={<PrivateRoute> roles={['employee']}<EmployeeProfile /></PrivateRoute>} />
