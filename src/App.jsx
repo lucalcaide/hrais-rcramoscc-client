@@ -1,6 +1,8 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Lazy load MyComponent
+const MyComponent = React.lazy(() => import('./Components/MyComponent'));
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PrivateRoute from './Components/PrivateRoute';
 import Login from './Components/Login';
@@ -145,6 +147,13 @@ function App() {
           <Route path='/payrolldashboard/terms_and_agreements' element={<PrivateRoute roles={['payroll']}><PayrollTermsAndAgreements /></PrivateRoute>} />
           <Route path='/payrolldashboard/about_us' element={<PrivateRoute roles={['payroll']}><PayrollAboutUs /></PrivateRoute>} />
         </Route>
+
+        {/* Add a route to load MyComponent */}
+        <Route path="/my_component" element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <PrivateRoute roles={['admin', 'recruitment', 'payroll', 'employee']}><MyComponent /></PrivateRoute>
+          </Suspense>
+        } />
 
       </Routes>
     </BrowserRouter>
