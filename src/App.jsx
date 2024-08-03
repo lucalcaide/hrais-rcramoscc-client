@@ -1,3 +1,4 @@
+import React, { Suspense } from 'react'; // Ensure React is imported
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

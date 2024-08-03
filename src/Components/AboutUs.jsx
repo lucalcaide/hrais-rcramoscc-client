@@ -1,6 +1,4 @@
 import React from 'react';
-import lucImage from '../../public/Images/alcaide.jpg'; // Replace with the correct path to your image
-import johnImage from '../../public/Images/jrobert.jpg'; // Replace with the correct path to your image
 
 const AboutUs = () => {
   return (
@@ -16,12 +14,12 @@ const AboutUs = () => {
         <section className="about-section">
           <h2 className="section-title">Our Team</h2>
           <div className="team-member">
-            <img src={johnImage} alt="John Robert G. Reyes" className="team-member-image" />
+            <img src="/Images/jrobert.jpg" alt="John Robert G. Reyes" className="team-member-image" />
             <h3 className="member-name">John Robert G. Reyes</h3>
             <p className="member-description">John is the brain behind the HRIS system for R.C. Ramos Construction Corp. With his wholehearted dedication and hard work, he designed and developed the system, ensuring it meets the needs and standards of the company.</p>
           </div>
           <div className="team-member">
-            <img src={lucImage} alt="Luc Erich Oliver P. Alcaide" className="team-member-image" />
+            <img src="/Images/alcaide.jpg" alt="Luc Erich Oliver P. Alcaide" className="team-member-image" />
             <h3 className="member-name">Luc Erich Oliver P. Alcaide</h3>
             <p className="member-description">Luc played a pivotal role in assisting John Robert in developing the HRIS system for R.C. Ramos Construction Corp, bringing a collaborative approach to the project.</p>
           </div>
