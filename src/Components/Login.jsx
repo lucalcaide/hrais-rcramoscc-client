@@ -9,14 +9,20 @@ const Login = () => {
     email: '',
     password: ''
   });
-  
+
   const [error, setError] = useState(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get('https://hrais-rcramoscc-server.onrender.com/verify')
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then(result => {
         console.log('Verification result:', result.data); // Debug log
         if (result.data.Status) {
@@ -26,6 +32,7 @@ const Login = () => {
       .catch(err => {
         console.error('Verification error:', err); // Debug log
       });
+    }
   }, [navigate]);
 
   const handleSubmit = (event) => {
