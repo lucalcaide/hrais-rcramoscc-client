@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from 'axios';
-import { logout } from './api'; // Import the logout function from api.js
+import { logout } from '../api'; // Import the logout function from api.js
 
 const Dashboard = () => {
   const navigate = useNavigate();
