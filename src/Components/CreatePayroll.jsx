@@ -25,7 +25,7 @@ const CreatePayroll = () => {
       return;
     }
 
-    axios.post('http://localhost:3000/auth/createpayroll', values)
+    axios.post('https://hrais-rcramoscc-server.onrender.com/auth/createpayroll', values)
       .then(result => {
         if (result.data.Status) {
           toast.success('Payroll created successfully!');

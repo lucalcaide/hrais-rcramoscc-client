@@ -19,7 +19,7 @@ const FilesValidId = () => {
   }, []);
 
   const fetchEmployees = () => {
-    axios.get("http://localhost:3000/auth/employee")
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/employee")
       .then((result) => {
         if (result.data.Status) {
           const sortedEmployees = result.data.Result.sort((a, b) => {
@@ -41,7 +41,7 @@ const FilesValidId = () => {
   const handleDelete = (id, emp_no) => {
     const confirmDelete = window.confirm(`Are you sure you want to delete the Valid IDs for employee number '${emp_no}'?`);
     if (confirmDelete) {
-      axios.delete(`http://localhost:3000/auth/delete_valid_id/${id}`)
+      axios.delete(`https://hrais-rcramoscc-server.onrender.com/auth/delete_valid_id/${id}`)
         .then(result => {
           if (result.data.Status) {
             // Update state first
@@ -72,7 +72,7 @@ const FilesValidId = () => {
       const formData = new FormData();
       formData.append('valid_id', file);
 
-      axios.post(`http://localhost:3000/auth/upload_valid_id/${id}`, formData, {
+      axios.post(`https://hrais-rcramoscc-server.onrender.com/auth/upload_valid_id/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -195,7 +195,7 @@ const FilesValidId = () => {
                       <td style={{ fontSize: '20px', fontStyle: 'italic', textAlign: 'left', verticalAlign: 'middle' }}>{e.valid_id}</td>
                       <td style={{ fontSize: '18px', textAlign: 'left', verticalAlign: 'middle' }}>
                         {e.valid_id ? (
-                          <a href={`http://localhost:3000/IDs/` + e.valid_id} className='btn btn-file-color btn-file-text rounded-pill' target="_blank" rel="noopener noreferrer">View IDs</a>
+                          <a href={`https://hrais-rcramoscc-server.onrender.com/IDs/` + e.valid_id} className='btn btn-file-color btn-file-text rounded-pill' target="_blank" rel="noopener noreferrer">View IDs</a>
                         ) : (
                           <span style={{ color: 'gray', fontWeight: 'bold', fontSize: '23px' }}>No valid ids uploaded</span>
                         )}

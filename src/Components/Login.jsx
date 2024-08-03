@@ -16,7 +16,7 @@ const Login = () => {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get('http://localhost:3000/verify')
+    axios.get('https://hrais-rcramoscc-server.onrender.com/verify')
       .then(result => {
         if (result.data.Status) {
           handleRoleRedirection(result.data.role, result.data.id);
@@ -27,7 +27,7 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:3000/auth/login', values)
+    axios.post('https://hrais-rcramoscc-server.onrender.com/auth/login', values)
       .then(result => {
         if (result.data.loginStatus) {
           localStorage.setItem('valid', true);

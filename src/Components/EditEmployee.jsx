@@ -38,7 +38,7 @@ const EditEmployee = () => {
   const [position, setPosition] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/auth/department')
+    axios.get('https://hrais-rcramoscc-server.onrender.com/auth/department')
       .then(result => {
         if (result.data.Status) {
           setDepartment(result.data.Result);
@@ -47,7 +47,7 @@ const EditEmployee = () => {
         }
       }).catch(err => console.log(err));
 
-    axios.get(`http://localhost:3000/auth/employee/${id}`)
+    axios.get(`https://hrais-rcramoscc-server.onrender.com/auth/employee/${id}`)
       .then(result => {
         setEmployee({
           ...employee,
@@ -79,7 +79,7 @@ const EditEmployee = () => {
   }, [id]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/auth/project')
+    axios.get('https://hrais-rcramoscc-server.onrender.com/auth/project')
       .then(result => {
         if (result.data.Status) {
           setProject(result.data.Result);
@@ -90,7 +90,7 @@ const EditEmployee = () => {
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/auth/position')
+    axios.get('https://hrais-rcramoscc-server.onrender.com/auth/position')
       .then(result => {
         if (result.data.Status) {
           setPosition(result.data.Result);
@@ -102,7 +102,7 @@ const EditEmployee = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:3000/auth/edit_employee/${id}`, employee)
+    axios.put(`https://hrais-rcramoscc-server.onrender.com/auth/edit_employee/${id}`, employee)
       .then(result => {
         if (result.data.Status) {
           toast.success(`Employee '${employee.fname} ${employee.mname ? employee.mname + ' ' : ''}${employee.lname}' edited successfully!`);

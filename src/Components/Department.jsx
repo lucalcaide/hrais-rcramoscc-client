@@ -17,7 +17,7 @@ const Department = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/auth/department')
+    axios.get('https://hrais-rcramoscc-server.onrender.com/auth/department')
       .then(result => {
         if (result.data.Status) {
           const sortedDepartments = result.data.Result.sort((a, b) => a.name.localeCompare(b.name));
@@ -33,7 +33,7 @@ const Department = () => {
     const confirmDelete = window.confirm(`Are you sure to delete '${name}' department?`);
 
     if (confirmDelete) {
-      axios.delete(`http://localhost:3000/auth/delete_department/${id}`)
+      axios.delete(`https://hrais-rcramoscc-server.onrender.com/auth/delete_department/${id}`)
         .then(result => {
           if (result.data.Status) {
             setDepartments(departments.filter(dep => dep.id !== id));
@@ -59,7 +59,7 @@ const Department = () => {
   };
 
   const handleSave = (id) => {
-    axios.put(`http://localhost:3000/auth/update_department/${id}`, { name: editDepartmentName })
+    axios.put(`https://hrais-rcramoscc-server.onrender.com/auth/update_department/${id}`, { name: editDepartmentName })
       .then(result => {
         if (result.data.Status) {
           setDepartments(departments.map(dep => dep.id === id ? { ...dep, name: editDepartmentName } : dep));

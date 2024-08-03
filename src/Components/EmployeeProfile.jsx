@@ -10,7 +10,7 @@ const EmployeeProfile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/employee/detail/${id}`)
+    axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/detail/${id}`)
       .then(result => {
         setEmployee(result.data[0]);
       })
@@ -18,7 +18,7 @@ const EmployeeProfile = () => {
   }, [id]);
 
   const handleLogout = () => {
-    axios.get('http://localhost:3000/employee/logout')
+    axios.get('https://hrais-rcramoscc-server.onrender.com/employee/logout')
       .then(result => {
         if (result.data.Status) {
           localStorage.removeItem("valid");
@@ -158,7 +158,7 @@ const EmployeeProfile = () => {
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                   <img
-                    src={`http://localhost:3000/Images/${employee.image}`}
+                    src={`https://hrais-rcramoscc-server.onrender.com/Images/${employee.image}`}
                     className="rounded-circle"
                     alt="Employee"
                     style={{ width: '45px', height: '45px' }}
@@ -184,7 +184,7 @@ const EmployeeProfile = () => {
         <div className="card" style={{ backgroundColor: '#f8f9fa', borderRadius: '15px', padding: '20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
           <div className="d-flex align-items-center">
             <img
-              src={`http://localhost:3000/Images/${employee.image}`}
+              src={`https://hrais-rcramoscc-server.onrender.com/Images/${employee.image}`}
               className="rounded-circle"
               alt="Employee"
               style={{ width: '150px', height: '150px', marginRight: '20px', border: '2px solid #000' }}

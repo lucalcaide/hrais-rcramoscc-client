@@ -19,7 +19,7 @@ const PayrollLeave = () => {
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/auth/leave')
+    axios.get('https://hrais-rcramoscc-server.onrender.com/auth/leave')
       .then(response => {
         if (response.data.Status) {
           setLeaves(response.data.Result);
@@ -36,7 +36,7 @@ const PayrollLeave = () => {
 
   const deleteLeave = (id) => {
     if (window.confirm('Are you sure to delete this leave record?')) {
-      axios.delete(`http://localhost:3000/auth/delete_leave/${id}`)
+      axios.delete(`https://hrais-rcramoscc-server.onrender.com/auth/delete_leave/${id}`)
         .then(response => {
           if (response.data.Status) {
             setLeaves(leaves.filter(leave => leave.id !== id));
@@ -65,7 +65,7 @@ const PayrollLeave = () => {
   };
 
   const handleStatusUpdate = (id, status) => {
-    axios.put(`http://localhost:3000/auth/update_leave/${id}`, { status })
+    axios.put(`https://hrais-rcramoscc-server.onrender.com/auth/update_leave/${id}`, { status })
       .then(response => {
         if (response.data.Status) {
           setLeaves(leaves.map(leave => 

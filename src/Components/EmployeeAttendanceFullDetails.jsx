@@ -16,7 +16,7 @@ const EmployeeAttendanceFullDetails = () => {
     const [updatedRecord, setUpdatedRecord] = useState(record);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/employee/home/${id}`)
+        axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
             .then(result => {
                 setEmployee(result.data[0]);
             })
@@ -32,7 +32,7 @@ const EmployeeAttendanceFullDetails = () => {
     }
 
     const handleLogout = () => {
-        axios.get('http://localhost:3000/employee/logout')
+        axios.get('https://hrais-rcramoscc-server.onrender.com/employee/logout')
             .then(result => {
                 if (result.data.Status) {
                     localStorage.removeItem("valid");
@@ -189,7 +189,7 @@ const EmployeeAttendanceFullDetails = () => {
                                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                                     {employee.image ? (
                                         <img
-                                            src={`http://localhost:3000/Images/${employee.image}`}
+                                            src={`https://hrais-rcramoscc-server.onrender.com/Images/${employee.image}`}
                                             className="rounded-circle"
                                             alt="Employee"
                                             style={{ width: '45px', height: '45px' }}

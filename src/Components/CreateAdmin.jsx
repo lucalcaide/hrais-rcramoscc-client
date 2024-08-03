@@ -24,7 +24,7 @@ const CreateAdmin = () => {
       return;
     }
 
-    axios.post('http://localhost:3000/auth/createadmin', values)
+    axios.post('https://hrais-rcramoscc-server.onrender.com/auth/createadmin', values)
       .then(result => {
         if (result.data.Status) {
           toast.success('Admin created successfully!');

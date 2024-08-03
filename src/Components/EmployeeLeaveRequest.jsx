@@ -16,7 +16,7 @@ const EmployeeLeaveRequest = () => {
   const [successMessage, setSuccessMessage] = useState(''); // State for success message
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/employee/home/${id}`)
+    axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
       .then(result => {
         setEmployee(result.data[0]);
         setName(result.data[0].fname + ' ' + result.data[0].lname);
@@ -45,7 +45,7 @@ const EmployeeLeaveRequest = () => {
     // Clear error message on successful validation
     setErrorMessage('');
 
-    axios.post('http://localhost:3000/employee/leave', leaveData)
+    axios.post('https://hrais-rcramoscc-server.onrender.com/employee/leave', leaveData)
       .then(response => {
         setSuccessMessage('Leave request submitted successfully.');
         setErrorMessage(''); // Clear error message if any

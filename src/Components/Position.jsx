@@ -17,7 +17,7 @@ const Position = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/auth/position')
+    axios.get('https://hrais-rcramoscc-server.onrender.com/auth/position')
       .then(result => {
         if (result.data.Status) {
           const sortedPositions = result.data.Result.sort((a, b) => a.name.localeCompare(b.name));
@@ -33,7 +33,7 @@ const Position = () => {
     const confirmDelete = window.confirm(`Are you sure to delete '${name}' position?`);
 
     if (confirmDelete) {
-      axios.delete(`http://localhost:3000/auth/delete_position/${id}`)
+      axios.delete(`https://hrais-rcramoscc-server.onrender.com/auth/delete_position/${id}`)
         .then(result => {
           if (result.data.Status) {
             setPositions(positions.filter(pos => pos.id !== id));
@@ -59,7 +59,7 @@ const Position = () => {
   };
 
   const handleSave = (id) => {
-    axios.put(`http://localhost:3000/auth/update_position/${id}`, { name: editPositionName })
+    axios.put(`https://hrais-rcramoscc-server.onrender.com/auth/update_position/${id}`, { name: editPositionName })
       .then(result => {
         if (result.data.Status) {
           setPositions(positions.map(pos => pos.id === id ? { ...pos, name: editPositionName } : pos));

@@ -9,7 +9,7 @@ const PayrollDashboard = () => {
     axios.defaults.withCredentials = true
   
     const handleLogout = () => {
-      axios.get('http://localhost:3000/payroll/logout')
+      axios.get('https://hrais-rcramoscc-server.onrender.com/payroll/logout')
       .then(result => {
         if(result.data.Status) {
           localStorage.removeItem('valid')

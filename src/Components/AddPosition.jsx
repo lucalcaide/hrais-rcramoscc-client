@@ -10,7 +10,7 @@ const AddPosition = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3000/auth/add_position', { position })
+    axios.post('https://hrais-rcramoscc-server.onrender.com/auth/add_position', { position })
       .then(result => {
         if (result.data.Status) {
           toast.success(`Position '${position}' added successfully!`);

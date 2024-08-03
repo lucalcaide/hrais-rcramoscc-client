@@ -10,7 +10,7 @@ const AddDept = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3000/auth/add_dept', { department })
+    axios.post('https://hrais-rcramoscc-server.onrender.com/auth/add_dept', { department })
       .then(result => {
         if (result.data.Status) {
           toast.success(`Department '${department}' added successfully!`);

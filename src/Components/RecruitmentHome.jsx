@@ -37,7 +37,7 @@ const RecruitmentHome = () => {
   }, []);
 
   const adminCount = () => {
-    axios.get("http://localhost:3000/auth/admin_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/admin_count").then((result) => {
       if (result.data.Status) {
         setAdminTotal(result.data.Result[0].admin);
       }
@@ -45,7 +45,7 @@ const RecruitmentHome = () => {
   };
 
   const employeeCount = () => {
-    axios.get("http://localhost:3000/auth/employee_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/employee_count").then((result) => {
       if (result.data.Status) {
         setEmployeeTotal(result.data.Result[0].employee);
       }
@@ -53,7 +53,7 @@ const RecruitmentHome = () => {
   };
 
   const fetchEmployeeStatusCounts = () => {
-    axios.get("http://localhost:3000/auth/employee_status_counts").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/employee_status_counts").then((result) => {
       if (result.data.Status) {
         setActiveEmployeeTotal(result.data.Result.activeCount);
         setInactiveEmployeeTotal(result.data.Result.inactiveCount);
@@ -62,7 +62,7 @@ const RecruitmentHome = () => {
   };
 
   const fetchNewEmployeeCount = () => {
-    axios.get("http://localhost:3000/auth/new_employee_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/new_employee_count").then((result) => {
       if (result.data.Status) {
         setNewEmployeeTotal(result.data.Result);
       }
@@ -70,7 +70,7 @@ const RecruitmentHome = () => {
   };
 
   const departmentCount = () => {
-    axios.get("http://localhost:3000/auth/department_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/department_count").then((result) => {
       if (result.data.Status) {
         setDepartmentTotal(result.data.Result[0].department);
       }
@@ -78,7 +78,7 @@ const RecruitmentHome = () => {
   };
 
   const projectCount = () => {
-    axios.get("http://localhost:3000/auth/project_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/project_count").then((result) => {
       if (result.data.Status) {
         setProjectTotal(result.data.Result[0].project);
       }
@@ -86,7 +86,7 @@ const RecruitmentHome = () => {
   };
 
   const positionCount = () => {
-    axios.get("http://localhost:3000/auth/position_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/position_count").then((result) => {
       if (result.data.Status) {
         setPositionTotal(result.data.Result[0].position);
       }

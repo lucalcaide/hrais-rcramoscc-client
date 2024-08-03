@@ -25,7 +25,7 @@ const CreateRecruitment = () => {
       return;
     }
 
-    axios.post('http://localhost:3000/auth/createrecruitment', values)
+    axios.post('https://hrais-rcramoscc-server.onrender.com/auth/createrecruitment', values)
       .then(result => {
         if (result.data.Status) {
           toast.success('Recruitment created successfully!');

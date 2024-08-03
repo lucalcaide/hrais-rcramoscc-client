@@ -21,7 +21,7 @@ const EmployeeLeave = () => {
   const recordsPerPage = 20;
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/employee/home/${id}`)
+    axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
       .then(result => {
         setEmployee(result.data[0]);
       })
@@ -29,7 +29,7 @@ const EmployeeLeave = () => {
   }, [id]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/employee/leave/${id}`)
+    axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/leave/${id}`)
       .then(response => {
         setLeaveData(response.data);
         setFilteredLeaveData(response.data);
@@ -41,7 +41,7 @@ const EmployeeLeave = () => {
   }, [id]);
 
   const handleLogout = () => {
-    axios.get('http://localhost:3000/employee/logout')
+    axios.get('https://hrais-rcramoscc-server.onrender.com/employee/logout')
       .then(result => {
         if (result.data.Status) {
           localStorage.removeItem("valid");
@@ -88,7 +88,7 @@ const EmployeeLeave = () => {
       return;
     }
     if (window.confirm("Are you sure to cancel this leave request?")) {
-      axios.delete(`http://localhost:3000/employee/leave/${id}/${leaveId}`)
+      axios.delete(`https://hrais-rcramoscc-server.onrender.com/employee/leave/${id}/${leaveId}`)
         .then(() => {
           setLeaveData(prevData => prevData.filter(leave => leave.id !== leaveId));
           setFilteredLeaveData(prevData => prevData.filter(leave => leave.id !== leaveId));
@@ -285,7 +285,7 @@ const EmployeeLeave = () => {
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                   <img
-                    src={`http://localhost:3000/Images/${employee.image}`}
+                    src={`https://hrais-rcramoscc-server.onrender.com/Images/${employee.image}`}
                     className="rounded-circle"
                     alt="Employee"
                     style={{ width: '45px', height: '45px' }}

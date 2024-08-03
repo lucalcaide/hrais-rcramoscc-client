@@ -11,7 +11,7 @@ const EmployeeFiles = () => {
   const location = useLocation();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/employee/files/${id}`)
+    axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/files/${id}`)
       .then(result => {
         setEmployee(result.data[0]);
       })
@@ -19,7 +19,7 @@ const EmployeeFiles = () => {
   }, [id]);
 
   const handleLogout = () => {
-    axios.get('http://localhost:3000/employee/logout')
+    axios.get('https://hrais-rcramoscc-server.onrender.com/employee/logout')
       .then(result => {
         if (result.data.Status) {
           localStorage.removeItem("valid");
@@ -145,7 +145,7 @@ const EmployeeFiles = () => {
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                   <img
-                    src={`http://localhost:3000/Images/${employee.image}`}
+                    src={`https://hrais-rcramoscc-server.onrender.com/Images/${employee.image}`}
                     className="rounded-circle"
                     alt="Employee"
                     style={{ width: '45px', height: '45px' }}
@@ -176,7 +176,7 @@ const EmployeeFiles = () => {
                 {employee.resume ? (
                   <div>
                     <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee.resume}</p>
-                    <a href={`http://localhost:3000/Resumes/${employee.resume}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
+                    <a href={`https://hrais-rcramoscc-server.onrender.com/Resumes/${employee.resume}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
                       Open
                     </a>
                   </div>
@@ -194,7 +194,7 @@ const EmployeeFiles = () => {
                 {employee.job_offer ? (
                   <div>
                     <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee.job_offer}</p>
-                    <a href={`http://localhost:3000/JobOffers/${employee.job_offer}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
+                    <a href={`https://hrais-rcramoscc-server.onrender.com/JobOffers/${employee.job_offer}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
                     Open
                     </a>
                   </div>
@@ -212,7 +212,7 @@ const EmployeeFiles = () => {
                 {employee.valid_id ? (
                   <div>
                     <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee.valid_id}</p>
-                    <a href={`http://localhost:3000/ValidIDs/${employee.valid_id}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
+                    <a href={`https://hrais-rcramoscc-server.onrender.com/ValidIDs/${employee.valid_id}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
                     Open
                     </a>
                   </div>
@@ -230,7 +230,7 @@ const EmployeeFiles = () => {
                 {employee.contract ? (
                   <div>
                     <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee.contract}</p>
-                    <a href={`http://localhost:3000/Contracts/${employee.contract}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
+                    <a href={`https://hrais-rcramoscc-server.onrender.com/Contracts/${employee.contract}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
                     Open
                     </a>
                   </div>
@@ -248,7 +248,7 @@ const EmployeeFiles = () => {
                 {employee.application_form ? (
                   <div>
                     <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic', marginTop:'20px' }}>Filename: {employee.application_form}</p>
-                    <a href={`http://localhost:3000/ApplicationForms/${employee.application_form}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
+                    <a href={`https://hrais-rcramoscc-server.onrender.com/ApplicationForms/${employee.application_form}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
                     Open
                     </a>
                   </div>
@@ -266,7 +266,7 @@ const EmployeeFiles = () => {
                 {employee.disciplinary_form ? (
                   <div>
                     <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic', marginTop:'20px' }}>Filename: {employee.disciplinary_form}</p>
-                    <a href={`http://localhost:3000/DisciplinaryForms/${employee.disciplinary_form}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill rounded-pill mt-3">
+                    <a href={`https://hrais-rcramoscc-server.onrender.com/DisciplinaryForms/${employee.disciplinary_form}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill rounded-pill mt-3">
                     Open
                     </a>
                   </div>

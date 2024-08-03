@@ -18,7 +18,7 @@ const RecruitEmployee = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/auth/employee')
+    axios.get('https://hrais-rcramoscc-server.onrender.com/auth/employee')
       .then(result => {
         if (result.data.Status) {
           const sortedEmployees = result.data.Result.sort((a, b) => {
@@ -41,7 +41,7 @@ const RecruitEmployee = () => {
     const confirmDelete = window.confirm(`Are you sure to delete employee '${emp_no}'?`);
 
     if (confirmDelete) {
-      axios.delete(`http://localhost:3000/auth/delete_employee/${id}`)
+      axios.delete(`https://hrais-rcramoscc-server.onrender.com/auth/delete_employee/${id}`)
         .then(result => {
           if (result.data.Status) {
             setEmployee(employee.filter(e => e.id !== id));

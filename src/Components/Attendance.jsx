@@ -22,7 +22,7 @@ const Attendance = () => {
     formData.append('attendance_file', file);
 
     try {
-      const response = await axios.post('http://localhost:3000/auth/upload-attendance', formData, {
+      const response = await axios.post('https://hrais-rcramoscc-server.onrender.com/auth/upload-attendance', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

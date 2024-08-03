@@ -21,7 +21,7 @@ const ManageAttendance = () => {
   useEffect(() => {
     const fetchAttendanceRecords = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/auth/get-attendance-records');
+        const response = await axios.get('https://hrais-rcramoscc-server.onrender.com/auth/get-attendance-records');
         if (response.data.Status) {
           setAttendanceRecords(response.data.Result);
           setFilteredRecords(response.data.Result);
@@ -63,7 +63,7 @@ const ManageAttendance = () => {
   const handleDelete = async (recordId) => {
     if (window.confirm('Are you sure you want to delete this attendance record?')) {
       try {
-        const response = await axios.delete(`http://localhost:3000/auth/delete-attendance-record/${recordId}`);
+        const response = await axios.delete(`https://hrais-rcramoscc-server.onrender.com/auth/delete-attendance-record/${recordId}`);
         if (response.data.Status) {
           toast.success('Record deleted successfully');
           const updatedRecords = attendanceRecords.filter(record => record.id !== recordId);

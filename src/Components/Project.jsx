@@ -17,7 +17,7 @@ const Project = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/auth/project')
+    axios.get('https://hrais-rcramoscc-server.onrender.com/auth/project')
       .then(result => {
         if (result.data.Status) {
           const sortedProjects = result.data.Result.sort((a, b) => a.name.localeCompare(b.name));
@@ -33,7 +33,7 @@ const Project = () => {
     const confirmDelete = window.confirm(`Are you sure to delete '${name}' project/unit?`);
 
     if (confirmDelete) {
-      axios.delete(`http://localhost:3000/auth/delete_project/${id}`)
+      axios.delete(`https://hrais-rcramoscc-server.onrender.com/auth/delete_project/${id}`)
         .then(result => {
           if (result.data.Status) {
             setProjects(projects.filter(proj => proj.id !== id));
@@ -59,7 +59,7 @@ const Project = () => {
   };
 
   const handleSave = (id) => {
-    axios.put(`http://localhost:3000/auth/update_project/${id}`, { name: editProjectName })
+    axios.put(`https://hrais-rcramoscc-server.onrender.com/auth/update_project/${id}`, { name: editProjectName })
       .then(result => {
         if (result.data.Status) {
           setProjects(projects.map(proj => proj.id === id ? { ...proj, name: editProjectName } : proj));

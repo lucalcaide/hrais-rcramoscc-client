@@ -44,7 +44,7 @@ const AddEmployee = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/auth/department")
+      .get("https://hrais-rcramoscc-server.onrender.com/auth/department")
       .then((result) => {
         if (result.data.Status) {
           setDepartment(result.data.Result);
@@ -59,7 +59,7 @@ const AddEmployee = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/auth/project")
+      .get("https://hrais-rcramoscc-server.onrender.com/auth/project")
       .then((result) => {
         if (result.data.Status) {
           setProject(result.data.Result);
@@ -74,7 +74,7 @@ const AddEmployee = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/auth/position")
+      .get("https://hrais-rcramoscc-server.onrender.com/auth/position")
       .then((result) => {
         if (result.data.Status) {
           setPosition(result.data.Result);
@@ -135,7 +135,7 @@ const AddEmployee = () => {
       formData.append("disciplinary_form", employee.disciplinary_form);
     }
 
-    axios.post("http://localhost:3000/auth/add_employee", formData)
+    axios.post("https://hrais-rcramoscc-server.onrender.com/auth/add_employee", formData)
       .then((result) => {
         if (result.data.Status) {
           const { fname, mname, lname } = employee;

@@ -45,7 +45,7 @@ const Home = () => {
   }, []);
 
   const adminCount = () => {
-    axios.get("http://localhost:3000/auth/admin_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/admin_count").then((result) => {
       if (result.data.Status) {
         setAdminTotal(result.data.Result[0].admin);
       }
@@ -53,7 +53,7 @@ const Home = () => {
   };
 
   const employeeCount = () => {
-    axios.get("http://localhost:3000/auth/employee_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/employee_count").then((result) => {
       if (result.data.Status) {
         setEmployeeTotal(result.data.Result[0].employee);
       }
@@ -61,7 +61,7 @@ const Home = () => {
   };
 
   const fetchEmployeeStatusCounts = () => {
-    axios.get("http://localhost:3000/auth/employee_status_counts").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/employee_status_counts").then((result) => {
       if (result.data.Status) {
         setActiveEmployeeTotal(result.data.Result.activeCount);
         setInactiveEmployeeTotal(result.data.Result.inactiveCount);
@@ -70,7 +70,7 @@ const Home = () => {
   };
 
   const fetchNewEmployeeCount = () => {
-    axios.get("http://localhost:3000/auth/new_employee_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/new_employee_count").then((result) => {
       if (result.data.Status) {
         setNewEmployeeTotal(result.data.Result);
       }
@@ -78,7 +78,7 @@ const Home = () => {
   };
 
   const departmentCount = () => {
-    axios.get("http://localhost:3000/auth/department_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/department_count").then((result) => {
       if (result.data.Status) {
         setDepartmentTotal(result.data.Result[0].department);
       }
@@ -86,7 +86,7 @@ const Home = () => {
   };
 
   const projectCount = () => {
-    axios.get("http://localhost:3000/auth/project_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/project_count").then((result) => {
       if (result.data.Status) {
         setProjectTotal(result.data.Result[0].project);
       }
@@ -94,7 +94,7 @@ const Home = () => {
   };
 
   const positionCount = () => {
-    axios.get("http://localhost:3000/auth/position_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/position_count").then((result) => {
       if (result.data.Status) {
         setPositionTotal(result.data.Result[0].position);
       }
@@ -102,7 +102,7 @@ const Home = () => {
   };
 
   const fetchPendingLeaveCount = () => {
-    axios.get("http://localhost:3000/auth/pending_leave_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/pending_leave_count").then((result) => {
       if (result.data.Status) {
         setPendingLeaveTotal(result.data.Result[0].pendingLeaveCount);
       }
@@ -110,7 +110,7 @@ const Home = () => {
   };
 
   const fetchFulfilledLeaveCount = () => {
-    axios.get("http://localhost:3000/auth/fulfilled_leave_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/fulfilled_leave_count").then((result) => {
       if (result.data.Status) {
         setFulfilledLeaveTotal(result.data.Result[0].fulfilledLeaveCount);
       }
@@ -118,7 +118,7 @@ const Home = () => {
   };
 
   const fetchRejectedLeaveCount = () => {
-    axios.get("http://localhost:3000/auth/rejected_leave_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/rejected_leave_count").then((result) => {
       if (result.data.Status) {
         setRejectedLeaveTotal(result.data.Result[0].rejectedLeaveCount);
       }
@@ -126,7 +126,7 @@ const Home = () => {
   };
 
   const fetchPendingAttendanceCount = () => {
-    axios.get("http://localhost:3000/auth/pending_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/pending_count").then((result) => {
       if (result.data.Status) {
         setPendingAttendanceTotal(result.data.Result);
       }
@@ -134,7 +134,7 @@ const Home = () => {
   };
 
   const fetchFulfilledAttendanceCount = () => {
-    axios.get("http://localhost:3000/auth//fulfilled_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth//fulfilled_count").then((result) => {
       if (result.data.Status) {
         setFulfilledAttendanceTotal(result.data.Result);
       }
@@ -142,7 +142,7 @@ const Home = () => {
   };
 
   const fetchRejectedAttendanceCount = () => {
-    axios.get("http://localhost:3000/auth/rejected_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/rejected_count").then((result) => {
       if (result.data.Status) {
         setRejectedAttendanceTotal(result.data.Result);
       }

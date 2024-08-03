@@ -14,7 +14,7 @@ const EmpChangePass = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/employee/detail/${id}`)
+        axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/detail/${id}`)
             .then(result => {
                 setEmployee(result.data[0]);
             })
@@ -22,7 +22,7 @@ const EmpChangePass = () => {
     }, [id]);
 
     const handleLogout = () => {
-        axios.get('http://localhost:3000/employee/logout')
+        axios.get('https://hrais-rcramoscc-server.onrender.com/employee/logout')
             .then(result => {
                 if (result.data.Status) {
                     localStorage.removeItem("valid");
@@ -40,7 +40,7 @@ const EmpChangePass = () => {
             return;
         }
 
-        axios.post(`http://localhost:3000/employee/change-password/${id}`, {
+        axios.post(`https://hrais-rcramoscc-server.onrender.com/employee/change-password/${id}`, {
             currentPassword,
             newPassword
         }).then(response => {

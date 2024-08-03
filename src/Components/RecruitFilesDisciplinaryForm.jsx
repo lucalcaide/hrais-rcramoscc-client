@@ -18,7 +18,7 @@ const RecruitFilesDisciplinaryForm = () => {
     }, []);
   
     const fetchEmployees = () => {
-      axios.get("http://localhost:3000/auth/employee")
+      axios.get("https://hrais-rcramoscc-server.onrender.com/auth/employee")
         .then((result) => {
           if (result.data.Status) {
             const sortedEmployees = result.data.Result.sort((a, b) => {
@@ -40,7 +40,7 @@ const RecruitFilesDisciplinaryForm = () => {
     const handleDelete = (id, emp_no) => {
       const confirmDelete = window.confirm(`Are you sure you want to delete the Disciplinary Form for employee number '${emp_no}'?`);
       if (confirmDelete) {
-        axios.delete(`http://localhost:3000/auth/delete_disciplinary_form/${id}`)
+        axios.delete(`https://hrais-rcramoscc-server.onrender.com/auth/delete_disciplinary_form/${id}`)
           .then(result => {
             if (result.data.Status) {
               // Update state first
@@ -71,7 +71,7 @@ const RecruitFilesDisciplinaryForm = () => {
         const formData = new FormData();
         formData.append('disciplinary_form', file);
   
-        axios.post(`http://localhost:3000/auth/upload_disciplinary_form/${id}`, formData, {
+        axios.post(`https://hrais-rcramoscc-server.onrender.com/auth/upload_disciplinary_form/${id}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -192,7 +192,7 @@ const RecruitFilesDisciplinaryForm = () => {
                           <td style={{ fontSize: '20px', fontStyle:'italic'}}>{e.disciplinary_form}</td>
                           <td style={{ fontSize: '18px' }}>
                             {e.disciplinary_form ? (
-                              <a href={`http://localhost:3000/DisciplinaryForms/` + e.disciplinary_form} className='btn btn-file-color btn-file-text rounded-pill' target="_blank" rel="noopener noreferrer">View Disciplinary Form</a>
+                              <a href={`https://hrais-rcramoscc-server.onrender.com/DisciplinaryForms/` + e.disciplinary_form} className='btn btn-file-color btn-file-text rounded-pill' target="_blank" rel="noopener noreferrer">View Disciplinary Form</a>
                             ) : (
                               <span style={{ color: 'gray', fontWeight: 'bold', fontSize: '23px' }}>No disciplinary form uploaded</span>
                             )}

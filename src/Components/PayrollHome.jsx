@@ -33,7 +33,7 @@ const PayrollHome = () => {
 
 
   const fetchPendingLeaveCount = () => {
-    axios.get("http://localhost:3000/auth/pending_leave_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/pending_leave_count").then((result) => {
       if (result.data.Status) {
         setPendingLeaveTotal(result.data.Result[0].pendingLeaveCount);
       }
@@ -41,7 +41,7 @@ const PayrollHome = () => {
   };
 
   const fetchFulfilledLeaveCount = () => {
-    axios.get("http://localhost:3000/auth/fulfilled_leave_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/fulfilled_leave_count").then((result) => {
       if (result.data.Status) {
         setFulfilledLeaveTotal(result.data.Result[0].fulfilledLeaveCount);
       }
@@ -49,7 +49,7 @@ const PayrollHome = () => {
   };
 
   const fetchRejectedLeaveCount = () => {
-    axios.get("http://localhost:3000/auth/rejected_leave_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/rejected_leave_count").then((result) => {
       if (result.data.Status) {
         setRejectedLeaveTotal(result.data.Result[0].rejectedLeaveCount);
       }
@@ -57,7 +57,7 @@ const PayrollHome = () => {
   };
 
   const fetchPendingAttendanceCount = () => {
-    axios.get("http://localhost:3000/auth/pending_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/pending_count").then((result) => {
       if (result.data.Status) {
         setPendingAttendanceTotal(result.data.Result);
       }
@@ -65,7 +65,7 @@ const PayrollHome = () => {
   };
 
   const fetchFulfilledAttendanceCount = () => {
-    axios.get("http://localhost:3000/auth//fulfilled_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth//fulfilled_count").then((result) => {
       if (result.data.Status) {
         setFulfilledAttendanceTotal(result.data.Result);
       }
@@ -73,7 +73,7 @@ const PayrollHome = () => {
   };
 
   const fetchRejectedAttendanceCount = () => {
-    axios.get("http://localhost:3000/auth/rejected_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/rejected_count").then((result) => {
       if (result.data.Status) {
         setRejectedAttendanceTotal(result.data.Result);
       }

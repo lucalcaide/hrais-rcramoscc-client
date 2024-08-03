@@ -18,7 +18,7 @@ const RecruitFilesResume = () => {
     }, []);
   
     const fetchEmployees = () => {
-      axios.get("http://localhost:3000/auth/employee")
+      axios.get("https://hrais-rcramoscc-server.onrender.com/auth/employee")
         .then((result) => {
           if (result.data.Status) {
             const sortedEmployees = result.data.Result.sort((a, b) => {
@@ -40,7 +40,7 @@ const RecruitFilesResume = () => {
     const handleDelete = (id, emp_no) => {
       const confirmDelete = window.confirm(`Are you sure you want to delete the resume for employee number '${emp_no}'?`);
       if (confirmDelete) {
-        axios.delete(`http://localhost:3000/auth/delete_resume/${id}`)
+        axios.delete(`https://hrais-rcramoscc-server.onrender.com/auth/delete_resume/${id}`)
           .then(result => {
             if (result.data.Status) {
               // Update state first
@@ -71,7 +71,7 @@ const RecruitFilesResume = () => {
         const formData = new FormData();
         formData.append('resume', file);
   
-        axios.post(`http://localhost:3000/auth/upload_resume/${id}`, formData, {
+        axios.post(`https://hrais-rcramoscc-server.onrender.com/auth/upload_resume/${id}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -193,7 +193,7 @@ const RecruitFilesResume = () => {
                           <td style={{ fontSize: '20px', fontStyle:'italic'}}>{e.resume}</td>
                           <td style={{ fontSize: '18px' }}>
                             {e.resume ? (
-                              <a href={`http://localhost:3000/Resumes/` + e.resume} className='btn btn-file-color btn-file-text rounded-pill' target="_blank" rel="noopener noreferrer">View Resume</a>
+                              <a href={`https://hrais-rcramoscc-server.onrender.com/Resumes/` + e.resume} className='btn btn-file-color btn-file-text rounded-pill' target="_blank" rel="noopener noreferrer">View Resume</a>
                             ) : (
                               <span style={{ color: 'gray', fontWeight: 'bold', fontSize: '23px' }}>No resume uploaded</span>
                             )}

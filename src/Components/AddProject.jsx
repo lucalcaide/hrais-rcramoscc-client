@@ -10,7 +10,7 @@ const AddProject = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3000/auth/add_project', { project })
+    axios.post('https://hrais-rcramoscc-server.onrender.com/auth/add_project', { project })
       .then(result => {
         if (result.data.Status) {
           toast.success(`Project/Unit '${project}' added successfully!`);

@@ -18,7 +18,7 @@ const Employee = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/auth/employee')
+    axios.get('https://hrais-rcramoscc-server.onrender.com/auth/employee')
       .then(result => {
         if (result.data.Status) {
           const sortedEmployees = result.data.Result.sort((a, b) => {
@@ -41,7 +41,7 @@ const Employee = () => {
     const confirmDelete = window.confirm(`Are you sure to delete employee '${emp_no}'?`);
 
     if (confirmDelete) {
-      axios.delete(`http://localhost:3000/auth/delete_employee/${id}`)
+      axios.delete(`https://hrais-rcramoscc-server.onrender.com/auth/delete_employee/${id}`)
         .then(result => {
           if (result.data.Status) {
             setEmployee(employee.filter(e => e.id !== id));
@@ -277,7 +277,7 @@ const Employee = () => {
                   {currentEmployees.map(e => (
                     <tr key={e.id}>
                       <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                        <img src={`http://localhost:3000/Images/` + e.image} alt="" style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '3px' }} />
+                        <img src={`https://hrais-rcramoscc-server.onrender.com/Images/` + e.image} alt="" style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '3px' }} />
                       </td>
                       <td style={{ fontSize: '20px', textAlign: 'center', verticalAlign: 'middle' }}>{e.emp_no}</td>
                       <td style={{ fontSize: '20px', textAlign: 'center', verticalAlign: 'middle' }}>{e.lname}, {e.fname} {e.mname}</td>

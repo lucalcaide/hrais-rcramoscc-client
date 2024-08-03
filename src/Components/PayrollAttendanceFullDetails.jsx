@@ -66,7 +66,7 @@ const PayrollAttendanceFullDetails = () => {
   // Function to handle form submission for hours
   const handleSaveClick = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/auth/attendance/update/' + record.id, {
+      const response = await axios.post('https://hrais-rcramoscc-server.onrender.com/auth/attendance/update/' + record.id, {
         hours_worked: editedHours,
         late: editedLate,
         extra: editedExtra,
@@ -90,7 +90,7 @@ const PayrollAttendanceFullDetails = () => {
   // Function to handle form submission for status
   const handleStatusSaveClick = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/auth/attendance/update/status/' + record.id, {
+      const response = await axios.post('https://hrais-rcramoscc-server.onrender.com/auth/attendance/update/status/' + record.id, {
         status: editedStatus,
       });
 

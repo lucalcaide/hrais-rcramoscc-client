@@ -21,7 +21,7 @@ const CreateNewPass = () => {
     }
 
     try {
-      const response = await axios.post(`http://localhost:3000/auth/create_new_password/${id}`, {
+      const response = await axios.post(`https://hrais-rcramoscc-server.onrender.com/auth/create_new_password/${id}`, {
         newPassword,
         confirmPassword,
       });

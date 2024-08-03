@@ -11,7 +11,7 @@ const PrivateRoute = ({ children, roles }) => {
   useEffect(() => {
     const verifyUser = async () => {
       try {
-        const result = await axios.get('http://localhost:3000/verify');
+        const result = await axios.get('https://hrais-rcramoscc-server.onrender.com/verify');
         if (result.data.Status) {
           setIsValid(true);
           setUserRole(result.data.role);

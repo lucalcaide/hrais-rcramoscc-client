@@ -15,7 +15,7 @@ const ViewEmployee = () => {
   const webcamRef = useRef(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/employee/detail/${id}`)
+    axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/detail/${id}`)
       .then(result => {
         setEmployee(result.data[0]);
       })
@@ -63,7 +63,7 @@ const ViewEmployee = () => {
     const formData = new FormData();
     formData.append('image', image);
 
-    axios.put(`http://localhost:3000/auth/update_employee_image/${id}`, formData, {
+    axios.put(`https://hrais-rcramoscc-server.onrender.com/auth/update_employee_image/${id}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -127,7 +127,7 @@ const ViewEmployee = () => {
   const handleDeactivate = () => {
     if (window.confirm('Are you sure you want to deactivate this employee?')) {
       if (window.confirm("By deactivating an employee's account, the employee will become inactive. Are you sure you want to proceed?")) {
-        axios.put(`http://localhost:3000/auth/deactivate_employee/${id}`)
+        axios.put(`https://hrais-rcramoscc-server.onrender.com/auth/deactivate_employee/${id}`)
           .then(response => {
             if (response.data.Status) {
               toast.success('Employee deactivated successfully.');
@@ -184,7 +184,7 @@ const ViewEmployee = () => {
                     <th style={{ width: '200px', fontFamily: 'Montserrat' }}>Image:</th>
                     <td>
                       <img
-                        src={`http://localhost:3000/Images/` + employee.image}
+                        src={`https://hrais-rcramoscc-server.onrender.com/Images/` + employee.image}
                         className='img-fluid rounded-circle mb-3 mt-3 emp_det_image ms-5'
                         alt="Employee"
                         style={{ border: '2px solid #000' }}

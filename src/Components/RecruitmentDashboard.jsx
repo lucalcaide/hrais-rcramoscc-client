@@ -9,7 +9,7 @@ const RecruitmentDashboard = () => {
   axios.defaults.withCredentials = true
 
   const handleLogout = () => {
-    axios.get('http://localhost:3000/recruitment/logout')
+    axios.get('https://hrais-rcramoscc-server.onrender.com/recruitment/logout')
     .then(result => {
       if(result.data.Status) {
         localStorage.removeItem('valid')
