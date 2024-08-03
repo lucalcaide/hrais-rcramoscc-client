@@ -19,11 +19,11 @@ const PrivateRoute = ({ children, roles }) => {
           setUserRole(result.data.role);
         } else {
           setIsValid(false);
-          setRedirectPath('/login'); // Redirect to login if not valid
+          setRedirectPath('/'); // Redirect to login if not valid
         }
       } catch (err) {
         setIsValid(false);
-        setRedirectPath('/login'); // Redirect to login on error
+        setRedirectPath('/'); // Redirect to login on error
         console.log(err);
       } finally {
         setLoading(false);
@@ -44,7 +44,7 @@ const PrivateRoute = ({ children, roles }) => {
   }
 
   if (!isValid) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
   if (roles && !roles.includes(userRole)) {
