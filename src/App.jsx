@@ -90,7 +90,7 @@ function App() {
         <Route path="/employee_leave/:id" element={<PrivateRoute roles={['employee']}><EmployeeLeave /></PrivateRoute>} />
         <Route path="/employee_leave_list/:id" element={<PrivateRoute roles={['employee']}><EmployeeLeaveRequest /></PrivateRoute>} />
 
-        <Route path="/dashboard" element={<PrivateRoute roles={['admin']}><Dashboard /></PrivateRoute>}>
+        <Route path="/dashboard" element={<Dashboard />}>
           <Route path='' element={<PrivateRoute roles={['admin']}><Home /></PrivateRoute>} />
           <Route path='/dashboard/createadmin' element={<PrivateRoute roles={['admin']}><CreateAdmin /></PrivateRoute>} />
           <Route path='/dashboard/createrecruitment' element={<PrivateRoute roles={['admin']}><CreateRecruitment /></PrivateRoute>} />
