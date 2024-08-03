@@ -11,7 +11,9 @@ const PrivateRoute = ({ children, roles }) => {
   useEffect(() => {
     const verifyUser = async () => {
       try {
-        const result = await axios.get('https://hrais-rcramoscc-server.onrender.com/verify');
+        const result = await axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
+          withCredentials: true // Include cookies in the request
+        });
         if (result.data.Status) {
           setIsValid(true);
           setUserRole(result.data.role);
@@ -27,6 +29,7 @@ const PrivateRoute = ({ children, roles }) => {
         setLoading(false);
       }
     };
+    
 
     verifyUser();
   }, []);
