@@ -17,15 +17,15 @@ const Login = () => {
 
   useEffect(() => {
     axios.get('https://hrais-rcramoscc-server.onrender.com/verify')
-    .then(result => {
+      .then(result => {
         console.log('Verification result:', result.data); // Debug log
         if (result.data.Status) {
-            handleRoleRedirection(result.data.role, result.data.id);
+          handleRoleRedirection(result.data.role, result.data.id);
         }
-    })
-    .catch(err => {
+      })
+      .catch(err => {
         console.error('Verification error:', err); // Debug log
-    });
+      });
   }, [navigate]);
 
   const handleSubmit = (event) => {
@@ -33,7 +33,7 @@ const Login = () => {
     axios.post('https://hrais-rcramoscc-server.onrender.com/auth/login', values)
       .then(result => {
         if (result.data.loginStatus) {
-          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('token', result.data.token);
           handleRoleRedirection(result.data.role, result.data.id);
         } else {
           setError(result.data.Error || 'Invalid credentials. Please try again.');
