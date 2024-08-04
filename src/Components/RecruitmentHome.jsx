@@ -70,7 +70,7 @@ const RecruitmentHome = () => {
     <div>
       <div className="dashboard-container" style={{ fontFamily: 'Montserrat' }}>
         <div className="d-flex justify-content-around mt-3">
-          <div className="col-md-10" style={{ backgroundColor: "#0b283b", padding: "20px", boxShadow: "0 6px 12px rgba(0, 0, 0, 0.3)", borderRadius: "8px" }}>
+          <div className="col-md-7" style={{ backgroundColor: "#0b283b", padding: "20px", boxShadow: "0 6px 12px rgba(0, 0, 0, 0.3)", borderRadius: "8px" }}>
             <span style={{ fontFamily: "Montserrat", fontWeight: "bold", fontSize: "30px", color: "wheat" }}>Welcome to Recruitment Dashboard!</span>
             <br />
             <span style={{ fontFamily: "Montserrat", fontWeight: 'bold', color: '#ccc', fontSize: "26px" }}>
@@ -81,7 +81,7 @@ const RecruitmentHome = () => {
 
         <div className="d-flex justify-content-around mt-3">
   <div
-    className="col-md-10"
+    className="col-md-7"
     style={{
       backgroundColor: '#f8f9fa',
       color: "#0b283b",
