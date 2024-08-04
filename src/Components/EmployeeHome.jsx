@@ -230,17 +230,21 @@ const EmployeeHome = () => {
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                   <img
-                    src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
-                    className="rounded-circle"
-                    alt="Employee"
-                    style={{ width: '45px', height: '45px' }}
+                    src={employee.image ? `https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}` : '/path/to/default/image.jpg'}
+                    className="rounded-circle me-2"
+                    alt="Profile"
+                    style={{ width: '40px', height: '40px', objectFit: 'cover' }}
                   />
-                  Hi, {employee.fname}
+                  {employee.fname}
                 </div>
                 {dropdownVisible && (
-                  <div className="dropdown-menu dropdown-menu-end">
-                    <button className="dropdown-item" onClick={handleLogout}>Logout</button>
-                  </div>
+                  <ul className="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <button className="dropdown-item" onClick={handleLogout}>
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
                 )}
               </li>
             </ul>
