@@ -159,7 +159,7 @@ const EmployeeProfile = () => {
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                   {employee?.image ? (
                     <img
-                      src={`https://hrais-rcramoscc-server.onrender.com//Public/Images/${employee.image}`}
+                      src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
                       className="rounded-circle"
                       alt="Employee"
                       style={{ width: '45px', height: '45px' }}
@@ -174,7 +174,7 @@ const EmployeeProfile = () => {
                     <div className="d-flex align-items-center p-3">
                       {employee?.image ? (
                         <img
-                          src={`https://hrais-rcramoscc-server.onrender.com//Public/Images/${employee.image}`}
+                          src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
                           className="rounded-circle"
                           alt="Employee"
                           style={{ width: '70px', height: '70px' }}
@@ -211,7 +211,7 @@ const EmployeeProfile = () => {
         <div className="card" style={{ backgroundColor: '#f8f9fa', borderRadius: '15px', padding: '20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
           <div className="d-flex align-items-center">
             <img
-              src={`https://hrais-rcramoscc-server.onrender.com/Images/${employee.image}`}
+              src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
               className="rounded-circle"
               alt="Employee"
               style={{ width: '150px', height: '150px', marginRight: '20px', border: '2px solid #000' }}
