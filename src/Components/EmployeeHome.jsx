@@ -230,12 +230,12 @@ const EmployeeHome = () => {
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                   <img
-                    src={employee && employee.image ? `https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
+                    src={`https://hrais-rcramoscc-server.onrender.com/Images/${employee.image}`}
                     className="rounded-circle"
                     alt="Employee"
                     style={{ width: '45px', height: '45px' }}
                   />
-                  Hi, {employee ? employee.fname : 'Guest'}
+                  Hi, {employee.fname}
                 </div>
                 {dropdownVisible && (
                   <div className="dropdown-menu dropdown-menu-end">
