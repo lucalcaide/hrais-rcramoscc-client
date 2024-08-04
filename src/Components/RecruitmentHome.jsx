@@ -115,9 +115,6 @@ const RecruitmentHome = () => {
     <div>
       <div className="dashboard-container" style={{ fontFamily: 'Montserrat' }}>
         <div className="ms-2 mt-3">
-          <button className="btn btn-back-color rounded-pill ms-5 mt-3" onClick={handleBack}>
-            <i className="bi bi-arrow-left-circle"></i>
-          </button>
         </div>
 
         <div className="d-flex justify-content-around mt-3">
@@ -145,22 +142,10 @@ const RecruitmentHome = () => {
                     </div>
                   </div>
                 </div>
-                <Link to="/dashboard/position" className="no-underline">
-                  <div className="card stat-card border-0 rounded-3 shadow-sm dashboard-card mt-2" style={{ backgroundColor: '#0b283b', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)' }}>
-                    <div className="card-body text-center">
-                      <h4 className="card-title" style={{ color: 'wheat' }}>POSITION</h4>
-                      <hr />
-                      <div className="d-flex justify-content-between">
-                        <span className="total-label" style={{ color: '#ccc', fontSize: '15px' }}>TOTAL</span>
-                        <span style={{ color: 'white', fontSize: '20px' }}>{positionTotal}</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
               </div>
 
               <div className="col-md-3 me-2">
-                <Link to="/dashboard/employee" className="no-underline">
+                <Link to="/recruitmentdashboard/employee" className="no-underline">
                   <div className="card stat-card border-0 rounded-3 shadow-sm dashboard-card" style={{ backgroundColor: '#0b283b', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)' }}>
                     <div className="card-body text-center">
                       <h4 className="card-title" style={{ color: 'wheat' }}>EMPLOYEE</h4>
@@ -173,7 +158,7 @@ const RecruitmentHome = () => {
                   </div>
                 </Link>
 
-                <Link to="/dashboard/employee" className="no-underline">
+                <Link to="/recruitmentdashboard/employee" className="no-underline">
                   <div className="card stat-card border-0 rounded-3 shadow-sm dashboard-card mt-2" style={{ backgroundColor: '#0b283b', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)' }}>
                     <div className="card-body text-center">
                       <h4 className="card-title" style={{ color: 'wheat' }}> NEW HIRES</h4>
@@ -189,19 +174,6 @@ const RecruitmentHome = () => {
               </div>
 
               <div className="col-md-3 me-2">
-                <Link to="/dashboard/department" className="no-underline">
-                  <div className="card stat-card border-0 rounded-3 shadow-sm dashboard-card" style={{ backgroundColor: '#0b283b', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)' }}>
-                    <div className="card-body text-center">
-                      <h4 className="card-title" style={{ color: 'wheat' }}>DEPARTMENT</h4>
-                      <hr />
-                      <div className="d-flex justify-content-between">
-                        <span className="total-label" style={{ color: '#ccc', fontSize: '15px' }}>TOTAL</span>
-                        <span style={{ color: 'white', fontSize: '20px' }}>{departmentTotal}</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-
                 <div className="card border-0 rounded-3 shadow-sm mt-2" style={{ backgroundColor: 'rgba(0, 128, 0, 0.1)', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)' }}>
                   <div className="card-body text-center">
                     <h4 className="card-title" style={{ color: 'green' }}>ACTIVE EMPLOYEE</h4>
@@ -216,19 +188,6 @@ const RecruitmentHome = () => {
               </div>
 
               <div className="col-md-3 me-2">
-                <Link to="/dashboard/project" className="no-underline">
-                  <div className="card stat-card border-0 rounded-3 shadow-sm dashboard-card" style={{ backgroundColor: '#0b283b', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)' }}>
-                    <div className="card-body text-center">
-                      <h4 className="card-title" style={{ color: 'wheat' }}>PROJECT/UNIT</h4>
-                      <hr />
-                      <div className="d-flex justify-content-between">
-                        <span className="total-label" style={{ color: '#ccc', fontSize: '15px' }}>TOTAL</span>
-                        <span style={{ color: 'white', fontSize: '20px' }}>{projectTotal}</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-
 
                 <div className="card border-0 rounded-3 shadow-sm mt-2" style={{ backgroundColor: 'rgba(255, 0, 0, 0.1)', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)' }}>
                   <div className="card-body text-center">
