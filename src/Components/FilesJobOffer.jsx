@@ -195,7 +195,7 @@ const FilesJobOffer = () => {
                       <td style={{ fontSize: '20px', fontStyle: 'italic', textAlign: 'left', verticalAlign: 'middle' }}>{e.job_offer}</td>
                       <td style={{ fontSize: '18px', textAlign: 'left', verticalAlign: 'middle' }}>
                         {e.job_offer ? (
-                          <a href={`https://hrais-rcramoscc-server.onrender.com/JobOffers/` + e.job_offer} className='btn btn-file-color btn-file-text rounded-pill' target="_blank" rel="noopener noreferrer">View Job Offer</a>
+                          <a href={`https://hrais-rcramoscc-server.onrender.com/Public/JobOffers/` + e.job_offer} className='btn btn-file-color btn-file-text rounded-pill' target="_blank" rel="noopener noreferrer">View Job Offer</a>
                         ) : (
                           <span style={{ color: 'gray', fontWeight: 'bold', fontSize: '23px' }}>No job offer uploaded</span>
                         )}

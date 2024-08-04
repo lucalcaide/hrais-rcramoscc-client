@@ -225,9 +225,9 @@ const EmployeeHome = () => {
               </li>
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
-                  {employee.image ? (
+                  {e.image ? (
                     <img
-                      src={`https://hrais-rcramoscc-server.onrender.com/Images/${employee.image}`}
+                      src={`https://hrais-rcramoscc-server.onrender.com//Public/Images/${e.image}`}
                       className="rounded-circle"
                       alt="Employee"
                       style={{ width: '45px', height: '45px' }}
@@ -235,7 +235,7 @@ const EmployeeHome = () => {
                   ) : (
                     <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: 'gray' }} />
                   )}
-                  Hi, {employee.fname || "Employee"}
+                  Hi, {e.fname || "Employee"}
                 </div>
                 {dropdownVisible && (
                   <div className="dropdown-menu dropdown-menu-end">
@@ -271,7 +271,7 @@ const EmployeeHome = () => {
                 color: "wheat",
               }}
             >
-              Welcome, {employee.fname} {employee.lname}!
+              Welcome, {e.fname} {e.lname}!
             </span>
             <br />
             <span

@@ -192,7 +192,7 @@ const RecruitFilesApplicationForm = () => {
                           <td style={{ fontSize: '20px', fontStyle:'italic'}}>{e.application_form}</td>
                           <td style={{ fontSize: '18px' }}>
                             {e.application_form ? (
-                              <a href={`https://hrais-rcramoscc-server.onrender.com/ApplicationForms/` + e.application_form} className='btn btn-file-color btn-file-text rounded-pill' target="_blank" rel="noopener noreferrer">View Application Form</a>
+                              <a href={`https://hrais-rcramoscc-server.onrender.com/Public/ApplicationForms/` + e.application_form} className='btn btn-file-color btn-file-text rounded-pill' target="_blank" rel="noopener noreferrer">View Application Form</a>
                             ) : (
                               <span style={{ color: 'gray', fontWeight: 'bold', fontSize: '23px' }}>No application form uploaded</span>
                             )}

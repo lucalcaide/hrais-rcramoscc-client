@@ -145,7 +145,7 @@ const EmployeeFiles = () => {
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                   <img
-                    src={`https://hrais-rcramoscc-server.onrender.com/Images/${employee.image}`}
+                    src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
                     className="rounded-circle"
                     alt="Employee"
                     style={{ width: '45px', height: '45px' }}
