@@ -7,7 +7,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 
 const EmployeeHome = () => {
-  const [employee, setEmployee] = useState({});
+  const [employee, setEmployee] = useState({ image: '' });
   const [leave, setLeave] = useState([]);
   const [attendance, setAttendance] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,10 +18,12 @@ const EmployeeHome = () => {
   const location = useLocation();
   const [startDate, setStartDate] = useState(startOfMonth(new Date()));
   const [endDate, setEndDate] = useState(endOfMonth(new Date()));
+  
 
   useEffect(() => {
     axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
       .then(result => {
+        console.log('Employee data:', result.data[0]); // Check the fetched data
         setEmployee(result.data[0]);
         return result.data[0].emp_no;
       })
