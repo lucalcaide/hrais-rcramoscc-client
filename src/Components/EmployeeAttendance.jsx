@@ -29,12 +29,12 @@ const EmployeeAttendance = () => {
       .then(empNo => {
         return axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/attendance/${empNo}`);
       })
-      .then(result => {
-        if (result.data.Status) {
-          setAttendance(result.data.Result);
-          setTotalAttendanceRecords(result.data.Result.length); // Set total attendance records
+      .then(response => {
+        if (response.data.Status) {
+          setAttendance(response.data.Result);
+          setTotalAttendanceRecords(response.data.Result.length); // Set total attendance records
         } else {
-          toast.error(result.data.Error);
+          toast.error(response.data.Error);
         }
       })
       .catch(err => console.log(err));

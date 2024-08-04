@@ -22,20 +22,24 @@ const EmployeeHome = () => {
   useEffect(() => {
     axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
       .then(result => {
+        console.log('Employee data:', result.data);
         setEmployee(result.data[0]);
         return result.data[0]?.emp_no;
       })
       .then(empNo => {
-        return axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/attendance/${empNo}`);
+        if (empNo) {
+          return axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/attendance/${empNo}`);
+        }
       })
       .then(result => {
-        if (result.data.Status) {
+        if (result && result.data.Status) {
+          console.log('Attendance data:', result.data.Result);
           setAttendance(result.data.Result);
-        } else {
+        } else if (result) {
           toast.error(result.data.Error);
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error('Error fetching employee or attendance data:', err));
   
     axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/leave/${id}`)
       .then(response => {
@@ -224,56 +228,41 @@ const EmployeeHome = () => {
                 </Link>
               </li>
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
-  <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
-    {employee ? (
-      employee.image ? (
-        <img
-          src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
-          className="rounded-circle"
-          alt="Employee"
-          style={{ width: '45px', height: '45px' }}
-        />
-      ) : (
-        <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: 'gray' }} />
-      )
-    ) : (
-      <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: 'gray' }} />
-    )}
-    Hi, {employee?.fname || 'Loading...'}
-  </div>
-  {dropdownVisible && (
-    <div className="dropdown-menu show">
-      <div className="d-flex align-items-center p-3">
-        {employee ? (
-          employee.image ? (
-            <img
-              src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
-              className="rounded-circle"
-              alt="Employee"
-              style={{ width: '70px', height: '70px' }}
-            />
-          ) : (
-            <div className="rounded-circle" style={{ width: '70px', height: '70px', backgroundColor: 'gray' }} />
-          )
-        ) : (
-          <div className="rounded-circle" style={{ width: '70px', height: '70px', backgroundColor: 'gray' }} />
-        )}
-        <div className="ms-3">
-          <p className="mb-0" style={{ fontSize: '16px' }}>{employee ? `${employee.fname} ${employee.lname}` : 'Loading...'}</p>
-          <p className="mb-0" style={{ fontSize: '14px' }}>{employee?.email || 'Loading...'}</p>
-        </div>
-      </div>
-      <div className="dropdown-divider"></div>
-      <Link to={`/employee_profile/${id}`} className="dropdown-item">
-        <i className="bi bi-person me-2"></i>Profile
-      </Link>
-      <div className="dropdown-divider"></div>
-      <div className="dropdown-item" onClick={handleLogout}>
-        <i className="bi bi-box-arrow-right me-2"></i>Logout
-      </div>
-    </div>
-  )}
-</li>
+                <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
+                  {employee ? (
+                    employee.image ? (
+                      <img
+                        src={`https://hrais-rcramoscc-server.onrender.com/images/${employee.image}`}
+                        alt="Profile"
+                        className="profile-img rounded-circle"
+                        style={{ width: '50px', height: '50px' }}
+                      />
+                    ) : (
+                      <i className="bi bi-person-circle" style={{ fontSize: '3rem', color: 'white' }}></i>
+                    )
+                  ) : (
+                    <i className="bi bi-person-circle" style={{ fontSize: '3rem', color: 'white' }}></i>
+                  )}
+                </div>
+                <ul className={`dropdown-menu${dropdownVisible ? ' show' : ''}`} style={{ marginTop: '60px' }}>
+                  <li>
+                    <Link
+                      className="dropdown-item"
+                      to={`/employee_profile/${id}`}
+                    >
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </div>
         </div>
