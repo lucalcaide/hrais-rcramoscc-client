@@ -7,7 +7,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 
 const EmployeeHome = () => {
-  const [employee, setEmployee] = useState({ image: '' });
+  const [employee, setEmployee] = useState(null);
   const [leave, setLeave] = useState([]);
   const [attendance, setAttendance] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,9 +23,9 @@ const EmployeeHome = () => {
   useEffect(() => {
     axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
       .then(result => {
-        if (result.data && result.data[0]) {
-          setEmployee(result.data[0]);
-          return result.data[0].emp_no;
+        if (result.data) {
+          setEmployee(result.data);
+          return result.data.emp_no;
         } else {
           console.error("Unexpected response format", result.data);
           return null;
@@ -245,7 +245,7 @@ const EmployeeHome = () => {
                   ) : (
                     <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: 'gray' }} />
                   )}
-                  Hi, {employee.fname || "Employee"}
+                  Hi, {employee ? employee.fname : "Employee"}
                 </div>
                 {dropdownVisible && (
                   <div className="dropdown-menu dropdown-menu-end">
