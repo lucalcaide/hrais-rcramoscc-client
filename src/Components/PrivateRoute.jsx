@@ -20,22 +20,18 @@ const PrivateRoute = ({ children, roles }) => {
         }
 
         const result = await axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
+          headers: { 'Authorization': `Bearer ${token}` }
         });
-        console.log('Verification result:', result.data);
         if (result.data.Status) {
           setIsValid(true);
           setUserRole(result.data.role);
         } else {
           setIsValid(false);
-          setRedirectPath('/'); // Redirect to login if not valid
+          setRedirectPath('/');
         }
       } catch (err) {
-        console.error('Verification error:', err);
         setIsValid(false);
-        setRedirectPath('/'); // Redirect to login on error
+        setRedirectPath('/');
       } finally {
         setLoading(false);
       }
@@ -45,7 +41,6 @@ const PrivateRoute = ({ children, roles }) => {
   }, []);
 
   if (loading) {
-    // Show a loading spinner or message here
     return <div>Loading...</div>;
   }
 

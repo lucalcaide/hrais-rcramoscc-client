@@ -19,18 +19,15 @@ const Login = () => {
     const token = localStorage.getItem('token');
     if (token) {
       axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        headers: { 'Authorization': `Bearer ${token}` }
       })
       .then(result => {
-        console.log('Verification result:', result.data); // Debug log
         if (result.data.Status) {
           handleRoleRedirection(result.data.role, result.data.id);
         }
       })
       .catch(err => {
-        console.error('Verification error:', err); // Debug log
+        console.error('Verification error:', err);
       });
     }
   }, [navigate]);
@@ -48,7 +45,6 @@ const Login = () => {
       })
       .catch(err => {
         setError('An error occurred. Please try again later.');
-        console.log(err);
       });
   };
 
