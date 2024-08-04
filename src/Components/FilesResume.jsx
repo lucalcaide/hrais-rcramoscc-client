@@ -196,7 +196,14 @@ const FilesResume = () => {
                       <td style={{ fontSize: '20px', fontStyle: 'italic', textAlign: 'left', verticalAlign: 'middle' }}>{e.resume}</td>
                       <td style={{ fontSize: '18px', textAlign: 'left', verticalAlign: 'middle' }}>
                         {e.resume ? (
-                          <a href={`https://hrais-rcramoscc-server.onrender.com/Public/Resumes/` + e.resume} className='btn btn-file-color btn-file-text rounded-pill' target="_blank" rel="noopener noreferrer">View Resume</a>
+                          <a
+                          href={`https://hrais-rcramoscc-server.onrender.com/Public/Resumes/${e.resume}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-primary"
+                        >
+                          View Resume
+                        </a>
                         ) : (
                           <span style={{ color: 'gray', fontWeight: 'bold', fontSize: '23px' }}>No resume uploaded</span>
                         )}

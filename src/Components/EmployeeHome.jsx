@@ -22,24 +22,20 @@ const EmployeeHome = () => {
   useEffect(() => {
     axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
       .then(result => {
-        console.log('Employee data:', result.data);
         setEmployee(result.data[0]);
-        return result.data[0]?.emp_no;
+        return result.data[0].emp_no;
       })
       .then(empNo => {
-        if (empNo) {
-          return axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/attendance/${empNo}`);
-        }
+        return axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/attendance/${empNo}`);
       })
       .then(result => {
-        if (result && result.data.Status) {
-          console.log('Attendance data:', result.data.Result);
+        if (result.data.Status) {
           setAttendance(result.data.Result);
-        } else if (result) {
+        } else {
           toast.error(result.data.Error);
         }
       })
-      .catch(err => console.error('Error fetching employee or attendance data:', err));
+      .catch(err => console.log(err));
   
     axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/leave/${id}`)
       .then(response => {
@@ -229,22 +225,22 @@ const EmployeeHome = () => {
               </li>
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
-                  <img
-                    src={employee?.image ? `https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}` : '/path/to/default/image.jpg'}
-                    className="rounded-circle me-2"
-                    alt="Profile"
-                    style={{ width: '40px', height: '40px', objectFit: 'cover' }}
-                  />
-                  {employee?.fname}
+                  {employee.image ? (
+                    <img
+                      src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
+                      className="rounded-circle"
+                      alt="Employee"
+                      style={{ width: '45px', height: '45px' }}
+                    />
+                  ) : (
+                    <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: 'gray' }} />
+                  )}
+                  Hi, {employee.fname || "Employee"}
                 </div>
                 {dropdownVisible && (
-                  <ul className="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <button className="dropdown-item" onClick={handleLogout}>
-                        Logout
-                      </button>
-                    </li>
-                  </ul>
+                  <div className="dropdown-menu dropdown-menu-end">
+                    <button className="dropdown-item" onClick={handleLogout}>Logout</button>
+                  </div>
                 )}
               </li>
             </ul>
@@ -275,7 +271,7 @@ const EmployeeHome = () => {
                 color: "wheat",
               }}
             >
-              Welcome, {employee?.fname} {employee?.lname}!
+              Welcome, {employee ? `${employee.fname} ${employee.lname}` : "Employee"}!
             </span>
             <br />
             <span
