@@ -225,9 +225,9 @@ const EmployeeHome = () => {
               </li>
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
-                  {employee && employee.image ? (
+                  {employee.image ? (
                     <img
-                      src={`${process.env.REACT_APP_API_URL}/Public/Images/${employee.image}`}
+                      src={`${process.env.REACT_APP_API_URL}/Images/${employee.image}`}
                       className="rounded-circle"
                       alt="Employee"
                       style={{ width: '45px', height: '45px' }}
@@ -235,14 +235,13 @@ const EmployeeHome = () => {
                   ) : (
                     <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: 'gray' }} />
                   )}
+                  Hi, {employee.fname || "Employee"}
                 </div>
-                <ul className={`dropdown-menu ${dropdownVisible ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
-                  <li>
-                   <div className="dropdown-menu dropdown-menu-end">
+                {dropdownVisible && (
+                  <div className="dropdown-menu dropdown-menu-end">
                     <button className="dropdown-item" onClick={handleLogout}>Logout</button>
                   </div>
-                  </li>
-                </ul>
+                )}
               </li>
             </ul>
           </div>
@@ -272,7 +271,7 @@ const EmployeeHome = () => {
                 color: "wheat",
               }}
             >
-              Welcome, {employee ? `${employee.fname} ${employee.lname}` : "Employee"}!
+              Welcome, {employee.fname} {employee.lname}!
             </span>
             <br />
             <span
