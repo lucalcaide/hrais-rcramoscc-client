@@ -20,14 +20,6 @@
   color: #0b283b;
 }
 
-.btn-back-color {
-  background-color: #007bff; /* Replace with your desired color */
-}
-
-.btn-color {
-  background-color: #28a745; /* Replace with your desired color */
-}
-
 .card {
   border-radius: 15px;
 }
@@ -201,9 +193,6 @@
     font-size: 18px;
   }
   
-  .btn {
-    background-color: #0b283b;
-  }
 
   .btn-color {
     padding: 10px 20px;
@@ -215,9 +204,6 @@
 
   .btn-color .bi {
     font-size: 25px; /* Adjust the size as needed */
-    background-color: #0b283b;
-    border-color: #0b283b;
-    color: wheat;
   }
   
   .btn-color:hover {
@@ -228,16 +214,10 @@
   
   .btn-text {
     font-size: 25px; /* Adjust the size as needed */
-    background-color: #0b283b;
-    border-color: #0b283b;
-    color: wheat;
   }
 
   .btn-text-fulldetails {
     font-size: 18px; /* Adjust the size as needed */
-    background-color: #0b283b;
-    border-color: #0b283b;
-    color: wheat;
   }
 
   .btn-back-color {
@@ -272,9 +252,6 @@
 
   .btn-back-color .bi {
     font-size: 32px; /* Adjust the size as needed */
-    background-color: #0b283b;
-    border-color: #0b283b;
-    color: wheat;
   }
   
   .btn-back-color:hover {
@@ -298,16 +275,10 @@
 
   .btn-file-text {
     font-size: 18px; /* Adjust the size as needed */
-    background-color: #0b283b;
-    border-color: #0b283b;
-    color: wheat;
   }
 
   .btn-back-text {
     font-size: 20; /* Adjust the size as needed */
-    background-color: #0b283b;
-    border-color: #0b283b;
-    color: wheat;
   }
 
   .btn-color-leave {
@@ -319,9 +290,6 @@
 
   .btn-color-leave .bi {
     font-size: 20px; /* Adjust the size as needed */
-    background-color: #0b283b;
-    border-color: #0b283b;
-    color: wheat;
   }
   
   .btn-color-leave:hover {
@@ -332,16 +300,10 @@
   
   .btn-text-leave {
     font-size: 16px; /* Adjust the size as needed */
-    background-color: #0b283b;
-    border-color: #0b283b;
-    color: wheat;
   }
 
   .btn-text-changepass {
     font-size: 25px; /* Adjust the size as needed */
-    background-color: #0b283b;
-    border-color: #0b283b;
-    color: wheat;
   }
 
   .btn-sort-color {
@@ -353,9 +315,6 @@
 
   .btn-sort-color .bi {
     font-size: 25px; /* Adjust the size as needed */
-    background-color: #0b283b;
-    border-color: #0b283b;
-    color: wheat;
   }
   
   .btn-sort-color:hover {

@@ -99,10 +99,9 @@ const PayrollHome = () => {
   return (
     <div>
       <div className="dashboard-container" style={{ fontFamily: 'Montserrat' }}>
-        
-
-        <div className="d-flex justify-content-around mt-5">
-          <div className="col-md-10" style={{ backgroundColor: "#0b283b", padding: "20px", boxShadow: "0 6px 12px rgba(0, 0, 0, 0.3)", borderRadius: "8px" }}>
+  
+      <div className="d-flex justify-content-around mt-5">
+          <div className="col-md-7" style={{ backgroundColor: "#0b283b", padding: "20px", boxShadow: "0 6px 12px rgba(0, 0, 0, 0.3)", borderRadius: "8px" }}>
             <span style={{ fontFamily: "Montserrat", fontWeight: "bold", fontSize: "30px", color: "wheat" }}>Welcome to Payroll Dashboard!</span>
             <br />
             <span style={{ fontFamily: "Montserrat", fontWeight: 'bold', color: '#ccc', fontSize: "26px" }}>
@@ -111,14 +110,12 @@ const PayrollHome = () => {
           </div>
         </div>
 
-       
-
         <Link to="/dashboard/attendance" className="no-underline" style={{ color: 'black' }}>
           <div className="dashboard-container" style={{ fontFamily: 'Montserrat' }}>
             <div className="d-flex justify-content-around mt-3">
-              <div className="col-md-10" style={{ backgroundColor: '#f8f9fa', padding: '20px', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)', borderRadius: '8px' }}>
+              <div className="col-md-7" style={{ backgroundColor: '#f8f9fa', padding: '20px', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)', borderRadius: '8px' }}>
                 <span style={{ fontFamily: 'Montserrat', fontSize: '20px' }}><i className="fs-4 bi-calendar-check me-2"></i>Attendance</span>
-                <div className="d-flex justify-content-start" style={{ gap: '70px' }}>
+                <div className="d-flex justify-content-start" style={{ gap: '150px' }}>
                   <div className="col-md-2 me-2">
                     <div className="card attendance-card border-0 rounded-3 shadow-sm dashboard-card" style={{ backgroundColor: '#0b283b', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)', width: '270px', height: '70px' }}>
                       <div className="card-body text-center d-flex justify-content-between">
@@ -158,9 +155,9 @@ const PayrollHome = () => {
         <Link to="/dashboard/leave" className="no-underline" style={{ color: 'black' }}>
           <div className="dashboard-container" style={{ fontFamily: 'Montserrat' }}>
             <div className="d-flex justify-content-around mt-3">
-              <div className="col-md-10" style={{ backgroundColor: '#f8f9fa', padding: '20px', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)', borderRadius: '8px' }}>
+              <div className="col-md-7" style={{ backgroundColor: '#f8f9fa', padding: '20px', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)', borderRadius: '8px' }}>
                 <span style={{ fontFamily: 'Montserrat', fontSize: '20px' }}><i className="fs-4 bi-calendar3 me-2"></i>Leave</span>
-                <div className="d-flex justify-content-start" style={{ gap: '70px' }}>
+                <div className="d-flex justify-content-start" style={{ gap: '150px' }}>
                   <div className="col-md-2 me-2">
                     <div className="card leave-card border-0 rounded-3 shadow-sm dashboard-card" style={{ backgroundColor: '#0b283b', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)', width: '270px', height: '70px' }}>
                       <div className="card-body text-center d-flex justify-content-between">
