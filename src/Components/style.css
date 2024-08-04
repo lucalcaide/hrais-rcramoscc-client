@@ -201,6 +201,9 @@
     font-size: 18px;
   }
   
+  .btn {
+    background-color: #0b283b;
+  }
 
   .btn-color {
     padding: 10px 20px;
