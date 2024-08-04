@@ -183,7 +183,7 @@ const PayrollAttendance = () => {
 
       <div style={linkContainerStyle} className='mt-5'>
         <Link
-          to="/dashboard/manage_attendance"
+          to="/payrolldashboard/manage_attendance"
           style={linkStyle}
           onMouseOver={(e) => e.currentTarget.style.backgroundColor = linkHoverStyle.backgroundColor}
           onMouseOut={(e) => e.currentTarget.style.backgroundColor = linkStyle.backgroundColor}
