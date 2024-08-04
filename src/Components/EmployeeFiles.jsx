@@ -200,7 +200,7 @@ const EmployeeFiles = () => {
             <div className="card h-100" style={{ borderRadius: '15px' }}>
               <div className="card-body" style={{ backgroundColor: '#0b283b', borderRadius: '15px' }}>
                 <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '30px', color: 'wheat' }}>RESUME</h5>
-                {employee.resume ? (
+                {employee?.resume ? (
                   <div>
                     <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee?.resume}</p>
                     <a href={`https://hrais-rcramoscc-server.onrender.com/Public/Resumes/${employee.resume}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
@@ -218,7 +218,7 @@ const EmployeeFiles = () => {
             <div className="card h-100" style={{ borderRadius: '15px' }}>
               <div className="card-body" style={{ backgroundColor: '#0b283b', borderRadius: '15px' }}>
                 <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '30px', color: 'wheat' }}>JOB OFFER</h5>
-                {employee.job_offer ? (
+                {employee?.job_offer ? (
                   <div>
                     <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee?.job_offer}</p>
                     <a href={`https://hrais-rcramoscc-server.onrender.com/Public/JobOffers/${employee.job_offer}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
@@ -236,7 +236,7 @@ const EmployeeFiles = () => {
             <div className="card h-100" style={{ borderRadius: '15px' }}>
               <div className="card-body" style={{ backgroundColor: '#0b283b', borderRadius: '15px' }}>
                 <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '30px', color: 'wheat' }}>VALID IDs</h5>
-                {employee.valid_id ? (
+                {employee?.valid_id ? (
                   <div>
                     <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee?.valid_id}</p>
                     <a href={`https://hrais-rcramoscc-server.onrender.com/Public/ValidIDs/${employee.valid_id}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
@@ -254,7 +254,7 @@ const EmployeeFiles = () => {
             <div className="card h-100" style={{ borderRadius: '15px' }}>
               <div className="card-body" style={{ backgroundColor: '#0b283b', borderRadius: '15px' }}>
                 <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '30px', color: 'wheat' }}>CONTRACT</h5>
-                {employee.contract ? (
+                {employee?.contract ? (
                   <div>
                     <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee?.contract}</p>
                     <a href={`https://hrais-rcramoscc-server.onrender.com/Public/Contracts/${employee.contract}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
@@ -272,7 +272,7 @@ const EmployeeFiles = () => {
             <div className="card h-100" style={{ borderRadius: '15px' }}>
               <div className="card-body" style={{ backgroundColor: '#0b283b', borderRadius: '15px' }}>
                 <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '30px', color: 'wheat' }}>APPLICATION FORM</h5>
-                {employee.application_form ? (
+                {employee?.application_form ? (
                   <div>
                     <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic', marginTop:'20px' }}>Filename: {employee?.application_form}</p>
                     <a href={`https://hrais-rcramoscc-server.onrender.com/Public/ApplicationForms/${employee.application_form}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
@@ -290,7 +290,7 @@ const EmployeeFiles = () => {
             <div className="card h-100" style={{ borderRadius: '15px' }}>
               <div className="card-body" style={{ backgroundColor: '#0b283b', borderRadius: '15px' }}>
                 <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '30px', color: 'wheat' }}>DISCIPLINARY FORM</h5>
-                {employee.disciplinary_form ? (
+                {employee?.disciplinary_form ? (
                   <div>
                     <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic', marginTop:'20px' }}>Filename: {employee?.disciplinary_form}</p>
                     <a href={`https://hrais-rcramoscc-server.onrender.com/Public/DisciplinaryForms/${employee.disciplinary_form}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill rounded-pill mt-3">
