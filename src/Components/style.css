@@ -295,10 +295,16 @@
 
   .btn-file-text {
     font-size: 18px; /* Adjust the size as needed */
+    background-color: #0b283b;
+    border-color: #0b283b;
+    color: wheat;
   }
 
   .btn-back-text {
     font-size: 20; /* Adjust the size as needed */
+    background-color: #0b283b;
+    border-color: #0b283b;
+    color: wheat;
   }
 
   .btn-color-leave {
@@ -310,6 +316,9 @@
 
   .btn-color-leave .bi {
     font-size: 20px; /* Adjust the size as needed */
+    background-color: #0b283b;
+    border-color: #0b283b;
+    color: wheat;
   }
   
   .btn-color-leave:hover {
@@ -320,10 +329,16 @@
   
   .btn-text-leave {
     font-size: 16px; /* Adjust the size as needed */
+    background-color: #0b283b;
+    border-color: #0b283b;
+    color: wheat;
   }
 
   .btn-text-changepass {
     font-size: 25px; /* Adjust the size as needed */
+    background-color: #0b283b;
+    border-color: #0b283b;
+    color: wheat;
   }
 
   .btn-sort-color {
@@ -335,6 +350,9 @@
 
   .btn-sort-color .bi {
     font-size: 25px; /* Adjust the size as needed */
+    background-color: #0b283b;
+    border-color: #0b283b;
+    color: wheat;
   }
   
   .btn-sort-color:hover {
