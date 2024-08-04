@@ -3,10 +3,11 @@ import axios from 'axios';
 
 const VerifyToken = () => {
   useEffect(() => {
-    const token = localStorage.getItem('token'); // Get the token from localStorage
+    const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1]; // Get the token from cookies
 
     axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
-      headers: { 'Authorization': `Bearer ${token}` }, withCredentials: true
+      headers: { 'Authorization': `Bearer ${token}` }, 
+      withCredentials: true
     })
     .then(response => {
       console.log('Token verification response:', response.data);

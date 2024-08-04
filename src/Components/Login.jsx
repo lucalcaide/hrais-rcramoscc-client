@@ -13,13 +13,16 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const navigate = useNavigate();
+  
+  // Ensure cookies are included with all Axios requests
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
     if (token) {
       axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
-        headers: { 'Authorization': `Bearer ${token}` }, withCredentials: true
+        headers: { 'Authorization': `Bearer ${token}` }, 
+        withCredentials: true
       })
       .then(result => {
         if (result.data.Status) {
@@ -37,7 +40,7 @@ const Login = () => {
     axios.post('https://hrais-rcramoscc-server.onrender.com/auth/login', values)
       .then(result => {
         if (result.data.loginStatus) {
-          localStorage.setItem('token', result.data.token);
+          document.cookie = `token=${result.data.token}; path=/; secure; samesite=strict`; // Store token in cookie
           handleRoleRedirection(result.data.role, result.data.id);
         } else {
           setError(result.data.Error || 'Invalid credentials. Please try again.');
