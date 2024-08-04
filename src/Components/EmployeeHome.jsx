@@ -23,7 +23,7 @@ const EmployeeHome = () => {
     axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
       .then(result => {
         setEmployee(result.data[0]);
-        return result.data[0].emp_no;
+        return result.data[0]?.emp_no;
       })
       .then(empNo => {
         return axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/attendance/${empNo}`);
