@@ -9,7 +9,6 @@ const Login = () => {
     email: '',
     password: ''
   });
-
   const [error, setError] = useState(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const navigate = useNavigate();
@@ -40,7 +39,6 @@ const Login = () => {
     axios.post('https://hrais-rcramoscc-server.onrender.com/auth/login', values)
       .then(result => {
         if (result.data.loginStatus) {
-          // Store token in cookie
           document.cookie = `token=${result.data.token}; path=/; secure; samesite=strict`;
           handleRoleRedirection(result.data.role, result.data.id);
         } else {
@@ -52,7 +50,6 @@ const Login = () => {
       });
   };
   
-
   const handleRoleRedirection = (role, id) => {
     switch(role) {
       case 'admin':
