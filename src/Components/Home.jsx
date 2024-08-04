@@ -134,7 +134,7 @@ const Home = () => {
   };
 
   const fetchFulfilledAttendanceCount = () => {
-    axios.get("https://hrais-rcramoscc-server.onrender.com/auth//fulfilled_count").then((result) => {
+    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/fulfilled_count").then((result) => {
       if (result.data.Status) {
         setFulfilledAttendanceTotal(result.data.Result);
       }
@@ -148,7 +148,7 @@ const Home = () => {
       }
     });
   };
-
+  
   const handleBack = () => {
     navigate(-1); // Navigate back in the history
   };
