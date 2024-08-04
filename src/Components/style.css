@@ -212,6 +212,9 @@
 
   .btn-color .bi {
     font-size: 25px; /* Adjust the size as needed */
+    background-color: #0b283b;
+    border-color: #0b283b;
+    color: wheat;
   }
   
   .btn-color:hover {
@@ -222,10 +225,16 @@
   
   .btn-text {
     font-size: 25px; /* Adjust the size as needed */
+    background-color: #0b283b;
+    border-color: #0b283b;
+    color: wheat;
   }
 
   .btn-text-fulldetails {
     font-size: 18px; /* Adjust the size as needed */
+    background-color: #0b283b;
+    border-color: #0b283b;
+    color: wheat;
   }
 
   .btn-back-color {
@@ -260,6 +269,9 @@
 
   .btn-back-color .bi {
     font-size: 32px; /* Adjust the size as needed */
+    background-color: #0b283b;
+    border-color: #0b283b;
+    color: wheat;
   }
   
   .btn-back-color:hover {
