@@ -117,10 +117,12 @@ const RecruitmentHome = () => {
       <div className="d-flex">
         <Link to="/recruitmentdashboard/employee" className="no-underline">
           <div
-            className="card stat-card border-0 rounded-3 shadow-sm dashboard-card"
+            className="card border-0 rounded-3 shadow-sm"
             style={{
               backgroundColor: '#0b283b',
               boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
+              width: '300px',  // Match the width of the bottom cards
+              marginRight: '10px'  // Add space between cards
             }}
           >
             <div className="card-body text-center">
@@ -135,10 +137,12 @@ const RecruitmentHome = () => {
         </Link>
 
         <div
-          className="card stat-card border-0 rounded-3 shadow-sm dashboard-card ms-2"
+          className="card border-0 rounded-3 shadow-sm"
           style={{
             backgroundColor: '#0b283b',
             boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
+            width: '300px',  // Match the width of the bottom cards
+            marginLeft: '10px'  // Add space between cards
           }}
         >
           <div className="card-body text-center">
@@ -162,6 +166,7 @@ const RecruitmentHome = () => {
           style={{
             backgroundColor: 'rgba(0, 128, 0, 0.1)',
             boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
+            width: '300px',  // Ensure all cards are the same width
           }}
         >
           <div className="card-body text-center">
@@ -179,6 +184,7 @@ const RecruitmentHome = () => {
           style={{
             backgroundColor: 'rgba(255, 0, 0, 0.1)',
             boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
+            width: '300px',  // Ensure all cards are the same width
           }}
         >
           <div className="card-body text-center">
@@ -194,6 +200,7 @@ const RecruitmentHome = () => {
     </div>
   </div>
 </div>
+
 
 
     </div>
