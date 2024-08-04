@@ -160,20 +160,26 @@ const RecruitViewEmployee = () => {
                   <tr>
                     <th style={{ width: '200px', fontFamily: 'Montserrat' }}>Image:</th>
                     <td>
-                      <img
-                        src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/` + employee.image}
-                        className='img-fluid rounded-circle mb-3 mt-3 emp_det_image ms-5'
-                        alt="Employee"
-                        style={{ border: '2px solid #000' }}
-                      />
-                      <input className="btn rounded-3 ms-3 print-hide-actions"
+                      {employee.image ? (
+                        <img
+                          src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/` + employee.image}
+                          className='img-fluid rounded-circle mb-3 mt-3 emp_det_image ms-5'
+                          alt="Employee"
+                          style={{ border: '2px solid #000' }}
+                        />
+                      ) : (
+                        <span>No Image Available</span> // Placeholder if no image is available
+                      )}
+                      <input
+                        className="btn rounded-3 ms-3 print-hide-actions"
                         style={{ marginRight: '50px' }}
-                        type="file" onChange={handleImageChange} />
-
+                        type="file"
+                        onChange={handleImageChange}
+                      />
                       <button className="btn btn-back-color rounded-3 ms-2 print-hide-actions" onClick={handleImageUpdate}>Update Image</button>
-              
                       <button className="btn rounded-3 ms-4 print-hide-actions" onClick={() => setShowCamera(true)}>
-                        <i className='bi bi-camera-fill' style={{ fontSize:'23px', marginRight:'5px'}}></i>Capture Image</button>
+                        <i className='bi bi-camera-fill' style={{ fontSize: '23px', marginRight: '5px' }}></i>Capture Image
+                      </button>
                       {showCamera && (
                         <div className="webcam-container" style={{ width: '200px', height: '200px' }}>
                           <Webcam
