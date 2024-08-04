@@ -128,7 +128,7 @@ const Home = () => {
   const fetchPendingAttendanceCount = () => {
     axios.get("https://hrais-rcramoscc-server.onrender.com/auth/pending_count").then((result) => {
       if (result.data.Status) {
-        setPendingAttendanceTotal(result.data.Result);
+        setPendingAttendanceTotal(result.data.pendingCount);
       }
     });
   };
@@ -136,7 +136,7 @@ const Home = () => {
   const fetchFulfilledAttendanceCount = () => {
     axios.get("https://hrais-rcramoscc-server.onrender.com/auth/fulfilled_count").then((result) => {
       if (result.data.Status) {
-        setFulfilledAttendanceTotal(result.data.Result);
+        setFulfilledAttendanceTotal(result.data.fulfilled_count);
       }
     });
   };
@@ -144,7 +144,7 @@ const Home = () => {
   const fetchRejectedAttendanceCount = () => {
     axios.get("https://hrais-rcramoscc-server.onrender.com/auth/rejected_count").then((result) => {
       if (result.data.Status) {
-        setRejectedAttendanceTotal(result.data.Result);
+        setRejectedAttendanceTotal(result.data.rejected_count);
       }
     });
   };
