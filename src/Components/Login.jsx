@@ -15,30 +15,40 @@ const Login = () => {
   
   // Ensure cookies are included with all Axios requests
   axios.defaults.withCredentials = true;
-
+  
   useEffect(() => {
-    const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
-    if (token) {
-      axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
-        headers: { 'Authorization': `Bearer ${token}` },
-        withCredentials: true
-      })
+    axios.get('https://hrais-rcramoscc-server.onrender.com/verify')
       .then(result => {
         if (result.data.Status) {
-          handleRoleRedirection(result.data.role, result.data.id);
+          switch (result.data.role) {
+            case 'admin':
+              navigate('/dashboard');
+              break;
+            case 'employee':
+              navigate('/employee_home/' + result.data.id);
+              break;
+            case 'payroll':
+              navigate('/payrolldashboard');
+              break;
+            case 'recruitment':
+              navigate('/recruitmentdashboard');
+              break;
+            default:
+              console.log('Unknown role');
+          }
         }
       })
       .catch(err => {
-        console.error('Verification error:', err);
+        console.error('Error during verification:', err);
       });
-    }
   }, [navigate]);
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     axios.post('https://hrais-rcramoscc-server.onrender.com/auth/login', values)
       .then(result => {
         if (result.data.loginStatus) {
+          localStorage.setItem("valid", true);
           // Set cookie manually if not handled by server
           document.cookie = `token=${result.data.token}; path=/; secure=${process.env.NODE_ENV === 'production'}; samesite=${process.env.NODE_ENV === 'production' ? 'Strict' : 'Lax'}`;
           handleRoleRedirection(result.data.role, result.data.id);

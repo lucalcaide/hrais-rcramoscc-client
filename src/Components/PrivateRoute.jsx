@@ -24,7 +24,7 @@ const PrivateRoute = ({ children, roles }) => {
         const result = await axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
           headers: { 
             'Authorization': `Bearer ${token}`,
-          }, 
+          },
           withCredentials: true
         });
 
@@ -48,6 +48,11 @@ const PrivateRoute = ({ children, roles }) => {
 
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  // Check localStorage for a valid session
+  if (localStorage.getItem('valid') === 'true') {
+    return children;
   }
 
   if (redirectPath) {
