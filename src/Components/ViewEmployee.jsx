@@ -184,7 +184,7 @@ const ViewEmployee = () => {
                     <th style={{ width: '200px', fontFamily: 'Montserrat' }}>Image:</th>
                     <td>
                       <img
-                        src={`https://hrais-rcramoscc-server.onrender.com/Images/` + employee.image}
+                        src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/` + employee.image}
                         className='img-fluid rounded-circle mb-3 mt-3 emp_det_image ms-5'
                         alt="Employee"
                         style={{ border: '2px solid #000' }}

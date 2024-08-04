@@ -57,7 +57,7 @@ const PayrollManageAttendance = () => {
   };
 
   const handleFullDetails = (record) => {
-    navigate('/dashboard/attendance-fulldetails', { state: { record } });
+    navigate('/payrolldashboard/attendance-fulldetails', { state: { record } });
   };
 
   const handleDelete = async (recordId) => {

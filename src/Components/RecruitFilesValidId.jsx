@@ -192,7 +192,7 @@ const RecruitFilesValidId = () => {
                           <td style={{ fontSize: '20px', fontStyle:'italic'}}>{e.valid_id}</td>
                           <td style={{ fontSize: '18px' }}>
                             {e.valid_id ? (
-                              <a href={`https://hrais-rcramoscc-server.onrender.com/IDs/` + e.valid_id} className='btn btn-file-color btn-file-text rounded-pill' target="_blank" rel="noopener noreferrer">View IDs</a>
+                              <a href={`https://hrais-rcramoscc-server.onrender.com/Public/IDs/` + e.valid_id} className='btn btn-file-color btn-file-text rounded-pill' target="_blank" rel="noopener noreferrer">View IDs</a>
                             ) : (
                               <span style={{ color: 'gray', fontWeight: 'bold', fontSize: '23px' }}>No valid ids uploaded</span>
                             )}
