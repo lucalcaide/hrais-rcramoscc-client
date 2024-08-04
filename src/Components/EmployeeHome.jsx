@@ -7,7 +7,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 
 const EmployeeHome = () => {
-  const [employee, setEmployee] = useState({});
+  const [employee, setEmployee] = useState(null);
   const [leave, setLeave] = useState([]);
   const [attendance, setAttendance] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -230,12 +230,12 @@ const EmployeeHome = () => {
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                   <img
-                    src={employee.image ? `https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}` : '/path/to/default/image.jpg'}
+                    src={employee?.image ? `https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}` : '/path/to/default/image.jpg'}
                     className="rounded-circle me-2"
                     alt="Profile"
                     style={{ width: '40px', height: '40px', objectFit: 'cover' }}
                   />
-                  {employee.fname}
+                  {employee?.fname}
                 </div>
                 {dropdownVisible && (
                   <ul className="dropdown-menu dropdown-menu-end">
