@@ -146,7 +146,7 @@ const EmployeeFiles = () => {
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                   {employee?.image ? (
                     <img
-                      src={`https://hrais-rcramoscc-server.onrender.com//Public/Images/${employee.image}`}
+                      src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
                       className="rounded-circle"
                       alt="Employee"
                       style={{ width: '45px', height: '45px' }}
@@ -161,7 +161,7 @@ const EmployeeFiles = () => {
                     <div className="d-flex align-items-center p-3">
                       {employee?.image ? (
                         <img
-                          src={`https://hrais-rcramoscc-server.onrender.com//Public/Images/${employee.image}`}
+                          src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
                           className="rounded-circle"
                           alt="Employee"
                           style={{ width: '70px', height: '70px' }}
