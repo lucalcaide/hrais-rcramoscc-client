@@ -5,10 +5,6 @@ import { useNavigate, Link } from "react-router-dom";
 const RecruitmentHome = () => {
   const [adminTotal, setAdminTotal] = useState(0);
   const [employeeTotal, setEmployeeTotal] = useState(0);
-  const [departmentTotal, setDepartmentTotal] = useState(0);
-  const [projectTotal, setProjectTotal] = useState(0);
-  const [positionTotal, setPositionTotal] = useState(0);
-
   const [activeEmployeeTotal, setActiveEmployeeTotal] = useState(0);
   const [inactiveEmployeeTotal, setInactiveEmployeeTotal] = useState(0);
   const [newEmployeeTotal, setNewEmployeeTotal] = useState(0);
@@ -19,14 +15,9 @@ const RecruitmentHome = () => {
   useEffect(() => {
     adminCount();
     employeeCount();
-    departmentCount();
-    projectCount();
-    positionCount();
-    
     fetchNewEmployeeCount();
     fetchEmployeeStatusCounts();
    
-
     // Update date and time every second
     const intervalId = setInterval(() => {
       setCurrentDateTime(new Date());
