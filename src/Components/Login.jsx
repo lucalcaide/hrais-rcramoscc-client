@@ -21,7 +21,7 @@ const Login = () => {
     const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
     if (token) {
       axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
-        headers: { 'Authorization': `Bearer ${token}` }, 
+        headers: { 'Authorization': `Bearer ${token}` },
         withCredentials: true
       })
       .then(result => {
@@ -40,7 +40,8 @@ const Login = () => {
     axios.post('https://hrais-rcramoscc-server.onrender.com/auth/login', values)
       .then(result => {
         if (result.data.loginStatus) {
-          document.cookie = `token=${result.data.token}; path=/; secure; samesite=strict`; // Store token in cookie
+          // Store token in cookie
+          document.cookie = `token=${result.data.token}; path=/; secure; samesite=strict`;
           handleRoleRedirection(result.data.role, result.data.id);
         } else {
           setError(result.data.Error || 'Invalid credentials. Please try again.');
@@ -50,6 +51,7 @@ const Login = () => {
         setError('An error occurred. Please try again later.');
       });
   };
+  
 
   const handleRoleRedirection = (role, id) => {
     switch(role) {
