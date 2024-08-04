@@ -238,14 +238,9 @@ const EmployeeHome = () => {
                 </div>
                 <ul className={`dropdown-menu ${dropdownVisible ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
                   <li>
-                    <Link className="dropdown-item" to={`/employee_profile/${id}`}>
-                      Profile
-                    </Link>
-                  </li>
-                  <li>
-                    <button className="dropdown-item" onClick={handleLogout}>
-                      Logout
-                    </button>
+                   <div className="dropdown-menu dropdown-menu-end">
+                    <button className="dropdown-item" onClick={handleLogout}>Logout</button>
+                  </div>
                   </li>
                 </ul>
               </li>
