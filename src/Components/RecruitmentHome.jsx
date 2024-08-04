@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 const RecruitmentHome = () => {
-  const [adminTotal, setAdminTotal] = useState(0);
   const [employeeTotal, setEmployeeTotal] = useState(0);
   const [activeEmployeeTotal, setActiveEmployeeTotal] = useState(0);
   const [inactiveEmployeeTotal, setInactiveEmployeeTotal] = useState(0);
@@ -13,7 +12,6 @@ const RecruitmentHome = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    adminCount();
     employeeCount();
     fetchNewEmployeeCount();
     fetchEmployeeStatusCounts();
@@ -26,14 +24,6 @@ const RecruitmentHome = () => {
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
-
-  const adminCount = () => {
-    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/admin_count").then((result) => {
-      if (result.data.Status) {
-        setAdminTotal(result.data.Result[0].admin);
-      }
-    });
-  };
 
   const employeeCount = () => {
     axios.get("https://hrais-rcramoscc-server.onrender.com/auth/employee_count").then((result) => {
@@ -118,18 +108,13 @@ const RecruitmentHome = () => {
             boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
           }}
         >
-          <div className="card-body text-center">
-            <h4 className="card-title" style={{ color: 'wheat' }}>ADMIN</h4>
-            <hr />
-            <div className="d-flex justify-content-between">
-              <span className="total-label" style={{ color: '#ccc', fontSize: '15px' }}>TOTAL</span>
-              <span style={{ color: 'white', fontSize: '20px' }}>{adminTotal}</span>
-            </div>
-          </div>
         </div>
       </div>
 
-      <div className="col-md-3 mb-3">
+      <div className="container mt-3">
+  <div className="row justify-content-center mb-3">
+    <div className="col-md-6 d-flex justify-content-center">
+      <div className="d-flex">
         <Link to="/recruitmentdashboard/employee" className="no-underline">
           <div
             className="card stat-card border-0 rounded-3 shadow-sm dashboard-card"
@@ -149,29 +134,31 @@ const RecruitmentHome = () => {
           </div>
         </Link>
 
-        <Link to="/recruitmentdashboard/employee" className="no-underline">
-          <div
-            className="card stat-card border-0 rounded-3 shadow-sm dashboard-card mt-2"
-            style={{
-              backgroundColor: '#0b283b',
-              boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
-            }}
-          >
-            <div className="card-body text-center">
-              <h4 className="card-title" style={{ color: 'wheat' }}>NEW HIRES</h4>
-              <hr />
-              <div className="d-flex justify-content-between">
-                <span className="total-label" style={{ color: '#ccc', fontSize: '15px' }}>TOTAL</span>
-                <span style={{ color: 'white', fontSize: '20px' }}>{newEmployeeTotal}</span>
-              </div>
+        <div
+          className="card stat-card border-0 rounded-3 shadow-sm dashboard-card ms-2"
+          style={{
+            backgroundColor: '#0b283b',
+            boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
+          }}
+        >
+          <div className="card-body text-center">
+            <h4 className="card-title" style={{ color: 'wheat' }}>NEW HIRES</h4>
+            <hr />
+            <div className="d-flex justify-content-between">
+              <span className="total-label" style={{ color: '#ccc', fontSize: '15px' }}>TOTAL</span>
+              <span style={{ color: 'white', fontSize: '20px' }}>{newEmployeeTotal}</span>
             </div>
           </div>
-        </Link>
+        </div>
       </div>
+    </div>
+  </div>
 
-      <div className="col-md-3 mb-3">
+  <div className="row justify-content-center">
+    <div className="col-md-6 d-flex justify-content-center">
+      <div className="d-flex">
         <div
-          className="card border-0 rounded-3 shadow-sm"
+          className="card border-0 rounded-3 shadow-sm me-2"
           style={{
             backgroundColor: 'rgba(0, 128, 0, 0.1)',
             boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
@@ -186,9 +173,7 @@ const RecruitmentHome = () => {
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="col-md-3 mb-3">
         <div
           className="card border-0 rounded-3 shadow-sm"
           style={{
@@ -206,6 +191,11 @@ const RecruitmentHome = () => {
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+
     </div>
   </div>
 </div>
