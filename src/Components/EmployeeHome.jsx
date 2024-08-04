@@ -281,7 +281,7 @@ const EmployeeHome = () => {
                 color: "wheat",
               }}
             >
-              Welcome, {employee.fname} {employee.lname}!
+              Welcome, {employee ? employee.fname : "Employee"}!
             </span>
             <br />
             <span
