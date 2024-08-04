@@ -23,12 +23,20 @@ const EmployeeHome = () => {
   useEffect(() => {
     axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
       .then(result => {
-        console.log('Employee data:', result.data[0]); // Check the fetched data
-        setEmployee(result.data[0]);
-        return result.data[0].emp_no;
+        if (result.data && result.data[0]) {
+          setEmployee(result.data[0]);
+          return result.data[0].emp_no;
+        } else {
+          console.error("Unexpected response format", result.data);
+          return null;
+        }
       })
       .then(empNo => {
-        return axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/attendance/${empNo}`);
+        if (empNo) {
+          return axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/attendance/${empNo}`);
+        } else {
+          throw new Error("Employee number not found");
+        }
       })
       .then(result => {
         if (result.data.Status) {
@@ -227,7 +235,7 @@ const EmployeeHome = () => {
               </li>
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
-                  {employee.image ? (
+                  {employee && employee.image ? (
                     <img
                       src={`${process.env.REACT_APP_API_URL}/Images/${employee.image}`}
                       className="rounded-circle"
