@@ -4,7 +4,7 @@ import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
 import "bootstrap-icons/font/bootstrap-icons.css"; // Import Bootstrap Icons CSS
 
 const EmployeeFiles = () => {
-  const [employee, setEmployee] = useState({});
+  const [employee, setEmployee] = useState(null);
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -144,17 +144,44 @@ const EmployeeFiles = () => {
 
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
-                  <img
-                    src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
-                    className="rounded-circle"
-                    alt="Employee"
-                    style={{ width: '45px', height: '45px' }}
-                  />
-                  Hi, {employee.fname}
+                  {employee?.image ? (
+                    <img
+                      src={`https://hrais-rcramoscc-server.onrender.com//Public/Images/${employee.image}`}
+                      className="rounded-circle"
+                      alt="Employee"
+                      style={{ width: '45px', height: '45px' }}
+                    />
+                  ) : (
+                    <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: 'gray' }} />
+                  )}
+                  Hi, {employee?.fname || 'Loading...'}
                 </div>
                 {dropdownVisible && (
-                  <div className="dropdown-menu dropdown-menu-end">
-                    <button className="dropdown-item" onClick={handleLogout}>Logout</button>
+                  <div className="dropdown-menu show">
+                    <div className="d-flex align-items-center p-3">
+                      {employee?.image ? (
+                        <img
+                          src={`https://hrais-rcramoscc-server.onrender.com//Public/Images/${employee.image}`}
+                          className="rounded-circle"
+                          alt="Employee"
+                          style={{ width: '70px', height: '70px' }}
+                        />
+                      ) : (
+                        <div className="rounded-circle" style={{ width: '70px', height: '70px', backgroundColor: 'gray' }} />
+                      )}
+                      <div className="ms-3">
+                        <p className="mb-0" style={{ fontSize: '16px' }}>{employee?.fname} {employee?.lname}</p>
+                        <p className="mb-0" style={{ fontSize: '14px' }}>{employee?.email}</p>
+                      </div>
+                    </div>
+                    <div className="dropdown-divider"></div>
+                    <Link to={`/employee_profile/${id}`} className="dropdown-item">
+                      <i className="bi bi-person me-2"></i>Profile
+                    </Link>
+                    <div className="dropdown-divider"></div>
+                    <div className="dropdown-item" onClick={handleLogout}>
+                      <i className="bi bi-box-arrow-right me-2"></i>Logout
+                    </div>
                   </div>
                 )}
               </li>
@@ -175,8 +202,8 @@ const EmployeeFiles = () => {
                 <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '30px', color: 'wheat' }}>RESUME</h5>
                 {employee.resume ? (
                   <div>
-                    <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee.resume}</p>
-                    <a href={`https://hrais-rcramoscc-server.onrender.com/Resumes/${employee.resume}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
+                    <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee?.resume}</p>
+                    <a href={`https://hrais-rcramoscc-server.onrender.com/Public/Resumes/${employee.resume}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
                       Open
                     </a>
                   </div>
@@ -193,8 +220,8 @@ const EmployeeFiles = () => {
                 <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '30px', color: 'wheat' }}>JOB OFFER</h5>
                 {employee.job_offer ? (
                   <div>
-                    <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee.job_offer}</p>
-                    <a href={`https://hrais-rcramoscc-server.onrender.com/JobOffers/${employee.job_offer}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
+                    <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee?.job_offer}</p>
+                    <a href={`https://hrais-rcramoscc-server.onrender.com/Public/JobOffers/${employee.job_offer}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
                     Open
                     </a>
                   </div>
@@ -211,8 +238,8 @@ const EmployeeFiles = () => {
                 <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '30px', color: 'wheat' }}>VALID IDs</h5>
                 {employee.valid_id ? (
                   <div>
-                    <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee.valid_id}</p>
-                    <a href={`https://hrais-rcramoscc-server.onrender.com/ValidIDs/${employee.valid_id}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
+                    <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee?.valid_id}</p>
+                    <a href={`https://hrais-rcramoscc-server.onrender.com/Public/ValidIDs/${employee.valid_id}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
                     Open
                     </a>
                   </div>
@@ -229,8 +256,8 @@ const EmployeeFiles = () => {
                 <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '30px', color: 'wheat' }}>CONTRACT</h5>
                 {employee.contract ? (
                   <div>
-                    <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee.contract}</p>
-                    <a href={`https://hrais-rcramoscc-server.onrender.com/Contracts/${employee.contract}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
+                    <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic' , marginTop:'20px' }}>Filename: {employee?.contract}</p>
+                    <a href={`https://hrais-rcramoscc-server.onrender.com/Public/Contracts/${employee.contract}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
                     Open
                     </a>
                   </div>
@@ -247,8 +274,8 @@ const EmployeeFiles = () => {
                 <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '30px', color: 'wheat' }}>APPLICATION FORM</h5>
                 {employee.application_form ? (
                   <div>
-                    <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic', marginTop:'20px' }}>Filename: {employee.application_form}</p>
-                    <a href={`https://hrais-rcramoscc-server.onrender.com/ApplicationForms/${employee.application_form}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
+                    <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic', marginTop:'20px' }}>Filename: {employee?.application_form}</p>
+                    <a href={`https://hrais-rcramoscc-server.onrender.com/Public/ApplicationForms/${employee.application_form}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill mt-3">
                     Open
                     </a>
                   </div>
@@ -265,8 +292,8 @@ const EmployeeFiles = () => {
                 <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '30px', color: 'wheat' }}>DISCIPLINARY FORM</h5>
                 {employee.disciplinary_form ? (
                   <div>
-                    <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic', marginTop:'20px' }}>Filename: {employee.disciplinary_form}</p>
-                    <a href={`https://hrais-rcramoscc-server.onrender.com/DisciplinaryForms/${employee.disciplinary_form}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill rounded-pill mt-3">
+                    <p style={{ fontFamily: 'Montserrat', fontSize: '18px', color: '#ccc', fontStyle:'italic', marginTop:'20px' }}>Filename: {employee?.disciplinary_form}</p>
+                    <a href={`https://hrais-rcramoscc-server.onrender.com/Public/DisciplinaryForms/${employee.disciplinary_form}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Montserrat' }} className="btn btn-light rounded-pill rounded-pill mt-3">
                     Open
                     </a>
                   </div>

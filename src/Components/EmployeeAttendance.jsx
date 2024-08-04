@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 const EmployeeAttendance = () => {
-  const [employee, setEmployee] = useState({});
+  const [employee, setEmployee] = useState(null);
   const [attendance, setAttendance] = useState([]);
   const [totalAttendanceRecords, setTotalAttendanceRecords] = useState(0); // New state for total attendance records
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -24,7 +24,7 @@ const EmployeeAttendance = () => {
     axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
       .then(result => {
         setEmployee(result.data[0]);
-        return result.data[0].emp_no;
+        return result.data[0]?.emp_no;
       })
       .then(empNo => {
         return axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/attendance/${empNo}`);
@@ -239,22 +239,45 @@ const EmployeeAttendance = () => {
               </li>
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
-                  {employee.image ? (
+                  {employee?.image ? (
                     <img
-                      src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
+                      src={`https://hrais-rcramoscc-server.onrender.com//Public/Images/${employee.image}`}
                       className="rounded-circle"
                       alt="Employee"
                       style={{ width: '45px', height: '45px' }}
                     />
                   ) : (
-                    <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: '#6c757d' }}></div>
+                    <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: 'gray' }} />
                   )}
-                  <span className="ms-2">{employee.fname} {employee.lname}</span>
+                  Hi, {employee?.fname || 'Loading...'}
                 </div>
                 {dropdownVisible && (
-                  <ul className="dropdown-menu dropdown-menu-end show">
-                    <li><a className="dropdown-item" href="#" onClick={handleLogout}>Logout</a></li>
-                  </ul>
+                  <div className="dropdown-menu show">
+                    <div className="d-flex align-items-center p-3">
+                      {employee?.image ? (
+                        <img
+                          src={`https://hrais-rcramoscc-server.onrender.com//Public/Images/${employee.image}`}
+                          className="rounded-circle"
+                          alt="Employee"
+                          style={{ width: '70px', height: '70px' }}
+                        />
+                      ) : (
+                        <div className="rounded-circle" style={{ width: '70px', height: '70px', backgroundColor: 'gray' }} />
+                      )}
+                      <div className="ms-3">
+                        <p className="mb-0" style={{ fontSize: '16px' }}>{employee?.fname} {employee?.lname}</p>
+                        <p className="mb-0" style={{ fontSize: '14px' }}>{employee?.email}</p>
+                      </div>
+                    </div>
+                    <div className="dropdown-divider"></div>
+                    <Link to={`/employee_profile/${id}`} className="dropdown-item">
+                      <i className="bi bi-person me-2"></i>Profile
+                    </Link>
+                    <div className="dropdown-divider"></div>
+                    <div className="dropdown-item" onClick={handleLogout}>
+                      <i className="bi bi-box-arrow-right me-2"></i>Logout
+                    </div>
+                  </div>
                 )}
               </li>
             </ul>

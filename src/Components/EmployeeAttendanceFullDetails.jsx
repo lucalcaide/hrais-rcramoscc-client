@@ -8,7 +8,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 const EmployeeAttendanceFullDetails = () => {
     const { id } = useParams();
-    const [employee, setEmployee] = useState({});
+    const [employee, setEmployee] = useState(null);
     const location = useLocation();
     const navigate = useNavigate();
     const { record } = location.state || {};
@@ -186,27 +186,48 @@ const EmployeeAttendanceFullDetails = () => {
                                 </Link>
                             </li>
                             <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
-                                <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
-                                    {employee.image ? (
-                                        <img
-                                            src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
-                                            className="rounded-circle"
-                                            alt="Employee"
-                                            style={{ width: '45px', height: '45px' }}
-                                        />
-                                    ) : (
-                                        <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: '#d9d9d9' }}></div>
-                                    )}
-                                    <i className="bi bi-caret-down ms-2" style={{ fontSize: '1.5rem' }}></i>
-                                </div>
-                                {dropdownVisible && (
-                                    <ul className="dropdown-menu">
-                                        <li><Link className="dropdown-item" to={`/employee_profile/${id}`}>Profile</Link></li>
-                                        <li><Link className="dropdown-item" to={`/employee_leave/${id}`}>Leave</Link></li>
-                                        <li><a className="dropdown-item" onClick={handleLogout}>Logout</a></li>
-                                    </ul>
-                                )}
-                            </li>
+                <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
+                  {employee?.image ? (
+                    <img
+                      src={`https://hrais-rcramoscc-server.onrender.com//Public/Images/${employee.image}`}
+                      className="rounded-circle"
+                      alt="Employee"
+                      style={{ width: '45px', height: '45px' }}
+                    />
+                  ) : (
+                    <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: 'gray' }} />
+                  )}
+                  Hi, {employee?.fname || 'Loading...'}
+                </div>
+                {dropdownVisible && (
+                  <div className="dropdown-menu show">
+                    <div className="d-flex align-items-center p-3">
+                      {employee?.image ? (
+                        <img
+                          src={`https://hrais-rcramoscc-server.onrender.com//Public/Images/${employee.image}`}
+                          className="rounded-circle"
+                          alt="Employee"
+                          style={{ width: '70px', height: '70px' }}
+                        />
+                      ) : (
+                        <div className="rounded-circle" style={{ width: '70px', height: '70px', backgroundColor: 'gray' }} />
+                      )}
+                      <div className="ms-3">
+                        <p className="mb-0" style={{ fontSize: '16px' }}>{employee?.fname} {employee?.lname}</p>
+                        <p className="mb-0" style={{ fontSize: '14px' }}>{employee?.email}</p>
+                      </div>
+                    </div>
+                    <div className="dropdown-divider"></div>
+                    <Link to={`/employee_profile/${id}`} className="dropdown-item">
+                      <i className="bi bi-person me-2"></i>Profile
+                    </Link>
+                    <div className="dropdown-divider"></div>
+                    <div className="dropdown-item" onClick={handleLogout}>
+                      <i className="bi bi-box-arrow-right me-2"></i>Logout
+                    </div>
+                  </div>
+                )}
+              </li>
                         </ul>
                     </div>
                 </div>

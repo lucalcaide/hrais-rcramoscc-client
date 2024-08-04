@@ -4,7 +4,7 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 const EmployeeLeaveRequest = () => {
-  const [employee, setEmployee] = useState({});
+  const [employee, setEmployee] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ const EmployeeLeaveRequest = () => {
     axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
       .then(result => {
         setEmployee(result.data[0]);
-        setName(result.data[0].fname + ' ' + result.data[0].lname);
+        setName(result.data[0]?.fname + ' ' + result.data[0]?.lname);
       })
       .catch(err => console.log(err));
   }, [id]);

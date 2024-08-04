@@ -227,7 +227,7 @@ const EmployeeHome = () => {
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                   {employee?.image ? (
                     <img
-                      src={`https://hrais-rcramoscc-server.onrender.com//Public/Images/${employee?.image}`}
+                      src={`https://hrais-rcramoscc-server.onrender.com//Public/Images/${employee.image}`}
                       className="rounded-circle"
                       alt="Employee"
                       style={{ width: '45px', height: '45px' }}
@@ -235,11 +235,34 @@ const EmployeeHome = () => {
                   ) : (
                     <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: 'gray' }} />
                   )}
-                  Hi, {employee?.fname || "Employee"}
+                  Hi, {employee?.fname || 'Loading...'}
                 </div>
                 {dropdownVisible && (
-                  <div className="dropdown-menu dropdown-menu-end">
-                    <button className="dropdown-item" onClick={handleLogout}>Logout</button>
+                  <div className="dropdown-menu show">
+                    <div className="d-flex align-items-center p-3">
+                      {employee?.image ? (
+                        <img
+                          src={`https://hrais-rcramoscc-server.onrender.com//Public/Images/${employee.image}`}
+                          className="rounded-circle"
+                          alt="Employee"
+                          style={{ width: '70px', height: '70px' }}
+                        />
+                      ) : (
+                        <div className="rounded-circle" style={{ width: '70px', height: '70px', backgroundColor: 'gray' }} />
+                      )}
+                      <div className="ms-3">
+                        <p className="mb-0" style={{ fontSize: '16px' }}>{employee?.fname} {employee?.lname}</p>
+                        <p className="mb-0" style={{ fontSize: '14px' }}>{employee?.email}</p>
+                      </div>
+                    </div>
+                    <div className="dropdown-divider"></div>
+                    <Link to={`/employee_profile/${id}`} className="dropdown-item">
+                      <i className="bi bi-person me-2"></i>Profile
+                    </Link>
+                    <div className="dropdown-divider"></div>
+                    <div className="dropdown-item" onClick={handleLogout}>
+                      <i className="bi bi-box-arrow-right me-2"></i>Logout
+                    </div>
                   </div>
                 )}
               </li>
