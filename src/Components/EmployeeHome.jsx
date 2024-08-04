@@ -229,39 +229,19 @@ const EmployeeHome = () => {
               </li>
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
-                  {employee ? (
-                    employee.image ? (
-                      <img
-                        src={`https://hrais-rcramoscc-server.onrender.com/images/${employee.image}`}
-                        alt="Profile"
-                        className="profile-img rounded-circle"
-                        style={{ width: '50px', height: '50px' }}
-                      />
-                    ) : (
-                      <i className="bi bi-person-circle" style={{ fontSize: '3rem', color: 'white' }}></i>
-                    )
-                  ) : (
-                    <i className="bi bi-person-circle" style={{ fontSize: '3rem', color: 'white' }}></i>
-                  )}
+                  <img
+                    src={`http://localhost:3000/Images/${employee.image}`}
+                    className="rounded-circle"
+                    alt="Employee"
+                    style={{ width: '45px', height: '45px' }}
+                  />
+                  Hi, {employee.fname}
                 </div>
-                <ul className={`dropdown-menu${dropdownVisible ? ' show' : ''}`} style={{ marginTop: '60px' }}>
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      to={`/employee_profile/${id}`}
-                    >
-                      Profile
-                    </Link>
-                  </li>
-                  <li>
-                    <button
-                      className="dropdown-item"
-                      onClick={handleLogout}
-                    >
-                      Logout
-                    </button>
-                  </li>
-                </ul>
+                {dropdownVisible && (
+                  <div className="dropdown-menu dropdown-menu-end">
+                    <button className="dropdown-item" onClick={handleLogout}>Logout</button>
+                  </div>
+                )}
               </li>
             </ul>
           </div>

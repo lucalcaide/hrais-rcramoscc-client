@@ -148,10 +148,6 @@ const Home = () => {
       }
     });
   };
-  
-  const handleBack = () => {
-    navigate(-1); // Navigate back in the history
-  };
 
   const formatDateTime = (date) => {
     const options = {
@@ -169,9 +165,6 @@ const Home = () => {
     <div>
       <div className="dashboard-container" style={{ fontFamily: 'Montserrat' }}>
         <div className="ms-2 mt-3">
-          <button className="btn btn-back-color rounded-pill ms-5 mt-3" onClick={handleBack}>
-            <i className="bi bi-arrow-left-circle"></i>
-          </button>
           <Link to="/dashboard/createadmin" className='btn btn-color rounded-3 mt-3 no-underline' style={{ marginLeft: '30px' }}>
             <i className="bi bi-plus-circle me-1"></i> <span className="btn-text" style={{ fontFamily: 'Montserrat' }}>Admin</span>
           </Link>

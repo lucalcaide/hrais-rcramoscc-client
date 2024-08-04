@@ -122,7 +122,7 @@ const RecruitmentHome = () => {
               backgroundColor: '#0b283b',
               boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
               width: '300px',  // Match the width of the bottom cards
-              marginRight: '10px'  // Add space between cards
+              marginRight: '100px'  // Add space between cards
             }}
           >
             <div className="card-body text-center">
@@ -142,7 +142,7 @@ const RecruitmentHome = () => {
             backgroundColor: '#0b283b',
             boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
             width: '300px',  // Match the width of the bottom cards
-            marginLeft: '10px'  // Add space between cards
+            marginLeft: '20px'  // Add space between cards
           }}
         >
           <div className="card-body text-center">
@@ -184,7 +184,8 @@ const RecruitmentHome = () => {
           style={{
             backgroundColor: 'rgba(255, 0, 0, 0.1)',
             boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
-            width: '300px',  // Ensure all cards are the same width
+            width: '300px',
+            marginLeft: '100px'   // Ensure all cards are the same width
           }}
         >
           <div className="card-body text-center">
