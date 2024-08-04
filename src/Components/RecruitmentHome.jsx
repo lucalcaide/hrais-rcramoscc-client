@@ -69,32 +69,6 @@ const RecruitmentHome = () => {
     });
   };
 
-  const departmentCount = () => {
-    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/department_count").then((result) => {
-      if (result.data.Status) {
-        setDepartmentTotal(result.data.Result[0].department);
-      }
-    });
-  };
-
-  const projectCount = () => {
-    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/project_count").then((result) => {
-      if (result.data.Status) {
-        setProjectTotal(result.data.Result[0].project);
-      }
-    });
-  };
-
-  const positionCount = () => {
-    axios.get("https://hrais-rcramoscc-server.onrender.com/auth/position_count").then((result) => {
-      if (result.data.Status) {
-        setPositionTotal(result.data.Result[0].position);
-      }
-    });
-  };
-
-  
-
   const handleBack = () => {
     navigate(-1); // Navigate back in the history
   };
@@ -114,9 +88,6 @@ const RecruitmentHome = () => {
   return (
     <div>
       <div className="dashboard-container" style={{ fontFamily: 'Montserrat' }}>
-        <div className="ms-2 mt-3">
-        </div>
-
         <div className="d-flex justify-content-around mt-3">
           <div className="col-md-10" style={{ backgroundColor: "#0b283b", padding: "20px", boxShadow: "0 6px 12px rgba(0, 0, 0, 0.3)", borderRadius: "8px" }}>
             <span style={{ fontFamily: "Montserrat", fontWeight: "bold", fontSize: "30px", color: "wheat" }}>Welcome to Recruitment Dashboard!</span>
@@ -128,87 +99,128 @@ const RecruitmentHome = () => {
         </div>
 
         <div className="d-flex justify-content-around mt-3">
-          <div className="col-md-10" style={{ backgroundColor: '#f8f9fa', color: "#0b283b", padding: '20px', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)', borderRadius: '8px' }}>
-            <span style={{ fontFamily: 'Montserrat', fontSize: '20px', color: 'black' }}><i className="fs-4 bi-graph-up-arrow me-2"></i>Statistics</span>
+  <div
+    className="col-md-10"
+    style={{
+      backgroundColor: '#f8f9fa',
+      color: "#0b283b",
+      padding: '20px',
+      boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
+      borderRadius: '8px',
+    }}
+  >
+    <span
+      style={{
+        fontFamily: 'Montserrat',
+        fontSize: '20px',
+        color: 'black',
+      }}
+    >
+      <i className="fs-4 bi-graph-up-arrow me-2"></i>Statistics
+    </span>
+    <div className="d-flex flex-wrap justify-content-between">
+      <div className="col-md-2 mb-3">
+        <div
+          className="card stat-card border-0 rounded-3 shadow-sm dashboard-card"
+          style={{
+            backgroundColor: '#0b283b',
+            boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
+          }}
+        >
+          <div className="card-body text-center">
+            <h4 className="card-title" style={{ color: 'wheat' }}>ADMIN</h4>
+            <hr />
             <div className="d-flex justify-content-between">
-              <div className="col-md-2 me-2">
-                <div className="card stat-card border-0 rounded-3 shadow-sm dashboard-card" style={{ backgroundColor: '#0b283b', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)' }}>
-                  <div className="card-body text-center">
-                    <h4 className="card-title" style={{ color: 'wheat' }}>ADMIN</h4>
-                    <hr />
-                    <div className="d-flex justify-content-between">
-                      <span className="total-label" style={{ color: '#ccc', fontSize: '15px' }}>TOTAL</span>
-                      <span style={{ color: 'white', fontSize: '20px' }}>{adminTotal}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-3 me-2">
-                <Link to="/recruitmentdashboard/employee" className="no-underline">
-                  <div className="card stat-card border-0 rounded-3 shadow-sm dashboard-card" style={{ backgroundColor: '#0b283b', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)' }}>
-                    <div className="card-body text-center">
-                      <h4 className="card-title" style={{ color: 'wheat' }}>EMPLOYEE</h4>
-                      <hr />
-                      <div className="d-flex justify-content-between">
-                        <span className="total-label" style={{ color: '#ccc', fontSize: '15px' }}>TOTAL</span>
-                        <span style={{ color: 'white', fontSize: '20px' }}>{employeeTotal}</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-
-                <Link to="/recruitmentdashboard/employee" className="no-underline">
-                  <div className="card stat-card border-0 rounded-3 shadow-sm dashboard-card mt-2" style={{ backgroundColor: '#0b283b', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)' }}>
-                    <div className="card-body text-center">
-                      <h4 className="card-title" style={{ color: 'wheat' }}> NEW HIRES</h4>
-                      <hr />
-                      <div className="d-flex justify-content-between">
-                        <span className="total-label" style={{ color: '#ccc', fontSize: '15px' }}>TOTAL</span>
-                        <span style={{ color: 'white', fontSize: '20px' }}>{newEmployeeTotal}</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-
-              </div>
-
-              <div className="col-md-3 me-2">
-                <div className="card border-0 rounded-3 shadow-sm mt-2" style={{ backgroundColor: 'rgba(0, 128, 0, 0.1)', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)' }}>
-                  <div className="card-body text-center">
-                    <h4 className="card-title" style={{ color: 'green' }}>ACTIVE EMPLOYEE</h4>
-                    <hr />
-                    <div className="d-flex justify-content-between">
-                      <span className="total-label" style={{ color: 'black', fontSize: '15px' }}>TOTAL</span>
-                      <span style={{ color: 'green', fontSize: '20px' }}>{activeEmployeeTotal}</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <div className="col-md-3 me-2">
-
-                <div className="card border-0 rounded-3 shadow-sm mt-2" style={{ backgroundColor: 'rgba(255, 0, 0, 0.1)', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)' }}>
-                  <div className="card-body text-center">
-                    <h4 className="card-title" style={{ color: 'red' }}>INACTIVE EMPLOYEE</h4>
-                    <hr />
-                    <div className="d-flex justify-content-between">
-                      <span className="total-label" style={{ color: 'black', fontSize: '15px' }}>TOTAL</span>
-                      <span style={{ color: 'red', fontSize: '20px' }}>{inactiveEmployeeTotal}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <span className="total-label" style={{ color: '#ccc', fontSize: '15px' }}>TOTAL</span>
+              <span style={{ color: 'white', fontSize: '20px' }}>{adminTotal}</span>
             </div>
           </div>
         </div>
+      </div>
 
-        
+      <div className="col-md-3 mb-3">
+        <Link to="/recruitmentdashboard/employee" className="no-underline">
+          <div
+            className="card stat-card border-0 rounded-3 shadow-sm dashboard-card"
+            style={{
+              backgroundColor: '#0b283b',
+              boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
+            }}
+          >
+            <div className="card-body text-center">
+              <h4 className="card-title" style={{ color: 'wheat' }}>EMPLOYEE</h4>
+              <hr />
+              <div className="d-flex justify-content-between">
+                <span className="total-label" style={{ color: '#ccc', fontSize: '15px' }}>TOTAL</span>
+                <span style={{ color: 'white', fontSize: '20px' }}>{employeeTotal}</span>
+              </div>
+            </div>
+          </div>
+        </Link>
 
+        <Link to="/recruitmentdashboard/employee" className="no-underline">
+          <div
+            className="card stat-card border-0 rounded-3 shadow-sm dashboard-card mt-2"
+            style={{
+              backgroundColor: '#0b283b',
+              boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
+            }}
+          >
+            <div className="card-body text-center">
+              <h4 className="card-title" style={{ color: 'wheat' }}>NEW HIRES</h4>
+              <hr />
+              <div className="d-flex justify-content-between">
+                <span className="total-label" style={{ color: '#ccc', fontSize: '15px' }}>TOTAL</span>
+                <span style={{ color: 'white', fontSize: '20px' }}>{newEmployeeTotal}</span>
+              </div>
+            </div>
+          </div>
+        </Link>
+      </div>
 
+      <div className="col-md-3 mb-3">
+        <div
+          className="card border-0 rounded-3 shadow-sm"
+          style={{
+            backgroundColor: 'rgba(0, 128, 0, 0.1)',
+            boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
+          }}
+        >
+          <div className="card-body text-center">
+            <h4 className="card-title" style={{ color: 'green' }}>ACTIVE EMPLOYEE</h4>
+            <hr />
+            <div className="d-flex justify-content-between">
+              <span className="total-label" style={{ color: 'black', fontSize: '15px' }}>TOTAL</span>
+              <span style={{ color: 'green', fontSize: '20px' }}>{activeEmployeeTotal}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="col-md-3 mb-3">
+        <div
+          className="card border-0 rounded-3 shadow-sm"
+          style={{
+            backgroundColor: 'rgba(255, 0, 0, 0.1)',
+            boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
+          }}
+        >
+          <div className="card-body text-center">
+            <h4 className="card-title" style={{ color: 'red' }}>INACTIVE EMPLOYEE</h4>
+            <hr />
+            <div className="d-flex justify-content-between">
+              <span className="total-label" style={{ color: 'black', fontSize: '15px' }}>TOTAL</span>
+              <span style={{ color: 'red', fontSize: '20px' }}>{inactiveEmployeeTotal}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+</div>
+
+            </div>
+          </div>
   );
 };
 
