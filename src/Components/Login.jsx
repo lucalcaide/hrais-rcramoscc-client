@@ -19,7 +19,7 @@ const Login = () => {
     const token = localStorage.getItem('token');
     if (token) {
       axios.get('https://hrais-rcramoscc-server.onrender.com/verify', {
-        headers: { 'Authorization': `Bearer ${token}` }
+        headers: { 'Authorization': `Bearer ${token}` }, withCredentials: true
       })
       .then(result => {
         if (result.data.Status) {
