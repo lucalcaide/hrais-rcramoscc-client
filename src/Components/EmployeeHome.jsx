@@ -237,7 +237,7 @@ const EmployeeHome = () => {
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                   {employee && employee.image ? (
                     <img
-                      src={`${process.env.REACT_APP_API_URL}/Images/${employee.image}`}
+                      src={`https://hrais-rcramoscc-server.onrender.com/Images/${employee.image}`}
                       className="rounded-circle"
                       alt="Employee"
                       style={{ width: '45px', height: '45px' }}
@@ -281,7 +281,7 @@ const EmployeeHome = () => {
                 color: "wheat",
               }}
             >
-              Welcome, {employee ? employee.fname : "Employee"}!
+              Welcome, {employee ? employee.fname : "Employee"} {employee ? employee.lname : "Employee"}!
             </span>
             <br />
             <span
