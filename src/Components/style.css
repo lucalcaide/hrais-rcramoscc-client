@@ -20,6 +20,14 @@
   color: #0b283b;
 }
 
+.btn-back-color {
+  background-color: #007bff; /* Replace with your desired color */
+}
+
+.btn-color {
+  background-color: #28a745; /* Replace with your desired color */
+}
+
 .card {
   border-radius: 15px;
 }
