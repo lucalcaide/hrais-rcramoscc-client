@@ -227,7 +227,7 @@ const EmployeeHome = () => {
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                   {employee && employee.image ? (
                     <img
-                      src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
+                      src={`${process.env.REACT_APP_API_URL}/Public/Images/${employee.image}`}
                       className="rounded-circle"
                       alt="Employee"
                       style={{ width: '45px', height: '45px' }}
