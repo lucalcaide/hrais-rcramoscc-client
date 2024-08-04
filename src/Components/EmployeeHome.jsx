@@ -7,7 +7,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 
 const EmployeeHome = () => {
-  const [employee, setEmployee] = useState({});
+  const [employee, setEmployee] = useState(null);
   const [leave, setLeave] = useState([]);
   const [attendance, setAttendance] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
