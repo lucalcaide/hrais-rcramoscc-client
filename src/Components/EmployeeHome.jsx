@@ -225,7 +225,7 @@ const EmployeeHome = () => {
               </li>
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
-                  {employee.image ? (
+                  {employee && employee.image ? (
                     <img
                       src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
                       className="rounded-circle"
@@ -235,13 +235,19 @@ const EmployeeHome = () => {
                   ) : (
                     <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: 'gray' }} />
                   )}
-                  Hi, {employee.fname || "Employee"}
                 </div>
-                {dropdownVisible && (
-                  <div className="dropdown-menu dropdown-menu-end">
-                    <button className="dropdown-item" onClick={handleLogout}>Logout</button>
-                  </div>
-                )}
+                <ul className={`dropdown-menu ${dropdownVisible ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
+                  <li>
+                    <Link className="dropdown-item" to={`/employee_profile/${id}`}>
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <button className="dropdown-item" onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </li>
+                </ul>
               </li>
             </ul>
           </div>
