@@ -21,23 +21,29 @@ const EmployeeAttendance = () => {
   const location = useLocation();
 
   useEffect(() => {
-    axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
-      .then(result => {
-        setEmployee(result.data[0]);
-        return result.data[0]?.emp_no;
-      })
-      .then(empNo => {
-        return axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/attendance/${empNo}`);
-      })
-      .then(response => {
-        if (response.data.Status) {
-          setAttendance(response.data.Result);
-          setTotalAttendanceRecords(response.data.Result.length); // Set total attendance records
+    const fetchEmployeeData = async () => {
+      try {
+        const employeeResult = await axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`);
+        setEmployee(employeeResult.data[0]);
+        const empNo = employeeResult.data[0]?.emp_no;
+        if (empNo) {
+          const attendanceResult = await axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/attendance/${empNo}`);
+          if (result.data.Status) {
+            setAttendance(result.data.Result);
+            setTotalAttendanceRecords(result.data.Result.length);
+          } else {
+            toast.error(result.data.Error);
+          }
         } else {
-          toast.error(response.data.Error);
+          toast.error("Employee number not found");
         }
-      })
-      .catch(err => console.log(err));
+      } catch (err) {
+        console.error("Error fetching data:", err);
+        toast.error("Failed to fetch data");
+      }
+    };
+
+    fetchEmployeeData();
   }, [id]);
 
   const handleLogout = () => {
