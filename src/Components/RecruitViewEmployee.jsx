@@ -16,9 +16,15 @@ const RecruitViewEmployee = () => {
 
   useEffect(() => {
     axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/detail/${id}`)
-      .then(result => {
-        setEmployee(result.data[0]);
-      })
+    .then(result => {
+      if (result.data) {
+        setEmployee(result.data);
+        return result.data.emp_no;
+      } else {
+        console.error("Unexpected response format", result.data);
+        return null;
+      }
+    })
       .catch(err => console.log(err));
   }, [id]);
 
@@ -83,28 +89,28 @@ const RecruitViewEmployee = () => {
   const handleExportToExcel = () => {
     const employeeData = [
       ['Field', 'Value'],
-      ['Employee Number', employee.emp_no],
-      ['Full Name', `${employee.lname}, ${employee.fname} ${employee.mname}`],
-      ['Gender', employee.gender],
-      ['Phone Number', employee.phone_number],
-      ['Address', employee.perma_address],
-      ['Emergency Contact Name', employee.emergency_name],
-      ['Relationship', employee.emergency_relationship],
-      ['Phone Number', employee.emergency_phone_number],
-      ['Joined on', formatDate(employee.date_hired)],
-      ['Department', employee.department],
-      ['Project/Unit', employee.project],
-      ['Position', employee.position],
-      ['Birthday', formatDate(employee.birth_date)],
-      ['Email', employee.email],
-      ['Paid Every', employee.pay_frequency],
-      ['Daily Rate', `₱${employee.rate_per_day}`],
-      ['Hourly Rate', `₱${employee.rate_per_hour}`],
-      ['Salary', `₱${employee.salary}`],
-      ['Status', employee.employee_status],
-      ['Terminated on', employee.employee_status === 'Active' ? 'N/A' : formatDate(employee.term_date)],
-      ['Time in', employee.start_time ? formatTime(employee.start_time) : 'N/A'],
-      ['Time out', employee.out_time ? formatTime(employee.out_time) : 'N/A'],
+      ['Employee Number', employee && employee.emp_no],
+      ['Full Name', `${employee && employee.lname}, ${employee && employee.fname} ${employee && employee.mname}`],
+      ['Gender', employee && employee.gender],
+      ['Phone Number', employee && employee.phone_number],
+      ['Address', employee && employee.perma_address],
+      ['Emergency Contact Name', employee && employee.emergency_name],
+      ['Relationship', employee && employee.emergency_relationship],
+      ['Phone Number', employee && employee.emergency_phone_number],
+      ['Joined on', formatDate(employee && employee.date_hired)],
+      ['Department', employee && employee.department],
+      ['Project/Unit', employee && employee.project],
+      ['Position', employee && employee.position],
+      ['Birthday', formatDateemployee && (employee.birth_date)],
+      ['Email', employee && employee.email],
+      ['Paid Every', employee && employee.pay_frequency],
+      ['Daily Rate', `₱${employee && employee.rate_per_day}`],
+      ['Hourly Rate', `₱${employee && employee.rate_per_hour}`],
+      ['Salary', `₱${employee && employee.salary}`],
+      ['Status', employee && employee.employee_status],
+      ['Terminated on', employee && employee.employee_status === 'Active' ? 'N/A' : formatDate(employee && employee.term_date)],
+      ['Time in', employee && employee.start_time ? formatTime(employee && employee.start_time) : 'N/A'],
+      ['Time out', employee && employee.out_time ? formatTime(employee && employee.out_time) : 'N/A'],
     ];
 
     const ws = XLSX.utils.aoa_to_sheet(employeeData);
@@ -160,9 +166,9 @@ const RecruitViewEmployee = () => {
                   <tr>
                     <th style={{ width: '200px', fontFamily: 'Montserrat' }}>Image:</th>
                     <td>
-                      {employee.image ? (
+                      {employee && employee.image ? (
                         <img
-                          src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/` + employee.image}
+                        src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee && employee.image}`}
                           className='img-fluid rounded-circle mb-3 mt-3 emp_det_image ms-5'
                           alt="Employee"
                           style={{ border: '2px solid #000' }}
@@ -201,31 +207,31 @@ const RecruitViewEmployee = () => {
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', width: '200px', fontFamily: 'Montserrat' }}>Employee Number:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.emp_no}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.emp_no}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', width: '200px', fontFamily: 'Montserrat' }}>Full Name:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{`${employee.lname}, ${employee.fname} ${employee.mname}`}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{`${employee && employee.lname}, ${employee && employee.fname} ${employee && employee.mname}`}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Gender:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.gender}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.gender}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Birthday:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{formatDate(employee.birth_date)}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{formatDate(employee && employee.birth_date)}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Phone Number:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.phone_number}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.phone_number}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Address:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.perma_address}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.perma_address}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Email:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.email}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.email}</td>
                   </tr>
 
                   <tr>
@@ -233,15 +239,15 @@ const RecruitViewEmployee = () => {
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Full Name:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.emergency_name}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.emergency_name}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Relationship:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.emergency_relationship}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.emergency_relationship}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Phone Number:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.emergency_phone_number}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.emergency_phone_number}</td>
                   </tr>
                   
                   <tr>
@@ -249,51 +255,51 @@ const RecruitViewEmployee = () => {
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Joined on:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{formatDate(employee.date_hired)}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{formatDate(employee && employee.date_hired)}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Department:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.department}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.department}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Project/Unit:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.project}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.project}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Position:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.position}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.position}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Paid Every:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.pay_frequency}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.pay_frequency}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Daily Rate:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>₱{employee.rate_per_day}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>₱{employee && employee.rate_per_day}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Hourly Rate:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>₱{employee.rate_per_hour}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>₱{employee && employee.rate_per_hour}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Salary:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>₱{employee.salary}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>₱{employee && employee.salary}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Status:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.employee_status}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.employee_status}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Terminated on:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.employee_status === 'Active' ? 'N/A' : formatDate(employee.term_date)}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.employee_status === 'Active' ? 'N/A' : formatDate(employee && employee.term_date)}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Time in:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.start_time ? formatTime(employee.start_time) : 'N/A'}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.start_time ? formatTime(employee && employee.start_time) : 'N/A'}</td>
                   </tr>
                   <tr>
                     <th style={{ fontSize: '20px', padding: '10px', fontFamily: 'Montserrat' }}>Time out:</th>
-                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee.out_time ? formatTime(employee.out_time) : 'N/A'}</td>
+                    <td style={{ fontSize: '24px', padding: '10px' }}>{employee && employee.out_time ? formatTime(employee && employee.out_time) : 'N/A'}</td>
                   </tr>
                 </tbody>
               </table>
