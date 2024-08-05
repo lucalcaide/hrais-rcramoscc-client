@@ -21,27 +21,31 @@ const EmployeeAttendance = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const fetchEmployeeData = async () => {
-      try {
-        const employeeResult = await axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`);
-        setEmployee(employeeResult.data[0]);
-        const empNo = employeeResult.data[0]?.emp_no;
-        if (empNo) {
-          const attendanceResult = await axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/attendance/${empNo}`);
-          if (result.data.Status) {
-            setAttendance(result.data.Result);
-            setTotalAttendanceRecords(result.data.Result.length);
-          } else {
-            toast.error(result.data.Error);
-          }
+    axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
+      .then(result => {
+        if (result.data) {
+          setEmployee(result.data);
+          return result.data.emp_no;
         } else {
-          toast.error("Employee number not found");
+          console.error("Unexpected response format", result.data);
+          return null;
         }
-      } catch (err) {
-        console.error("Error fetching data:", err);
-        toast.error("Failed to fetch data");
-      }
-    };
+      })
+      .then(empNo => {
+        if (empNo) {
+          return axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/attendance/${empNo}`);
+        } else {
+          throw new Error("Employee number not found");
+        }
+      })
+      .then(result => {
+        if (result.data.Status) {
+          setAttendance(result.data.Result);
+        } else {
+          toast.error(result.data.Error);
+        }
+      })
+      .catch(err => console.log(err));
 
     fetchEmployeeData();
   }, [id]);
@@ -247,7 +251,7 @@ const EmployeeAttendance = () => {
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                   {employee && employee.image ? (
                     <img
-                      src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
+                      src={`https://hrais-rcramoscc-server.onrender.com/Images/${employee.image}`}
                       className="rounded-circle"
                       alt="Employee"
                       style={{ width: '45px', height: '45px' }}
@@ -255,14 +259,13 @@ const EmployeeAttendance = () => {
                   ) : (
                     <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: 'gray' }} />
                   )}
+                  Hi, {employee ? employee.fname : "Employee"}
                 </div>
-                <ul className={`dropdown-menu ${dropdownVisible ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
-                  <li>
-                   <div className="dropdown-menu dropdown-menu-end">
+                {dropdownVisible && (
+                  <div className="dropdown-menu dropdown-menu-end">
                     <button className="dropdown-item" onClick={handleLogout}>Logout</button>
                   </div>
-                  </li>
-                </ul>
+                )}
               </li>
             </ul>
           </div>

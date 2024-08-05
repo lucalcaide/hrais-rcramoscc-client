@@ -11,9 +11,15 @@ const EmployeeProfile = () => {
 
   useEffect(() => {
     axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/detail/${id}`)
-      .then(result => {
-        setEmployee(result.data[0]);
-      })
+    .then(result => {
+      if (result.data) {
+        setEmployee(result.data);
+        return result.data.emp_no;
+      } else {
+        console.error("Unexpected response format", result.data);
+        return null;
+      }
+    })
       .catch(err => console.log(err));
   }, [id]);
 
@@ -157,15 +163,17 @@ const EmployeeProfile = () => {
 
               <li className="nav-item dropdown d-flex align-items-center" style={{ fontSize: '20px' }}>
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
-                  {employee && (
+                  {employee && employee.image ? (
                     <img
-                      src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
+                      src={`https://hrais-rcramoscc-server.onrender.com/Images/${employee.image}`}
                       className="rounded-circle"
                       alt="Employee"
                       style={{ width: '45px', height: '45px' }}
                     />
+                  ) : (
+                    <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: 'gray' }} />
                   )}
-                  Hi, {employee?.fname}
+                  Hi, {employee ? employee.fname : "Employee"}
                 </div>
                 {dropdownVisible && (
                   <div className="dropdown-menu dropdown-menu-end">
@@ -192,9 +200,9 @@ const EmployeeProfile = () => {
               style={{ width: '150px', height: '150px', marginRight: '20px', border: '2px solid #000' }}
             />
             <div>
-              <h2 style={{ fontFamily: 'Montserrat', fontSize: '40px',  fontWeight: 'bold', color: '#333' }}>{employee?.fname} {employee?.lname}</h2>
-              <p style={{ fontFamily: 'Montserrat', fontSize: '25px', color: '#777' }}>{employee?.position} at {employee?.department} </p>
-              <p style={{ fontFamily: 'Montserrat', fontSize: '25px', color: '#777' }}>Employee ID: {employee?.emp_no}</p>
+              <h2 style={{ fontFamily: 'Montserrat', fontSize: '40px',  fontWeight: 'bold', color: '#333' }}>{employee && employee.fname} {employee && employee.lname}</h2>
+              <p style={{ fontFamily: 'Montserrat', fontSize: '25px', color: '#777' }}>{employee && employee.position} at {employee && employee.department} </p>
+              <p style={{ fontFamily: 'Montserrat', fontSize: '25px', color: '#777' }}>Employee ID: {employee && employee.emp_no}</p>
               
               <div className='mt-4'>
                 <Link to={`/employee_change_password/` + id} className='btn btn-color-password rounded-3'>
@@ -211,12 +219,12 @@ const EmployeeProfile = () => {
             <div className="card mb-4 flex-fill" style={{ backgroundColor: '#0b283b', borderRadius: '15px', padding: '20px', color: 'white', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)' }}>
               <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '20px', color: 'wheat' }}>Personal Information</h5>
               <div className="card-body">
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Full Name: <span style={{ color: 'wheat' }}>{employee?.lname}, {employee?.fname} {employee?.mname}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Birthday: <span style={{ color: 'wheat' }}>{formatDate(employee?.birth_date)}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Gender: <span style={{ color: 'wheat' }}>{employee?.gender}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Contact Number: <span style={{ color: 'wheat' }}>{employee?.phone_number}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Home Address: <span style={{ color: 'wheat' }}>{employee?.perma_address}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Email Address: <span style={{ color: 'wheat' }}>{employee?.email}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Full Name: <span style={{ color: 'wheat' }}>{employee && employee.lname}, {employee && employee.fname} {employee && employee.mname}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Birthday: <span style={{ color: 'wheat' }}>{formatDate(employee && employee.birth_date)}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Gender: <span style={{ color: 'wheat' }}>{employee && employee.gender}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Contact Number: <span style={{ color: 'wheat' }}>{employee && employee.phone_number}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Home Address: <span style={{ color: 'wheat' }}>{employee && employee.perma_address}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Email Address: <span style={{ color: 'wheat' }}>{employee && employee.email}</span></p>
               </div>
             </div>
           </div>
@@ -225,11 +233,11 @@ const EmployeeProfile = () => {
             <div className="card mb-4 flex-fill" style={{ backgroundColor: '#0b283b', borderRadius: '15px', padding: '20px', color: 'white', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)' }}>
               <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '20px', color: 'wheat' }}>Job Information</h5>
               <div className="card-body">
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>ID Number: <span style={{ color: 'wheat' }}>{employee?.emp_no}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Department: <span style={{ color: 'wheat' }}>{employee?.department}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Project/Unit: <span style={{ color: 'wheat' }}>{employee?.project}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Position: <span style={{ color: 'wheat' }}>{employee?.position}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Joined on: <span style={{ color: 'wheat' }}>{formatDate(employee?.date_hired)}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>ID Number: <span style={{ color: 'wheat' }}>{employee && employee.emp_no}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Department: <span style={{ color: 'wheat' }}>{employee && employee.department}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Project/Unit: <span style={{ color: 'wheat' }}>{employee && employee.project}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Position: <span style={{ color: 'wheat' }}>{employee && employee.position}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Joined on: <span style={{ color: 'wheat' }}>{formatDate(employee && employee.date_hired)}</span></p>
               </div>
             </div>
           </div>
@@ -238,10 +246,10 @@ const EmployeeProfile = () => {
             <div className="card mb-4 flex-fill" style={{ backgroundColor: '#0b283b', borderRadius: '15px', padding: '20px', color: 'white', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)' }}>
               <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '20px', color: 'wheat' }}>Payroll Information</h5>
               <div className="card-body">
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Paid Every: <span style={{ color: 'wheat' }}>{employee?.pay_frequency}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Daily Rate: <span style={{ color: 'wheat' }}>₱{employee?.rate_per_day}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Hourly Rate: <span style={{ color: 'wheat' }}>₱{employee?.rate_per_hour}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Salary: <span style={{ color: 'wheat' }}>₱{employee?.salary}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Paid Every: <span style={{ color: 'wheat' }}>{employee && employee.pay_frequency}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Daily Rate: <span style={{ color: 'wheat' }}>₱{employee && employee.rate_per_day}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Hourly Rate: <span style={{ color: 'wheat' }}>₱{employee && employee.rate_per_hour}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Salary: <span style={{ color: 'wheat' }}>₱{employee && employee.salary}</span></p>
               </div>
             </div>
           </div>
@@ -250,10 +258,10 @@ const EmployeeProfile = () => {
             <div className="card mb-4 flex-fill" style={{ backgroundColor: '#0b283b', borderRadius: '15px', padding: '20px', color: 'white', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)' }}>
               <h5 className="card-title" style={{ fontFamily: 'Montserrat', fontSize: '20px', color: 'wheat' }}>Employment Status</h5>
               <div className="card-body">
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Status: <span style={{ color: 'wheat' }}>{employee?.employee_status}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Terminated on: <span style={{ color: 'wheat' }}>{employee?.employee_status === 'Active' ? 'No Date' : formatDate(employee?.term_date)}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Start Time: <span style={{ color: 'wheat' }}>{employee?.start_time ? formatTime(employee?.start_time) : 'N/A'}</span></p>
-                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Out Time: <span style={{ color: 'wheat' }}>{employee?.out_time ? formatTime(employee?.out_time) : 'N/A'}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Status: <span style={{ color: 'wheat' }}>{employee && employee.employee_status}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Terminated on: <span style={{ color: 'wheat' }}>{employee && employee.employee_status === 'Active' ? 'No Date' : formatDate(employee?.term_date)}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Start Time: <span style={{ color: 'wheat' }}>{employee && employee.start_time ? formatTime(employee && employee.start_time) : 'N/A'}</span></p>
+                <p style={{ fontFamily: 'Montserrat', fontSize: '18px' }}>Out Time: <span style={{ color: 'wheat' }}>{employee && employee.out_time ? formatTime(employee && employee.out_time) : 'N/A'}</span></p>
               </div>
             </div>
           </div>

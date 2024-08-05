@@ -23,8 +23,13 @@ const EmployeeLeave = () => {
   useEffect(() => {
     axios.get(`https://hrais-rcramoscc-server.onrender.com/employee/home/${id}`)
       .then(result => {
-        setEmployee(result.data[0]);
-        return result.data[0]?.emp_no;
+        if (result.data) {
+          setEmployee(result.data);
+          return result.data.emp_no;
+        } else {
+          console.error("Unexpected response format", result.data);
+          return null;
+        }
       })
       .catch(err => console.log(err));
   }, [id]);
@@ -287,7 +292,7 @@ const EmployeeLeave = () => {
                 <div className="dropdown-toggle nav-link d-flex align-items-center" onClick={toggleDropdown}>
                   {employee && employee.image ? (
                     <img
-                      src={`https://hrais-rcramoscc-server.onrender.com/Public/Images/${employee.image}`}
+                      src={`https://hrais-rcramoscc-server.onrender.com/Images/${employee.image}`}
                       className="rounded-circle"
                       alt="Employee"
                       style={{ width: '45px', height: '45px' }}
@@ -295,14 +300,13 @@ const EmployeeLeave = () => {
                   ) : (
                     <div className="rounded-circle" style={{ width: '45px', height: '45px', backgroundColor: 'gray' }} />
                   )}
+                  Hi, {employee ? employee.fname : "Employee"}
                 </div>
-                <ul className={`dropdown-menu ${dropdownVisible ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
-                  <li>
-                   <div className="dropdown-menu dropdown-menu-end">
+                {dropdownVisible && (
+                  <div className="dropdown-menu dropdown-menu-end">
                     <button className="dropdown-item" onClick={handleLogout}>Logout</button>
                   </div>
-                  </li>
-                </ul>
+                )}
               </li>
             </ul>
           </div>
