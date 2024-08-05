@@ -46,8 +46,6 @@ const EmployeeAttendance = () => {
         }
       })
       .catch(err => console.log(err));
-
-    fetchEmployeeData();
   }, [id]);
 
   const handleLogout = () => {
